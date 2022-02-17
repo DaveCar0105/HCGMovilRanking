@@ -1,28 +1,24 @@
-
-
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 
-class ProcesoTamanoBotonPage extends StatefulWidget{
+class ProcesoMaltratoPage extends StatefulWidget{
   bool valor;
   int ramosId;
-  ProcesoTamanoBotonPage(bool valor, int ramosId){
+  ProcesoMaltratoPage(bool valor, int ramosId){
     this.valor = valor;
     this.ramosId=ramosId;
   }
  @override
-  _ProcesoTamanoBotonState createState() => _ProcesoTamanoBotonState(this.valor, this.ramosId);
+  _ProcesoMaltratoState createState() => _ProcesoMaltratoState(this.valor, this.ramosId);
 }
 
-class _ProcesoTamanoBotonState extends State<ProcesoTamanoBotonPage>{
+class _ProcesoMaltratoState extends State<ProcesoMaltratoPage>{
    final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
 
   
   bool elite = false;
   int ramosId= 1; 
-  _ProcesoTamanoBotonState(bool valor, int ramosId){
+  _ProcesoMaltratoState(bool valor, int ramosId){
     elite=valor;
     ramosId=ramosId;
   }
@@ -32,7 +28,7 @@ class _ProcesoTamanoBotonState extends State<ProcesoTamanoBotonPage>{
    Widget build(BuildContext context) {
      return  Scaffold(
        key: scaffoldKey,
-       appBar: AppBar(title: Text('Proceso tamano boton'),
+       appBar: AppBar(title: Text('PROCESO MALTRATO'),
        ),
        body: Container(
          padding: const EdgeInsets.all(16.0),
@@ -40,21 +36,12 @@ class _ProcesoTamanoBotonState extends State<ProcesoTamanoBotonPage>{
          child: Container(
            child: ListView(children:<Widget> [
              Column(
-              
-               
                mainAxisAlignment: MainAxisAlignment.start,
                crossAxisAlignment: CrossAxisAlignment.center,
                children: <Widget>[
-                 Divider(),
-                Text('INFORMACION GENERAL EVALUACION FINCA'),
-                Divider(),
-               
-
-                 
 
                ],
              ),
-             Column(),
 
            ],),
          ),
@@ -63,9 +50,10 @@ class _ProcesoTamanoBotonState extends State<ProcesoTamanoBotonPage>{
    }
 }
 Widget _FechaDeAuditoria(){
-  return Scaffold(
-    
+  return Container(
+    height: 100,
+    width: 200,
+    alignment: Alignment.center,
   
   );
 }
-

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ranking_app/src/ui/pages/procesos/proceso-maltrato.page.dart';
 import 'package:ranking_app/src/ui/pages/procesos/proceso-tamano-boton.page.dart';
 
 class MainProcessPage extends StatefulWidget {
@@ -48,37 +49,37 @@ class _MainProcessPageState extends State<MainProcessPage>{
               ),
             ),
           ),
-          // Botones(
-          //   child: RaisedButton(
-          //     shape: RoundedRectangleBorder(
-          //         borderRadius: BorderRadius.circular(10)),
-          //     color: Colors.red,
-          //     textColor: Colors.white,
-          //     onPressed: () {
-          //       Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) =>
-          //                   EmpaqueElitePage(this._switchVal, 0)));
-          //     },
-          //     child: Container(
-          //       width: 120,
-          //       height: 70,
-          //       child: Row(
-          //         crossAxisAlignment: CrossAxisAlignment.center,
-          //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //         children: <Widget>[
-          //           Text(
-          //             'Empaque',
-          //             style: TextStyle(fontSize: 15),
-          //           ),
-          //           Icon(Icons.all_inbox)
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          //   //text: 'raise botton',
-          // ),
+          Botones(
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              color: Colors.red,
+              textColor: Colors.white,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            ProcesoMaltratoPage(this._switchVal, 10)));
+              },
+              child: Container(
+                width: 120,
+                height: 70,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Text(
+                      'MALTRATO',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    Icon(Icons.all_inbox)
+                  ],
+                ),
+              ),
+            ),
+            //text: 'raise botton',
+          ),
           // Botones(
           //   child: RaisedButton(
           //     shape: RoundedRectangleBorder(

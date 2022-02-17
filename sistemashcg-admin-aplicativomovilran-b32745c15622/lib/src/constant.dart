@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Constant {
-  static const URL = '###INSERTAR IP###';
+  static const URL = '192.168.100.71';
   static const DB_NAME = 'HcgRankingV1';
   static const NAME_PREFERENCE = 'rankingHCG2021';
   static const BANDERA_PREFERENCE = 'rankingHCGBandera';

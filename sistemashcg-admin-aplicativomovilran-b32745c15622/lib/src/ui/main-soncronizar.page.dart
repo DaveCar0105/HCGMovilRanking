@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ranking_app/src/ui/pages/evaluacion/evalucion-tinas-cajas.page.dart';
 import 'package:ranking_app/src/ui/pages/procesos/proceso-tamano-boton.page.dart';
 
-class MainEvalutionPage extends StatefulWidget {
+class MainSincroPage extends StatefulWidget {
    @override
-  _MainEvalutionPageState createState() => _MainEvalutionPageState();
+  _MainSincroPageState createState() => _MainSincroPageState();
 }
 
-class _MainEvalutionPageState extends State<MainEvalutionPage>{
+class _MainSincroPageState extends State<MainSincroPage>{
   bool _switchVal = true;
   bool sinc = false;
 
@@ -26,7 +25,7 @@ class _MainEvalutionPageState extends State<MainEvalutionPage>{
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            EvaluacionTinasCajasPage(this._switchVal, 10)));
+                            ProcesoTamanoBotonPage(this._switchVal, 10)));
               },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
@@ -40,7 +39,7 @@ class _MainEvalutionPageState extends State<MainEvalutionPage>{
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Text(
-                      'EVAlUACION',
+                      'sincronizar',
                       style: TextStyle(fontSize: 15),
                     ),
                     Icon(Icons.local_florist_outlined)

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_progress_hud/flutter_progress_hud.dart';
+import 'package:ranking_app/src/ui/main-aprobacion.page.dart';
 import 'package:ranking_app/src/ui/main-evaluacion.page.dart';
 import 'package:ranking_app/src/ui/main-process.page.dart';
+import 'package:ranking_app/src/ui/main-reporte.page.dart';
+import 'package:ranking_app/src/ui/main-soncronizar.page.dart';
 import 'package:ranking_app/src/ui/widgets/appBar.widget.dart';
 import 'package:ranking_app/src/ui/widgets/drawer.widget.dart';
 
@@ -16,7 +19,12 @@ class _MainPageState extends State<MainPage> {
 
   final pages =[
     MainProcessPage(),
-    MainEvalutionPage()
+    MainEvalutionPage(),
+    MainSincroPage(),
+    MainAprobacionPage(),
+    MainReportPage()
+   
+    
   ];
 
 
@@ -29,7 +37,7 @@ class _MainPageState extends State<MainPage> {
                       resizeToAvoidBottomInset: false,
                       appBar: AppBarWidget(),
                       drawer: DrawerWidget(),
-                      body: MainProcessPage(),
+                      body: pages[_currenIndexBottomNavigation],
                       bottomNavigationBar: Container(
                         decoration: BoxDecoration(boxShadow: [
                           BoxShadow(
@@ -51,6 +59,7 @@ class _MainPageState extends State<MainPage> {
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
+              
               icon: Icon(Icons.account_balance_wallet_outlined),
               activeIcon: Icon(Icons.account_balance_wallet),
               label:"Proceso"
