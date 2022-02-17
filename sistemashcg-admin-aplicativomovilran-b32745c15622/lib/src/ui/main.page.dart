@@ -53,26 +53,26 @@ class _MainPageState extends State<MainPage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.account_balance_wallet_outlined),
               activeIcon: Icon(Icons.account_balance_wallet),
-              title: Text("Proceso")
+              label:"Proceso"
               
               
               ),
           BottomNavigationBarItem(
               icon: Icon(Icons.fact_check_outlined),
               activeIcon: Icon(Icons.fact_check_rounded),
-              title: Text("Evaluación")),
+              label:"Evaluación"),
           BottomNavigationBarItem(
               icon: Icon(Icons.cloud_done_outlined),
               activeIcon: Icon(Icons.cloud_done_rounded),
-              title: Text("Sincronización")),
+              label:"Sincronización"),
           BottomNavigationBarItem(
               icon: Icon(Icons.library_add_check_outlined),
               activeIcon: Icon(Icons.library_add_check_rounded),
-              title: Text("Aprobación")),
+              label:"Aprobación"),
           BottomNavigationBarItem(
               icon: Icon(Icons.assessment_outlined),
               activeIcon: Icon(Icons.assessment),
-              title: Text("Reporte")),
+              label:"Reporte"),
         ],
         onTap: (index) {
           setState(() {
