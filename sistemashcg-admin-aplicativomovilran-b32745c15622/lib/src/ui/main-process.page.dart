@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ranking_app/src/ui/pages/procesos/informacion-adicional.page.dart';
 import 'package:ranking_app/src/ui/pages/procesos/proceso-maltrato.page.dart';
 import 'package:ranking_app/src/ui/pages/procesos/proceso-tamano-boton.page.dart';
 
@@ -80,36 +81,36 @@ class _MainProcessPageState extends State<MainProcessPage>{
             ),
             //text: 'raise botton',
           ),
-          // Botones(
-          //   child: RaisedButton(
-          //     shape: RoundedRectangleBorder(
-          //         borderRadius: BorderRadius.circular(10)),
-          //     color: Colors.red,
-          //     textColor: Colors.white,
-          //     onPressed: () {
-          //       Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) => BandaPage(this._switchVal, 0)));
-          //     },
-          //     child: Container(
-          //       width: 120,
-          //       height: 70,
-          //       child: Row(
-          //         crossAxisAlignment: CrossAxisAlignment.center,
-          //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //         children: <Widget>[
-          //           Text(
-          //             'Final banda',
-          //             style: TextStyle(fontSize: 15),
-          //           ),
-          //           Icon(Icons.set_meal)
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          //   //text: 'raise botton',
-          // ),
+          Botones(
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              color: Colors.red,
+              textColor: Colors.white,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => InformacionAdicionalPage(this._switchVal, 0)));
+              },
+              child: Container(
+                width: 120,
+                height: 70,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Text(
+                      'INFORMACION \n ADICIONAL',
+                      style: TextStyle(fontSize: 12),
+                    ),
+                    Icon(Icons.set_meal)
+                  ],
+                ),
+              ),
+            ),
+            //text: 'raise botton',
+          ),
           // Botones(
           //   child: RaisedButton(
           //     shape: RoundedRectangleBorder(
