@@ -218,8 +218,9 @@ List<ClienteDto> subClientes = [];
 
   Widget _cliente(context) {
     return Container(
-      child: clientEnable
-          ? ListaBusqueda(
+      child: 
+      // clientEnable?
+           ListaBusqueda(
               key: _keyCliente,
               lista: listaCliente,
               hintText: "Producto",
@@ -239,16 +240,17 @@ List<ClienteDto> subClientes = [];
                 }
               },
             )
-          : Container(
-              child: CircularProgressIndicator(),
-            ),
+          // : Container(
+          //     child: CircularProgressIndicator(),
+          //   ),
     );
   }
 
 Widget _subCliente(context) {
     return Container(
-      child: subClientEnable
-          ? ListaBusqueda(
+      child: 
+      // subClientEnable?
+           ListaBusqueda(
               key: _keySubCliente,
               lista: listaSubCliente,
               hintText: "Producto",
@@ -268,9 +270,9 @@ Widget _subCliente(context) {
                 }
               },
             )
-          : Container(
-              child: CircularProgressIndicator(),
-            ),
+          // : Container(
+          //     child: CircularProgressIndicator(),
+          //   ),
     );
   }
 
@@ -343,8 +345,9 @@ Widget _subCliente(context) {
 }
   Widget _causa1(context) {
     return Container(
-      child: causa1Enable
-          ? ListaBusqueda(
+      child: 
+      // causa1Enable?
+           ListaBusqueda(
               key: _keyCausa1,
               lista: listaCausa1,
               hintText: "Causa1",
@@ -364,9 +367,9 @@ Widget _subCliente(context) {
                 }
               },
             )
-          : Container(
-              child: CircularProgressIndicator(),
-            ),
+          // : Container(
+          //     child: CircularProgressIndicator(),
+          //   ),
     );
   }
    Widget _porcentajeCausa1(){
@@ -384,8 +387,9 @@ Widget _subCliente(context) {
 }
   Widget _causa2(context) {
     return Container(
-      child: causa2Enable
-          ? ListaBusqueda(
+      child: 
+      // causa2Enable?
+           ListaBusqueda(
               key: _keyCausa2,
               lista: listaCausa2,
               hintText: "Causa2",
@@ -405,9 +409,9 @@ Widget _subCliente(context) {
                 }
               },
             )
-          : Container(
-              child: CircularProgressIndicator(),
-            ),
+          // : Container(
+          //     child: CircularProgressIndicator(),
+          //   ),
     );
   }
    Widget _porcentajeCausa2(){
@@ -425,8 +429,9 @@ Widget _subCliente(context) {
 }
   Widget _causa3(context) {
     return Container(
-      child: causa3Enable
-          ? ListaBusqueda(
+      child: 
+      // causa3Enable?
+           ListaBusqueda(
               key: _keyCausa3,
               lista: listaCausa3,
               hintText: "Causa3",
@@ -446,9 +451,9 @@ Widget _subCliente(context) {
                 }
               },
             )
-          : Container(
-              child: CircularProgressIndicator(),
-            ),
+          // : Container(
+          //     child: CircularProgressIndicator(),
+          //   ),
     );
   }
    Widget _porcentajeCausa3(){
@@ -466,8 +471,9 @@ Widget _subCliente(context) {
 }
   Widget _causa4(context) {
     return Container(
-      child: causa1Enable
-          ? ListaBusqueda(
+      child: 
+      // causa1Enable?
+           ListaBusqueda(
               key: _keyCausa4,
               lista: listaCausa4,
               hintText: "Causa4",
@@ -487,9 +493,9 @@ Widget _subCliente(context) {
                 }
               },
             )
-          : Container(
-              child: CircularProgressIndicator(),
-            ),
+          // : Container(
+          //     child: CircularProgressIndicator(),
+          //   ),
     );
   }
    Widget _porcentajeCausa4(){
@@ -507,8 +513,9 @@ Widget _subCliente(context) {
 }
   Widget _causa5(context) {
     return Container(
-      child: causa5Enable
-          ? ListaBusqueda(
+      child: 
+      // causa5Enable?
+           ListaBusqueda(
               key: _keyCausa5,
               lista: listaCausa5,
               hintText: "Causa5",
@@ -528,9 +535,9 @@ Widget _subCliente(context) {
                 }
               },
             )
-          : Container(
-              child: CircularProgressIndicator(),
-            ),
+          // : Container(
+          //     child: CircularProgressIndicator(),
+          //   ),
     );
   }
    Widget _porcentajeCausa5(){

@@ -73,6 +73,7 @@ class _ProcesoTamanoBotonState extends State<ProcesoTamanoBotonPage>{
 cargarRamos(int ramosId) async {
     listaCliente = [];
     listaSubCliente=[];
+    listaVariedad=[];
   
     int valor = 0;
     if (elite) {
@@ -174,8 +175,9 @@ List<ClienteDto> subClientes = [];
 
 Widget _cliente(context) {
     return Container(
-      child: clientEnable
-          ? ListaBusqueda(
+      child: 
+      //clientEnable?
+           ListaBusqueda(
               key: _keyCliente,
               lista: listaCliente,
               hintText: "Producto",
@@ -195,16 +197,18 @@ Widget _cliente(context) {
                 }
               },
             )
-          : Container(
-              child: CircularProgressIndicator(),
-            ),
+          // : Container(
+          //     child: CircularProgressIndicator(),
+          //   ),
     );
   }
 
 Widget _subCliente(context) {
     return Container(
-      child: subClientEnable
-          ? ListaBusqueda(
+      child: 
+      //subClientEnable?
+           
+          ListaBusqueda(
               key: _keySubCliente,
               lista: listaSubCliente,
               hintText: "Producto",
@@ -224,16 +228,17 @@ Widget _subCliente(context) {
                 }
               },
             )
-          : Container(
-              child: CircularProgressIndicator(),
-            ),
+          // : Container(
+          //     child: CircularProgressIndicator(),
+          //   ),
     );
   }
   //VARIEDAD A EVALUAR
   Widget _variedad(context) {
     return Container(
-      child: variedadEnable
-          ? ListaBusqueda(
+      child: 
+      //variedadEnable?
+           ListaBusqueda(
               key: _keyVariedad,
               lista: listaVariedad,
               hintText: "Producto",
@@ -253,9 +258,9 @@ Widget _subCliente(context) {
                 }
               },
             )
-          : Container(
-              child: CircularProgressIndicator(),
-            ),
+          // : Container(
+          //     child: CircularProgressIndicator(),
+          //   ),
     );
   }
 
