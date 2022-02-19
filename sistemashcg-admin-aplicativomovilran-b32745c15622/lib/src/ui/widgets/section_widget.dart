@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ranking_app/src/ui/widgets/divider_widget.dart';
 
 class SurveySection extends StatelessWidget {
-  final content;
+  final List<Widget> content;
   final title;
   const SurveySection({Key key, this.content, this.title}) : super(key: key);
 
@@ -10,12 +10,13 @@ class SurveySection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        children: [
-          Header(
-            displayText: title,
+        children: content.map((e) => e).toList()
+          ..insert(
+            0,
+            Header(
+              displayText: title,
+            ),
           ),
-          content
-        ],
       ),
     );
   }
