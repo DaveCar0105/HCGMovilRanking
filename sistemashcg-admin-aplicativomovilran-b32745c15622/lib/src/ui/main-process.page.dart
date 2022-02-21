@@ -4,11 +4,11 @@ import 'package:ranking_app/src/ui/pages/procesos/proceso-maltrato.page.dart';
 import 'package:ranking_app/src/ui/pages/procesos/proceso-tamano-boton.page.dart';
 
 class MainProcessPage extends StatefulWidget {
-   @override
+  @override
   _MainProcessPageState createState() => _MainProcessPageState();
 }
 
-class _MainProcessPageState extends State<MainProcessPage>{
+class _MainProcessPageState extends State<MainProcessPage> {
   bool _switchVal = true;
   bool sinc = false;
 
@@ -57,10 +57,14 @@ class _MainProcessPageState extends State<MainProcessPage>{
               textColor: Colors.white,
               onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            ProcesoMaltratoPage(this._switchVal, 10)));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProcesoMaltratoPage(
+                      valor: this._switchVal,
+                      ramosId: 10,
+                    ),
+                  ),
+                );
               },
               child: Container(
                 width: 120,
@@ -181,11 +185,9 @@ class _MainProcessPageState extends State<MainProcessPage>{
           // ),
         ],
       ),
-
     );
   }
 }
-
 
 class Botones extends StatelessWidget {
   final Widget child;
@@ -196,7 +198,7 @@ class Botones extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
-@override
+  @override
   Widget build(BuildContext context) {
     return Card(
       child: Padding(

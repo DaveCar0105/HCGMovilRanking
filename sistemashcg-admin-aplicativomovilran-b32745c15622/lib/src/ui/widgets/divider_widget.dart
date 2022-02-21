@@ -7,9 +7,12 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: <Widget>[Divider(), displayText, Divider()],
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Center(
+        child: Column(
+          children: <Widget>[Divider(), displayText, Divider()],
+        ),
       ),
     );
   }

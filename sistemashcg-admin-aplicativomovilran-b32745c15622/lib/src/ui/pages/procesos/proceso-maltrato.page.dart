@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:ranking_app/src/ui/widgets/forms_widget.dart';
 
 class ProcesoMaltratoPage extends StatefulWidget {
-  bool valor;
-  int ramosId;
-  ProcesoMaltratoPage(bool valor, int ramosId) {
-    this.valor = valor;
-    this.ramosId = ramosId;
-  }
+  final bool valor;
+  final int ramosId;  
+
+  const ProcesoMaltratoPage({Key key, this.valor, this.ramosId})
+      : super(key: key);
+
   @override
   _ProcesoMaltratoState createState() =>
       _ProcesoMaltratoState(this.valor, this.ramosId);
