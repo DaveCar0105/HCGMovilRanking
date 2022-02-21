@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ranking_app/src/ui/pages/evaluacion/evalucion-tinas-cajas.page.dart';
+import 'package:ranking_app/src/ui/pages/evaluacion/tinas-cajas/evalucion-tinas-cajas.page.dart';
 import 'package:ranking_app/src/ui/pages/procesos/proceso-tamano-boton.page.dart';
 
 class MainEvalutionPage extends StatefulWidget {
-   @override
+  @override
   _MainEvalutionPageState createState() => _MainEvalutionPageState();
 }
 
-class _MainEvalutionPageState extends State<MainEvalutionPage>{
+class _MainEvalutionPageState extends State<MainEvalutionPage> {
   bool _switchVal = true;
   bool sinc = false;
 
@@ -181,11 +181,9 @@ class _MainEvalutionPageState extends State<MainEvalutionPage>{
           // ),
         ],
       ),
-
     );
   }
 }
-
 
 class Botones extends StatelessWidget {
   final Widget child;
@@ -196,7 +194,7 @@ class Botones extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
-@override
+  @override
   Widget build(BuildContext context) {
     return Card(
       child: Padding(

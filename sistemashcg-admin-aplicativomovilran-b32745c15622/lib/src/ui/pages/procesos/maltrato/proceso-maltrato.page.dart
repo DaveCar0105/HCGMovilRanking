@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ranking_app/src/ui/widgets/forms_widget.dart';
+import 'package:ranking_app/src/ui/pages/procesos/maltrato/maltrato_form_widget.dart';
 
 class ProcesoMaltratoPage extends StatefulWidget {
   final bool valor;
-  final int ramosId;  
+  final int ramosId;
 
   const ProcesoMaltratoPage({Key key, this.valor, this.ramosId})
       : super(key: key);

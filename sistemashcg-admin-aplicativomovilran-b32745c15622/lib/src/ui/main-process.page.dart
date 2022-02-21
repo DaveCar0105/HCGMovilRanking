@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ranking_app/src/ui/pages/procesos/proceso-maltrato.page.dart';
+import 'package:ranking_app/src/ui/pages/procesos/maltrato/proceso-maltrato.page.dart';
 import 'package:ranking_app/src/ui/pages/procesos/proceso-tamano-boton.page.dart';
 
 class MainProcessPage extends StatefulWidget {
