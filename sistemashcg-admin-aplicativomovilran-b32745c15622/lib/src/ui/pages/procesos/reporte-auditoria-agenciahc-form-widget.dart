@@ -139,28 +139,36 @@ class ProcesoReporteAuditoriaAgenciahcForm extends StatelessWidget {
   }
 
   SurveySection _sectionC() {
+    final options=['largoCaja','anchoCaja','altoCaja'];
+    
     return SurveySection(
       title: Text('Caracteristicas Caja Auditada'),
       content: FormFieldWidget.generateElements({
       
         'largoCaja': {
           'label': 'Largo de la caja',
-          'type': FieldType.numeric,
+          'type': FieldType.multiplication,
+          'options':options,
+          'result':'pesoVolumetrico',
           'required': true
         },
         'anchoCaja': {
           'label': 'Ancho de la caja',
-          'type': FieldType.numeric,
+          'type': FieldType.multiplication,
+          'options':options,
+          'result':'pesoVolumetrico',
           'required': true
         },
         'altoCaja': {
           'label': 'Alto de la caja',
-          'type': FieldType.numeric,
+          'type': FieldType.multiplication,
+          'options':options,
+          'result':'pesoVolumetrico',
           'required': true
         },
         'pesoVolumetrico': {   // HACER EL CALCULO
           'label': 'Peso Volumetrico',
-          'type': FieldType.numeric,
+          'type': FieldType.numberResult,
           'required': true
         },
         'pesoRealCaja': {

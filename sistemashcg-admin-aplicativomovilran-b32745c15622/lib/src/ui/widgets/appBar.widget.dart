@@ -19,14 +19,14 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           Text(
             'Ranking HCG',
             style: TextStyle(
-                color: Constant.COLOR_SECONDARY,
+                color: Constant.COLOR_PRIMARY,
                 fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.bold,
                 fontSize: MediaQuery.of(context).size.height * 0.023),
           ),
         ]),
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.refresh))],
-        actionsIconTheme: IconThemeData(color: Constant.COLOR_SECONDARY));
+        actionsIconTheme: IconThemeData(color: Constant.COLOR_PRIMARY));
   }
 
   @override

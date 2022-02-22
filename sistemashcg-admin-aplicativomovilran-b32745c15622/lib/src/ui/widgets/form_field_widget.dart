@@ -62,8 +62,7 @@ class FormFieldWidget extends StatelessWidget {
         initialValue: '0',
         name: e.key,
         onChanged: (_) {
-          _getPercent(e.value['options'].elementAt(0),
-              e.value['options'].elementAt(1), e.value['options'].elementAt(2));
+          _getAverage(e.value['options'], e.value['result']);
         },
         decoration: inputDecoration,
         keyboardType: TextInputType.number,
@@ -108,21 +107,16 @@ class FormFieldWidget extends StatelessWidget {
   }
 
   void _getAverage(
-    List<String> list,
-    String r,
-  ) {
-    var numbers = list.map((e) => formKey.currentState.fields[e]?.value ?? "");
-    var resultField = formKey.currentState.fields[r]?.value ?? "";
+   List<String> list,
+    String v,
+  ){
+    //var map=list.map((s) =>formKey.currentState.fields[s]?.value ?? "");
 
-    if (numbers.isNotEmpty && resultField.isNotEmpty) {
-      //Compute fields
-      // var reduce =
-      //     numbers.map((e) => null).reduce<double>((value, element) => value + element);
-      // var result = ((b * 100) / a) ?? 0;
-
-      //setResult
-      var result = 0;
-      formKey.currentState.fields[r].didChange(result.toString());
+        if (list.isNotEmpty) {
+     List<int> nombresList= list.map((i) => int.tryParse(formKey.currentState.fields[i].value) ?? 0).toList();    
+      
+      var result = ((nombresList.reduce((value, element) => value+element)) ?? 0)/list.length;
+      formKey.currentState.fields[v].didChange(result.toString());
     }
   }
 
@@ -145,12 +139,12 @@ class FormFieldWidget extends StatelessWidget {
     List<String> list,
     String v,
   ){
-    var map=list.map((s) =>formKey.currentState.fields[s]?.value ?? "");
+    //var map=list.map((s) =>formKey.currentState.fields[s]?.value ?? "");
 
-        if (map.isNotEmpty) {
-      map.map((i) => int.tryParse(formKey.currentState.fields[i].value) ?? 0);    
+        if (list.isNotEmpty) {
+     List<int> nombresList= list.map((i) => int.tryParse(formKey.currentState.fields[i].value) ?? 0).toList();    
       
-      var result = (map.reduce((value, element) => value*element)) ?? 0;
+      var result = (nombresList.reduce((value, element) => value*element)) ?? 0;
       formKey.currentState.fields[v].didChange(result.toString());
     }
   }

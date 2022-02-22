@@ -32,7 +32,7 @@ class _MainSincroPageState extends State<MainSincroPage>{
               },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
-              color: Colors.red,
+              color: Colors.black,
               textColor: Colors.white,
               child: Container(
                 width: 120,

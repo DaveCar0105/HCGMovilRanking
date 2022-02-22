@@ -19,6 +19,7 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
             _sectionC(),
             _sectionD(),
             _sectionE(),
+            _sectionPetalos(),
             _footer(context)
           ],
         ),
@@ -103,26 +104,28 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
 
   SurveySection _sectionD() {
     var options = [
-      'tallosMuestradosClasificación',
-      'precenciaMaltratoClasificación',
-      'porcentajeIncidenciaClasificación',
+      'largo',
+      'ancho'
+      
     ];
 
     return SurveySection(
-      title: Text('Clasificación - Boncheo'),
+      title: Text('AREA DEL RAMO'),
       content: FormFieldWidget.generateElements({
-        'tallosMuestradosClasificación': {
-          'label': 'Tallos Muestreados Clasificación',
-          'type': FieldType.average,
+        'largo': {
+          'label': 'Largo',
+          'type': FieldType.multiplication,
           'options': options,
+          'result':'area'
         },
-        'precenciaMaltratoClasificación': {
-          'label': 'Presencia de Maltrato Clasificación',
-          'type': FieldType.average,
+        'ancho': {
+          'label': 'Ancho',
+          'type': FieldType.multiplication,
           'options': options,
+          'result':'area'
         },
-        'porcentajeIncidenciaClasificación': {
-          'label': '% Incidencia Clasificación',
+        'area': {
+          'label': 'El Area es',
           'type': FieldType.numberResult,
         },
       }, _formKey),
@@ -130,61 +133,57 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
   }
 
   SurveySection _sectionE() {
+
     var options = [
-      'tallosMuestreadosCuartoFrio',
-      'presenciaMaltratoCuartoFrio',
-      'porcentajeIncidenciaCuartoFrio',
+      'tamanoBoton1',
+      'tamanoBoton2',
+      'tamanoBoton3',
     ];
+
 
     return SurveySection(
-      title: Text('Cuarto Frio'),
+      title: Text('Tamano de Boton'),
       content: FormFieldWidget.generateElements({
-        'tallosMuestreadosCuartoFrio': {
-          'label': 'Tallos Muestreados Cuarto Frio',
+        'tamanoBoton1': {
+          'label': 'Tamano Boton1',
           'type': FieldType.average,
           'options': options,
+          'result': 'resultTamanoBoton'
         },
-        'presenciaMaltratoCuartoFrio': {
-          'label': 'Presencia de Maltrato Cuarto Frio',
+        'tamanoBoton2': {
+          'label': 'Tamano Boton2',
           'type': FieldType.average,
           'options': options,
+          'result': 'resultTamanoBoton'
         },
-        'porcentajeIncidenciaCuartoFrio': {
-          'label': '% Incidencia Cuarto Frio',
+        'tamanoBoton3': {
+          'label': 'Tamano Boton3',
+          'type': FieldType.average,
+          'options':options,
+          'result': 'resultTamanoBoton'
+        },
+        'resultTamanoBoton': {
+          'label': 'Promedio Tamano Boton',
           'type': FieldType.numberResult,
         },
       }, _formKey),
     );
   }
 
-  SurveySection _sectionF() {
-    var options = [
-      'tallosMuestreadosEmpaque',
-      'presenciaMaltratoEmpaque',
-      'porcentajeIncidenciaEmpaque',
-    ];
-    var b = SurveySection(
-      title: Text('Empaque'),
-      content: FormFieldWidget.generateElements({
-        'tallosMuestreadosEmpaque': {
-          'label': 'Tallos Muestreados Empaque',
-          'type': FieldType.average,
-          'options': options,
-        },
-        'presenciaMaltratoEmpaque': {
-          'label': 'Presencia de Maltrato Empaque',
-          'type': FieldType.average,
-          'options': options,
-        },
-        'porcentajeIncidenciaEmpaque': {
-          'label': '% Incidencia Empaque',
-          'type': FieldType.numberResult,
-        },
-      }, _formKey),
-    );
-
-    return b;
+  SurveySection _sectionPetalos() {
+    return SurveySection(
+        title: Text('Numero de Petalos'),
+        content: FormFieldWidget.generateElements({
+          
+          'numeroPetalos': {
+          'label': 'Numero de Petalos',
+          'type': FieldType.numeric,
+          'required': true
+        }
+        }, _formKey));
   }
+
+
 
   Row _footer(BuildContext context) {
     return Row(

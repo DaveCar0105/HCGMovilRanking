@@ -29,7 +29,7 @@ class _ProcesoTamanoBotonState extends State<ProcesoTamanoBotonPage> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        title: Text('PROCESO MALTRATO'),
+        title: Text('TAMANO BOTON'),
       ),
       body: ProcesoTamanoBotonForm(),
     );
