@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ranking_app/locator.dart';
 import 'package:ranking_app/src/constant.dart';
+import 'package:ranking_app/src/services/sincronize-information-server.service.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   AppBarWidget({Key key}) : super(key: key);
@@ -25,7 +26,13 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                 fontSize: MediaQuery.of(context).size.height * 0.023),
           ),
         ]),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.refresh))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                locator<SincronizeServerInformation>().sincronized();
+              },
+              icon: Icon(Icons.refresh))
+        ],
         actionsIconTheme: IconThemeData(color: Constant.COLOR_PRIMARY));
   }
 

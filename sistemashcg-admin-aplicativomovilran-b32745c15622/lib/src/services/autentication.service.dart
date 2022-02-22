@@ -2,12 +2,13 @@ import 'dart:convert';
 import 'package:ranking_app/src/constant.dart';
 import 'package:http/http.dart' as http;
 import 'package:ranking_app/src/dtos/session.dto.dart';
+import '../../locator.dart';
 import '../preference.dart';
 
 class AutenticationService {
   final String nombreModelo = 'autenticacion';
   SessionDto sessionDto;
-  Preferences pref = Preferences();
+  Preferences pref = locator<Preferences>();
 
   Future<bool> postLogin(String username, String password) async {
     const objetoAutentication = {

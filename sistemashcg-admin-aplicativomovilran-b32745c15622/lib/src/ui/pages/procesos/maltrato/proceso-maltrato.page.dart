@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ranking_app/src/repositories/cliente.repository.dart';
 import 'package:ranking_app/src/ui/pages/procesos/maltrato/maltrato_form_widget.dart';
+
+import '../../../../../locator.dart';
+import '../../../../repositories/postcosecha.repository.dart';
 
 class ProcesoMaltratoPage extends StatefulWidget {
   final bool valor;
@@ -21,6 +25,24 @@ class _ProcesoMaltratoState extends State<ProcesoMaltratoPage> {
   _ProcesoMaltratoState(bool valor, int ramosId) {
     elite = valor;
     ramosId = ramosId;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _retrieveClients();
+  }
+
+  _retrieveClients() async {
+    var clientes = locator<ClienteRepository>();
+    var postCoseche = locator<PostcosechaRepository>();
+    try {
+      var clientsList = await clientes.selectAll();
+      var postCosechaList = await postCoseche.selectAll();
+      print('');
+    } catch (e) {
+      debugPrint(e);
+    }
   }
 
   @override
