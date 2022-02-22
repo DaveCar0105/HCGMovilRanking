@@ -4,7 +4,8 @@ import 'package:ranking_app/src/ui/widgets/divider_widget.dart';
 class SurveySection extends StatelessWidget {
   final List<Widget> content;
   final title;
-  const SurveySection({Key key, this.content, this.title}) : super(key: key);
+  final description;
+  const SurveySection({Key key, this.content, this.title, this.description}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

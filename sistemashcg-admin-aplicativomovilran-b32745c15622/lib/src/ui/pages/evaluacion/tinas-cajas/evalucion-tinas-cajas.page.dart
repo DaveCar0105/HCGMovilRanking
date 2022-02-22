@@ -30,7 +30,7 @@ class _EvaluacionTinasCajasState extends State<EvaluacionTinasCajasPage> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        title: Text('PROCESO MALTRATO'),
+        title: Text('EVALUACION DE TINAS Y CAJAS'),
       ),
       body: TinasCajasFormWidger(),
     );

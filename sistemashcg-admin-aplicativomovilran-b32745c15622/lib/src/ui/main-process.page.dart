@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ranking_app/src/ui/pages/procesos/informacion-adicional-form-widget.dart';
+import 'package:ranking_app/src/ui/pages/procesos/informacion-adicional.page.dart';
 import 'package:ranking_app/src/ui/pages/procesos/maltrato/proceso-maltrato.page.dart';
-import 'package:ranking_app/src/ui/pages/procesos/proceso-tamano-boton.page.dart';
+import 'package:ranking_app/src/ui/pages/procesos/tamano-boton/proceso-tamano-boton.page.dart';
+import 'package:ranking_app/src/ui/pages/procesos/reporte-auditoria-agenciahc.page.dart';
 
 class MainProcessPage extends StatefulWidget {
   @override
@@ -24,9 +27,12 @@ class _MainProcessPageState extends State<MainProcessPage> {
               onPressed: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            ProcesoTamanoBotonPage(this._switchVal, 10)));
+                     MaterialPageRoute(
+                    builder: (context) => ProcesoTamanoBotonPage(
+                      valor: this._switchVal,
+                      ramosId: 10,
+                    ),
+                  ));
               },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
@@ -84,65 +90,71 @@ class _MainProcessPageState extends State<MainProcessPage> {
             ),
             //text: 'raise botton',
           ),
-          // Botones(
-          //   child: RaisedButton(
-          //     shape: RoundedRectangleBorder(
-          //         borderRadius: BorderRadius.circular(10)),
-          //     color: Colors.red,
-          //     textColor: Colors.white,
-          //     onPressed: () {
-          //       Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) => BandaPage(this._switchVal, 0)));
-          //     },
-          //     child: Container(
-          //       width: 120,
-          //       height: 70,
-          //       child: Row(
-          //         crossAxisAlignment: CrossAxisAlignment.center,
-          //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //         children: <Widget>[
-          //           Text(
-          //             'Final banda',
-          //             style: TextStyle(fontSize: 15),
-          //           ),
-          //           Icon(Icons.set_meal)
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          //   //text: 'raise botton',
-          // ),
-          // Botones(
-          //   child: RaisedButton(
-          //     shape: RoundedRectangleBorder(
-          //         borderRadius: BorderRadius.circular(10)),
-          //     color: Colors.red,
-          //     textColor: Colors.white,
-          //     onPressed: () {
-          //       Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) => EcuadorPage(this._switchVal, 0)));
-          //     },
-          //     child: Container(
-          //       width: 120,
-          //       height: 70,
-          //       child: Row(
-          //         crossAxisAlignment: CrossAxisAlignment.center,
-          //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //         children: <Widget>[
-          //           Text(
-          //             'Ecuador',
-          //             style: TextStyle(fontSize: 15),
-          //           ),
-          //           Icon(Icons.flag)
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          // ),
+          Botones(
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              color: Colors.red,
+              textColor: Colors.white,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ProcesoInformacionAdicionalPage(
+                      valor: this._switchVal,
+                      ramosId: 10,
+                    ),));
+              },
+              child: Container(
+                width: 120,
+                height: 70,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Text(
+                      'INFORMACION \nADICIONAL',
+                      style: TextStyle(fontSize: 12),
+                    ),
+                    Icon(Icons.set_meal)
+                  ],
+                ),
+              ),
+            ),
+            //text: 'raise botton',
+          ),
+          Botones(
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              color: Colors.red,
+              textColor: Colors.white,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ProcesoReporteAuditoriaAgenciahcPage(
+                      valor: this._switchVal,
+                      ramosId: 10,
+                    ),));
+              },
+              child: Container(
+                width: 120,
+                height: 70,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Text(
+                      'REPORTE \nAGENCIA',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    Icon(Icons.flag)
+                  ],
+                ),
+              ),
+            ),
+          ),
           // Botones(
           //   child: RaisedButton(
           //     shape: RoundedRectangleBorder(

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ranking_app/src/ui/pages/evaluacion/tinas-cajas/evalucion-tinas-cajas.page.dart';
-import 'package:ranking_app/src/ui/pages/procesos/proceso-tamano-boton.page.dart';
+import 'package:ranking_app/src/ui/pages/procesos/tamano-boton/proceso-tamano-boton.page.dart';
 
 class MainEvalutionPage extends StatefulWidget {
   @override

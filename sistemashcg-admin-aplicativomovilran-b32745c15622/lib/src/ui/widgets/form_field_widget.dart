@@ -9,12 +9,15 @@ enum FieldType {
   dropdown,
   numeric,
   average,
-  numberResult
+  numberResult,
+  multiplication
+  
 }
 
 class FormFieldWidget extends StatelessWidget {
   final GlobalKey<FormBuilderState> formKey;
   final MapEntry element;
+
 
   const FormFieldWidget({Key key, this.formKey, this.element})
       : super(key: key);
@@ -71,6 +74,17 @@ class FormFieldWidget extends StatelessWidget {
         decoration: inputDecoration,
         keyboardType: TextInputType.number,
       );
+      if (e.value['type'] == FieldType.multiplication)
+      return FormBuilderTextField(
+        initialValue: '0',
+        name: e.key,
+        onChanged: (_) {
+          
+          _getMultiplication(e.value['options'], e.value['result']);
+        },
+        decoration: inputDecoration,
+        keyboardType: TextInputType.number,
+      );
     else
       return FormBuilderTextField(
         name: e.key,
@@ -123,6 +137,20 @@ class FormFieldWidget extends StatelessWidget {
       var a = int.tryParse(formKey.currentState.fields[s].value) ?? 0;
       var b = int.tryParse(formKey.currentState.fields[t].value) ?? 0;
       var result = (a * b) ?? 0;
+      formKey.currentState.fields[v].didChange(result.toString());
+    }
+  }
+
+  _getMultiplication(
+    List<String> list,
+    String v,
+  ){
+    var map=list.map((s) =>formKey.currentState.fields[s]?.value ?? "");
+
+        if (map.isNotEmpty) {
+      map.map((i) => int.tryParse(formKey.currentState.fields[i].value) ?? 0);    
+      
+      var result = (map.reduce((value, element) => value*element)) ?? 0;
       formKey.currentState.fields[v].didChange(result.toString());
     }
   }

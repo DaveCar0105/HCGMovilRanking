@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ranking_app/src/ui/pages/procesos/proceso-tamano-boton.page.dart';
+import 'package:ranking_app/src/ui/pages/procesos/tamano-boton/proceso-tamano-boton.page.dart';
 
 class MainSincroPage extends StatefulWidget {
    @override
@@ -23,9 +23,12 @@ class _MainSincroPageState extends State<MainSincroPage>{
               onPressed: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            ProcesoTamanoBotonPage(this._switchVal, 10)));
+                     MaterialPageRoute(
+                    builder: (context) => ProcesoTamanoBotonPage(
+                      valor: this._switchVal,
+                      ramosId: 10,
+                    ),
+                  ),);
               },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),

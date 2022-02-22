@@ -3,9 +3,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:ranking_app/src/ui/widgets/form_field_widget.dart';
 import 'package:ranking_app/src/ui/widgets/section_widget.dart';
 
-class ProcesoMaltratoForm extends StatelessWidget {
+class ProcesoTamanoBotonForm extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
-  final clientes=[];
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,6 @@ class ProcesoMaltratoForm extends StatelessWidget {
             _sectionC(),
             _sectionD(),
             _sectionE(),
-            _sectionF(),
             _footer(context)
           ],
         ),
@@ -29,7 +27,6 @@ class ProcesoMaltratoForm extends StatelessWidget {
   }
 
   SurveySection _section() {
-    
     return SurveySection(
       title: Text('Información General Evaluación Finca'),
       content: FormFieldWidget.generateElements({
@@ -37,7 +34,7 @@ class ProcesoMaltratoForm extends StatelessWidget {
         'nombreFinca': {
           'label': 'Nombre de la Finca',
           'type': FieldType.dropdown,
-          'dropdownOptions': clientes,
+          'dropdownOptions': [1, '2', 3, 'a', 'c'],
           'required': true
         },
         'nombreSubFinca': {
@@ -59,9 +56,20 @@ class ProcesoMaltratoForm extends StatelessWidget {
         title: Text('Variedad a Evaluar'),
         content: FormFieldWidget.generateElements({
           'variedad': {
-            'label': 'Variedad',
-            'required': true,
-          },
+          'label': 'Variedad',
+          'type': FieldType.dropdown,
+          'dropdownOptions': [
+            '🐶',
+            '😀',
+            '😍',
+          ],
+          'required': true
+        },
+          'gradoCm': {
+          'label': 'Grado(cm)',
+          'type': FieldType.numeric,
+          'required': true
+        }
         }, _formKey));
   }
 
