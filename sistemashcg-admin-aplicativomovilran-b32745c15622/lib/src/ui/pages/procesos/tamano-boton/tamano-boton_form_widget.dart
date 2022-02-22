@@ -16,7 +16,7 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
           children: [
             _section(),
             _sectionB(),
-            _sectionC(),
+           // _sectionC(),
             _sectionD(),
             _sectionE(),
             _sectionPetalos(),
@@ -74,33 +74,33 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
         }, _formKey));
   }
 
-  SurveySection _sectionC() {
-    var options = [
-      'tallosMuestradosRecepcion',
-      'precenciaMaltratoRecepcion',
-      'porcentajeIncidenciaRecepcion',
-    ];
+  // SurveySection _sectionC() {
+  //   var options = [
+  //     'tallosMuestradosRecepcion',
+  //     'precenciaMaltratoRecepcion',
+  //     'porcentajeIncidenciaRecepcion',
+  //   ];
 
-    return SurveySection(
-      title: Text('Recepcion'),
-      content: FormFieldWidget.generateElements({
-        'tallosMuestradosRecepcion': {
-          'label': 'Tallos Muestreados Recepción',
-          'type': FieldType.average,
-          'options': options,
-        },
-        'precenciaMaltratoRecepcion': {
-          'label': 'Presencia de Maltrato Recepción....',
-          'type': FieldType.average,
-          'options': options,
-        },
-        'porcentajeIncidenciaRecepcion': {
-          'label': '% Incidencia Recepción',
-          'type': FieldType.numberResult,
-        },
-      }, _formKey),
-    );
-  }
+  //   return SurveySection(
+  //     title: Text('Recepcion'),
+  //     content: FormFieldWidget.generateElements({
+  //       'tallosMuestradosRecepcion': {
+  //         'label': 'Tallos Muestreados Recepción',
+  //         'type': FieldType.average,
+  //         'options': options,
+  //       },
+  //       'precenciaMaltratoRecepcion': {
+  //         'label': 'Presencia de Maltrato Recepción....',
+  //         'type': FieldType.average,
+  //         'options': options,
+  //       },
+  //       'porcentajeIncidenciaRecepcion': {
+  //         'label': '% Incidencia Recepción',
+  //         'type': FieldType.numberResult,
+  //       },
+  //     }, _formKey),
+  //   );
+  // }
 
   SurveySection _sectionD() {
     var options = [
