@@ -5,7 +5,7 @@ import 'package:ranking_app/src/ui/widgets/section_widget.dart';
 
 class ProcesoMaltratoForm extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
-  final clientes=[];
+  final clientes = [];
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +29,9 @@ class ProcesoMaltratoForm extends StatelessWidget {
   }
 
   SurveySection _section() {
-    
     return SurveySection(
       title: Text('Información General Evaluación Finca'),
       content: FormFieldWidget.generateElements({
-        
         'nombreFinca': {
           'label': 'Nombre de la Finca',
           'type': FieldType.dropdown,
@@ -204,6 +202,7 @@ class ProcesoMaltratoForm extends StatelessWidget {
   void _onSubmitCallback() {
     _formKey.currentState.save();
     var result = _formKey.currentState.value;
+    print(result.toString());
     if (_formKey.currentState.validate()) {
       print(_formKey.currentState.value);
     } else {

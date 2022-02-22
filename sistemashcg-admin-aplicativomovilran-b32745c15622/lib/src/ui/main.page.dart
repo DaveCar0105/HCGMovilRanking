@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_progress_hud/flutter_progress_hud.dart';
-import 'package:ranking_app/src/ui/main-aprobacion.page.dart';
-import 'package:ranking_app/src/ui/main-evaluacion.page.dart';
-import 'package:ranking_app/src/ui/main-process.page.dart';
-import 'package:ranking_app/src/ui/main-reporte.page.dart';
-import 'package:ranking_app/src/ui/main-soncronizar.page.dart';
+import 'package:ranking_app/src/ui/pages/aprobacion/main-aprobacion.page.dart';
+import 'package:ranking_app/src/ui/pages/evaluacion/main-evaluacion.page.dart';
+import 'package:ranking_app/src/ui/pages/procesos/main-process.page.dart';
+import 'package:ranking_app/src/ui/pages/reporte-general/main-reporte.page.dart';
+import 'package:ranking_app/src/ui/pages/sincronizacion/main-soncronizar.page.dart';
 import 'package:ranking_app/src/ui/widgets/appBar.widget.dart';
 import 'package:ranking_app/src/ui/widgets/drawer.widget.dart';
 
@@ -17,16 +17,13 @@ class _MainPageState extends State<MainPage> {
   var _currenIndexBottomNavigation = 2;
   bool sinc = false;
 
-  final pages =[
+  final pages = [
     MainProcessPage(),
     MainEvalutionPage(),
     MainSincroPage(),
     MainAprobacionPage(),
     MainReportPage()
-   
-    
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -59,34 +56,29 @@ class _MainPageState extends State<MainPage> {
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-              
               icon: Icon(Icons.account_balance_wallet_outlined),
               activeIcon: Icon(Icons.account_balance_wallet),
-              label:"Proceso"
-              
-              
-              ),
+              label: "Proceso"),
           BottomNavigationBarItem(
               icon: Icon(Icons.fact_check_outlined),
               activeIcon: Icon(Icons.fact_check_rounded),
-              label:"Evaluación"),
+              label: "Evaluación"),
           BottomNavigationBarItem(
               icon: Icon(Icons.cloud_done_outlined),
               activeIcon: Icon(Icons.cloud_done_rounded),
-              label:"Sincronización"),
+              label: "Sincronización"),
           BottomNavigationBarItem(
               icon: Icon(Icons.library_add_check_outlined),
               activeIcon: Icon(Icons.library_add_check_rounded),
-              label:"Aprobación"),
+              label: "Aprobación"),
           BottomNavigationBarItem(
               icon: Icon(Icons.assessment_outlined),
               activeIcon: Icon(Icons.assessment),
-              label:"Reporte"),
+              label: "Reporte"),
         ],
         onTap: (index) {
           setState(() {
             _currenIndexBottomNavigation = index;
-
           });
         });
   }

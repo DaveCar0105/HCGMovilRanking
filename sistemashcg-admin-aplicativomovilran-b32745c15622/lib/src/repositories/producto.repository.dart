@@ -25,7 +25,7 @@ class ProductoRepository {
   }
 
   Future<List<ProductoDto>> selectAll() async {
-    List<ProductoDto> productosDto = List();
+    List<ProductoDto> productosDto = [];
     try {
       final sql = '''SELECT * FROM ${DatabaseCreator.productoTable} 
       WHERE ${DatabaseCreator.productoEstado} = ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}''';

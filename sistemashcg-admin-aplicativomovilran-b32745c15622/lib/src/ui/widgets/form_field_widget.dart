@@ -11,13 +11,11 @@ enum FieldType {
   average,
   numberResult,
   multiplication
-  
 }
 
 class FormFieldWidget extends StatelessWidget {
   final GlobalKey<FormBuilderState> formKey;
   final MapEntry element;
-
 
   const FormFieldWidget({Key key, this.formKey, this.element})
       : super(key: key);
@@ -73,12 +71,11 @@ class FormFieldWidget extends StatelessWidget {
         decoration: inputDecoration,
         keyboardType: TextInputType.number,
       );
-      if (e.value['type'] == FieldType.multiplication)
+    if (e.value['type'] == FieldType.multiplication)
       return FormBuilderTextField(
         initialValue: '0',
         name: e.key,
         onChanged: (_) {
-          
           _getMultiplication(e.value['options'], e.value['result']);
         },
         decoration: inputDecoration,
@@ -86,6 +83,7 @@ class FormFieldWidget extends StatelessWidget {
       );
     else
       return FormBuilderTextField(
+        initialValue: '',
         name: e.key,
         decoration: inputDecoration,
       );
@@ -107,15 +105,19 @@ class FormFieldWidget extends StatelessWidget {
   }
 
   void _getAverage(
-   List<String> list,
+    List<String> list,
     String v,
-  ){
+  ) {
     //var map=list.map((s) =>formKey.currentState.fields[s]?.value ?? "");
 
-        if (list.isNotEmpty) {
-     List<int> nombresList= list.map((i) => int.tryParse(formKey.currentState.fields[i].value) ?? 0).toList();    
-      
-      var result = ((nombresList.reduce((value, element) => value+element)) ?? 0)/list.length;
+    if (list.isNotEmpty) {
+      List<int> nombresList = list
+          .map((i) => int.tryParse(formKey.currentState.fields[i].value) ?? 0)
+          .toList();
+
+      var result =
+          ((nombresList.reduce((value, element) => value + element)) ?? 0) /
+              list.length;
       formKey.currentState.fields[v].didChange(result.toString());
     }
   }
@@ -138,13 +140,16 @@ class FormFieldWidget extends StatelessWidget {
   _getMultiplication(
     List<String> list,
     String v,
-  ){
+  ) {
     //var map=list.map((s) =>formKey.currentState.fields[s]?.value ?? "");
 
-        if (list.isNotEmpty) {
-     List<int> nombresList= list.map((i) => int.tryParse(formKey.currentState.fields[i].value) ?? 0).toList();    
-      
-      var result = (nombresList.reduce((value, element) => value*element)) ?? 0;
+    if (list.isNotEmpty) {
+      List<int> nombresList = list
+          .map((i) => int.tryParse(formKey.currentState.fields[i].value) ?? 0)
+          .toList();
+
+      var result =
+          (nombresList.reduce((value, element) => value * element)) ?? 0;
       formKey.currentState.fields[v].didChange(result.toString());
     }
   }

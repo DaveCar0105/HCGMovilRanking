@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ranking_app/src/ui/pages/evaluacion/tinas-cajas/tinas_cajas_form_widget.dart';
 
-import '../../procesos/maltrato/maltrato_form_widget.dart';
-
 class EvaluacionTinasCajasPage extends StatefulWidget {
   bool valor;
   int ramosId;

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:ranking_app/src/constant.dart';
 import 'package:ranking_app/src/database-creator.dart';
 import 'package:ranking_app/src/dtos/causa.dto.dart';
@@ -27,7 +25,7 @@ class CausaRepository {
   }
 
   Future<List<CausaDto>> selectAll() async {
-    List<CausaDto> causasDto = List();
+    List<CausaDto> causasDto = [];
     try {
       final sql = '''SELECT * FROM ${DatabaseCreator.causaTable} 
       WHERE ${DatabaseCreator.causaEstado} = ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}''';

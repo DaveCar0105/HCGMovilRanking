@@ -25,7 +25,7 @@ class CargueraRepository {
   }
 
   Future<List<CargueraDto>> selectAll() async {
-    List<CargueraDto> carguerasDto = List();
+    List<CargueraDto> carguerasDto = [];
     try {
       final sql = '''SELECT * FROM ${DatabaseCreator.cargueraTable} 
       WHERE ${DatabaseCreator.cargueraEstado} = ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO};''';

@@ -8,7 +8,6 @@ import 'package:ranking_app/src/dtos/pais.dto.dart';
 import 'package:ranking_app/src/dtos/postcosecha.dto.dart';
 import 'package:ranking_app/src/dtos/producto.dto.dart';
 import 'package:ranking_app/src/dtos/tipo-caja.dto.dart';
-import 'package:ranking_app/src/dtos/usuario.dto.dart';
 import 'package:ranking_app/src/dtos/variedad.dto.dart';
 import 'package:ranking_app/src/preference.dart';
 import 'package:ranking_app/src/repositories/carguera.repository.dart';

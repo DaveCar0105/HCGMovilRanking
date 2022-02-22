@@ -1,13 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ranking_app/src/ui/pages/procesos/tamano-boton/proceso-tamano-boton.page.dart';
+import 'package:ranking_app/src/ui/pages/evaluacion/tinas-cajas/evalucion-tinas-cajas.page.dart';
 
-class MainAprobacionPage extends StatefulWidget {
-   @override
-  _MainAprobacionPageState createState() => _MainAprobacionPageState();
+class MainEvalutionPage extends StatefulWidget {
+  @override
+  _MainEvalutionPageState createState() => _MainEvalutionPageState();
 }
 
-class _MainAprobacionPageState extends State<MainAprobacionPage>{
+class _MainEvalutionPageState extends State<MainEvalutionPage> {
   bool _switchVal = true;
   bool sinc = false;
 
@@ -23,12 +22,9 @@ class _MainAprobacionPageState extends State<MainAprobacionPage>{
               onPressed: () {
                 Navigator.push(
                     context,
-                     MaterialPageRoute(
-                    builder: (context) => ProcesoTamanoBotonPage(
-                      valor: this._switchVal,
-                      ramosId: 10,
-                    ),
-                  ),);
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            EvaluacionTinasCajasPage(this._switchVal, 10)));
               },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
@@ -42,7 +38,7 @@ class _MainAprobacionPageState extends State<MainAprobacionPage>{
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Text(
-                      'APROBACION',
+                      'EVAlUACION',
                       style: TextStyle(fontSize: 15),
                     ),
                     Icon(Icons.local_florist_outlined)
@@ -183,11 +179,9 @@ class _MainAprobacionPageState extends State<MainAprobacionPage>{
           // ),
         ],
       ),
-
     );
   }
 }
-
 
 class Botones extends StatelessWidget {
   final Widget child;
@@ -198,7 +192,7 @@ class Botones extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
-@override
+  @override
   Widget build(BuildContext context) {
     return Card(
       child: Padding(

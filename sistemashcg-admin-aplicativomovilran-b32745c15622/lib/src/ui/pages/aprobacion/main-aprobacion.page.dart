@@ -1,14 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ranking_app/src/ui/pages/evaluacion/tinas-cajas/evalucion-tinas-cajas.page.dart';
 import 'package:ranking_app/src/ui/pages/procesos/tamano-boton/proceso-tamano-boton.page.dart';
 
-class MainEvalutionPage extends StatefulWidget {
+class MainAprobacionPage extends StatefulWidget {
   @override
-  _MainEvalutionPageState createState() => _MainEvalutionPageState();
+  _MainAprobacionPageState createState() => _MainAprobacionPageState();
 }
 
-class _MainEvalutionPageState extends State<MainEvalutionPage> {
+class _MainAprobacionPageState extends State<MainAprobacionPage> {
   bool _switchVal = true;
   bool sinc = false;
 
@@ -23,10 +21,14 @@ class _MainEvalutionPageState extends State<MainEvalutionPage> {
             child: RaisedButton(
               onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            EvaluacionTinasCajasPage(this._switchVal, 10)));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProcesoTamanoBotonPage(
+                      valor: this._switchVal,
+                      ramosId: 10,
+                    ),
+                  ),
+                );
               },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
@@ -40,7 +42,7 @@ class _MainEvalutionPageState extends State<MainEvalutionPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Text(
-                      'EVAlUACION',
+                      'APROBACION',
                       style: TextStyle(fontSize: 15),
                     ),
                     Icon(Icons.local_florist_outlined)

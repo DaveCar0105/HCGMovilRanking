@@ -25,7 +25,7 @@ class PaisRepository {
   }
 
   Future<List<PaisDto>> selectAll() async {
-    List<PaisDto> paisesDto = List();
+    List<PaisDto> paisesDto = [];
     try {
       final sql = '''SELECT * FROM ${DatabaseCreator.paisTable} 
       WHERE ${DatabaseCreator.paisEstado} = ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}''';

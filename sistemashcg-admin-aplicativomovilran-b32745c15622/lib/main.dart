@@ -42,7 +42,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Preferences pref = Preferences();
     //var initRouter = pref.getAutentication != null ? 'main' : 'login';
     var initRouter = 'main';
     return MaterialApp(

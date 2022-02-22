@@ -25,7 +25,7 @@ class TipoCajaRepository {
   }
 
   Future<List<TipoCajaDto>> selectAll() async {
-    List<TipoCajaDto> tipoCajasDto = List();
+    List<TipoCajaDto> tipoCajasDto = [];
     try {
       final sql = '''SELECT * FROM ${DatabaseCreator.tipoCajaTable} 
       WHERE ${DatabaseCreator.tipoCajaEstado} = ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}''';

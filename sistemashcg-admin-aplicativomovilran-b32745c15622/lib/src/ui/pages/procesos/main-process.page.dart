@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ranking_app/src/ui/pages/procesos/informacion-adicional-form-widget.dart';
-import 'package:ranking_app/src/ui/pages/procesos/informacion-adicional.page.dart';
+import 'package:ranking_app/src/ui/pages/procesos/informacion-adicional/informacion-adicional.page.dart';
 import 'package:ranking_app/src/ui/pages/procesos/maltrato/proceso-maltrato.page.dart';
+import 'package:ranking_app/src/ui/pages/procesos/reporte-auditoria/reporte-auditoria-agenciahc.page.dart';
 import 'package:ranking_app/src/ui/pages/procesos/tamano-boton/proceso-tamano-boton.page.dart';
-import 'package:ranking_app/src/ui/pages/procesos/reporte-auditoria-agenciahc.page.dart';
 
 class MainProcessPage extends StatefulWidget {
   @override
@@ -27,12 +25,12 @@ class _MainProcessPageState extends State<MainProcessPage> {
               onPressed: () {
                 Navigator.push(
                     context,
-                     MaterialPageRoute(
-                    builder: (context) => ProcesoTamanoBotonPage(
-                      valor: this._switchVal,
-                      ramosId: 10,
-                    ),
-                  ));
+                    MaterialPageRoute(
+                      builder: (context) => ProcesoTamanoBotonPage(
+                        valor: this._switchVal,
+                        ramosId: 10,
+                      ),
+                    ));
               },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
@@ -100,10 +98,11 @@ class _MainProcessPageState extends State<MainProcessPage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ProcesoInformacionAdicionalPage(
-                      valor: this._switchVal,
-                      ramosId: 10,
-                    ),));
+                      builder: (context) => ProcesoInformacionAdicionalPage(
+                        valor: this._switchVal,
+                        ramosId: 10,
+                      ),
+                    ));
               },
               child: Container(
                 width: 120,
@@ -133,10 +132,12 @@ class _MainProcessPageState extends State<MainProcessPage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ProcesoReporteAuditoriaAgenciahcPage(
-                      valor: this._switchVal,
-                      ramosId: 10,
-                    ),));
+                      builder: (context) =>
+                          ProcesoReporteAuditoriaAgenciahcPage(
+                        valor: this._switchVal,
+                        ramosId: 10,
+                      ),
+                    ));
               },
               child: Container(
                 width: 120,

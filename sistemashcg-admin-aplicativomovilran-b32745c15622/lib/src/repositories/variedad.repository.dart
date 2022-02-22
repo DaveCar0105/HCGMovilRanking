@@ -25,7 +25,7 @@ class VariedadRepository {
   }
 
   Future<List<VariedadDto>> selectAll() async {
-    List<VariedadDto> variedadesDto = List();
+    List<VariedadDto> variedadesDto = [];
     try {
       final sql = '''SELECT * FROM ${DatabaseCreator.variedadTable} 
       WHERE ${DatabaseCreator.variedadEstado} = ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}''';
@@ -44,7 +44,7 @@ class VariedadRepository {
   }
 
   Future<List<VariedadDto>> selectAllByProductoId(int idProducto) async {
-    List<VariedadDto> variedadesDto = List();
+    List<VariedadDto> variedadesDto = [];
     try {
       final sql = '''SELECT * FROM ${DatabaseCreator.variedadTable} 
       WHERE ${DatabaseCreator.variedadEstado} = $ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO 

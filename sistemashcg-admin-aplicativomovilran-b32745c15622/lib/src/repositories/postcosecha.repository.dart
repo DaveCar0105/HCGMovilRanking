@@ -27,7 +27,7 @@ class PostcosechaRepository {
   }
 
   Future<List<PostcosechaDto>> selectAll() async {
-    List<PostcosechaDto> postcosechasDto = List();
+    List<PostcosechaDto> postcosechasDto = [];
     try {
       final sql = '''SELECT * FROM ${DatabaseCreator.postcosechaTable} 
       WHERE ${DatabaseCreator.postcosechaEstado} = ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}''';

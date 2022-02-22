@@ -1,7 +1,8 @@
 import 'dart:convert';
-import 'package:ranking_app/src/constant.dart';
 import 'package:ranking_app/src/dtos/session.dto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'constant.dart';
 
 class Preferences {
   static final Preferences _instancia = new Preferences._internal();

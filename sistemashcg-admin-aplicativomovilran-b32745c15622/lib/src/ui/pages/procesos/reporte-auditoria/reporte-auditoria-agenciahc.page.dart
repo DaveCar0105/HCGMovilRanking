@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:ranking_app/src/ui/pages/procesos/reporte-auditoria-agenciahc-form-widget.dart';
-import 'package:ranking_app/src/ui/pages/procesos/reporte-auditoria-agenciahc.page.dart';
-
-
+import 'package:ranking_app/src/ui/pages/procesos/reporte-auditoria/reporte-auditoria-agenciahc-form-widget.dart';
 
 class ProcesoReporteAuditoriaAgenciahcPage extends StatefulWidget {
   final bool valor;
   final int ramosId;
 
-  const ProcesoReporteAuditoriaAgenciahcPage({Key key, this.valor, this.ramosId})
+  const ProcesoReporteAuditoriaAgenciahcPage(
+      {Key key, this.valor, this.ramosId})
       : super(key: key);
 
   @override
@@ -16,7 +14,8 @@ class ProcesoReporteAuditoriaAgenciahcPage extends StatefulWidget {
       _ProcesoReporteAuditoriaAgenciahcState(this.valor, this.ramosId);
 }
 
-class _ProcesoReporteAuditoriaAgenciahcState extends State<ProcesoReporteAuditoriaAgenciahcPage> {
+class _ProcesoReporteAuditoriaAgenciahcState
+    extends State<ProcesoReporteAuditoriaAgenciahcPage> {
   final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
 
   bool elite = false;

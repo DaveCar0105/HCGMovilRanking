@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ranking_app/src/ui/pages/procesos/informacion-adicional-form-widget.dart';
-
-
+import 'package:ranking_app/src/ui/pages/procesos/informacion-adicional/informacion-adicional-form-widget.dart';
 
 class ProcesoInformacionAdicionalPage extends StatefulWidget {
   final bool valor;
@@ -15,7 +13,8 @@ class ProcesoInformacionAdicionalPage extends StatefulWidget {
       _ProcesoInformacionAdicionalState(this.valor, this.ramosId);
 }
 
-class _ProcesoInformacionAdicionalState extends State<ProcesoInformacionAdicionalPage> {
+class _ProcesoInformacionAdicionalState
+    extends State<ProcesoInformacionAdicionalPage> {
   final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
 
   bool elite = false;

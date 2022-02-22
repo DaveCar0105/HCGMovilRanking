@@ -13,12 +13,7 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
       child: FormBuilder(
         key: _formKey,
         child: ListView(
-          children: [
-            _section(),
-            _sectionB(),
-            _sectionC(),
-            _footer(context)
-          ],
+          children: [_section(), _sectionB(), _sectionC(), _footer(context)],
         ),
       ),
     );
@@ -66,15 +61,15 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
             'label': 'Rendimiento Sala',
             'required': true,
           },
-           'RendimientoBoncheo': {
+          'RendimientoBoncheo': {
             'label': 'Rendimiento Boncheo',
             'required': true,
           },
-           'RendimientoCorte': {
+          'RendimientoCorte': {
             'label': 'Rendimiento Corte',
             'required': true,
           },
-           'RendimientoFinca': {
+          'RendimientoFinca': {
             'label': 'Largo Promedio de la Finca',
             'required': true,
           },
@@ -82,7 +77,7 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
   }
 
   SurveySection _sectionC() {
-  return SurveySection(
+    return SurveySection(
       title: Text('Flor Nacional'),
       content: FormFieldWidget.generateElements({
         // 'fechaAuditoria': {
@@ -101,7 +96,7 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
           'dropdownOptions': [1, '2', 3, 'a', 'c'],
           'required': true
         },
-          'porcentajeAfectacionCausa1': {
+        'porcentajeAfectacionCausa1': {
           'label': '% Afectacion Causa 01',
           'type': FieldType.numeric,
           'required': true
@@ -112,7 +107,7 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
           'dropdownOptions': [1, '2', 3, 'a', 'c'],
           'required': true
         },
-          'porcentajeAfectacionCausa2': {
+        'porcentajeAfectacionCausa2': {
           'label': '% Afectacion Causa 02',
           'type': FieldType.numeric,
           'required': true
@@ -123,7 +118,7 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
           'dropdownOptions': [1, '2', 3, 'a', 'c'],
           'required': true
         },
-          'porcentajeAfectacionCausa3': {
+        'porcentajeAfectacionCausa3': {
           'label': '% Afectacion Causa 03',
           'type': FieldType.numeric,
           'required': true
@@ -134,7 +129,7 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
           'dropdownOptions': [1, '2', 3, 'a', 'c'],
           'required': true
         },
-          'porcentajeAfectacionCausa4': {
+        'porcentajeAfectacionCausa4': {
           'label': '% Afectacion Causa 04',
           'type': FieldType.numeric,
           'required': true
@@ -145,17 +140,15 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
           'dropdownOptions': [1, '2', 3, 'a', 'c'],
           'required': true
         },
-          'porcentajeAfectacionCausa5': {
+        'porcentajeAfectacionCausa5': {
           'label': '% Afectacion Causa 05',
           'type': FieldType.numeric,
           'required': true
         },
-       
       }, _formKey),
     );
   }
 
- 
   Row _footer(BuildContext context) {
     return Row(
       children: <Widget>[
@@ -182,6 +175,7 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
   void _onSubmitCallback() {
     _formKey.currentState.save();
     var result = _formKey.currentState.value;
+    print(result.toString());
     if (_formKey.currentState.validate()) {
       print(_formKey.currentState.value);
     } else {
