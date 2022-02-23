@@ -1,5 +1,6 @@
 import 'package:ranking_app/src/constant.dart';
 import 'package:ranking_app/src/database-creator.dart';
+import 'package:ranking_app/src/dtos/generic.dto.dart';
 import 'package:ranking_app/src/dtos/producto.dto.dart';
 import 'package:ranking_app/src/repositories/error.repository.dart';
 
@@ -34,6 +35,25 @@ class ProductoRepository {
         productosDto.add(new ProductoDto(
             productoId: node[DatabaseCreator.productoId],
             productoNombre: node[DatabaseCreator.productoNombre]));
+      }
+    } catch (ex) {
+      await this
+          ._errorRepository
+          .addErrorWithDetalle(moduloRepository, ex.toString());
+    }
+    return productosDto;
+  }
+
+  Future<List<GenericDto>> selectAllGeneric() async {
+    List<GenericDto> productosDto = [];
+    try {
+      final sql = '''SELECT * FROM ${DatabaseCreator.productoTable} 
+      WHERE ${DatabaseCreator.productoEstado} = ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}''';
+      final data = await db.rawQuery(sql);
+      for (final node in data) {
+        productosDto.add(new GenericDto(
+            id: node[DatabaseCreator.productoId],
+            nombre: node[DatabaseCreator.productoNombre]));
       }
     } catch (ex) {
       await this

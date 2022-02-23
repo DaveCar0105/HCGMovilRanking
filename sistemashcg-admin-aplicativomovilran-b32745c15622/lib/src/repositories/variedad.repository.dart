@@ -1,5 +1,6 @@
 import 'package:ranking_app/src/constant.dart';
 import 'package:ranking_app/src/database-creator.dart';
+import 'package:ranking_app/src/dtos/generic.dto.dart';
 import 'package:ranking_app/src/dtos/variedad.dto.dart';
 import 'package:ranking_app/src/repositories/error.repository.dart';
 
@@ -34,6 +35,25 @@ class VariedadRepository {
         variedadesDto.add(new VariedadDto(
             variedadId: node[DatabaseCreator.variedadId],
             variedadNombre: node[DatabaseCreator.variedadNombre]));
+      }
+    } catch (ex) {
+      await this
+          ._errorRepository
+          .addErrorWithDetalle(moduloRepository, ex.toString());
+    }
+    return variedadesDto;
+  }
+
+  Future<List<GenericDto>> selectAllGeneric() async {
+    List<GenericDto> variedadesDto = [];
+    try {
+      final sql = '''SELECT * FROM ${DatabaseCreator.variedadTable} 
+      WHERE ${DatabaseCreator.variedadEstado} = ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}''';
+      final data = await db.rawQuery(sql);
+      for (final node in data) {
+        variedadesDto.add(new GenericDto(
+            id: node[DatabaseCreator.variedadId],
+            nombre: node[DatabaseCreator.variedadNombre]));
       }
     } catch (ex) {
       await this
