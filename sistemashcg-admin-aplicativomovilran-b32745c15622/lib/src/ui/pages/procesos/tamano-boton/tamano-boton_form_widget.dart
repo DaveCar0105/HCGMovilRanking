@@ -6,6 +6,9 @@ import 'package:ranking_app/src/ui/widgets/section_widget.dart';
 class ProcesoTamanoBotonForm extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
 
+
+
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,13 +35,13 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
       title: Text('Información General Evaluación Finca'),
       content: FormFieldWidget.generateElements({
         
-        'nombreFinca': {
+        'postcosechaId': {
           'label': 'Nombre de la Finca',
           'type': FieldType.dropdown,
           'dropdownOptions': [1, '2', 3, 'a', 'c'],
           'required': true
         },
-        'nombreSubFinca': {
+        'postcosechaId': {
           'label': 'Nombre Sub-Finca (si aplica) ',
           'type': FieldType.dropdown,
           'dropdownOptions': [
@@ -56,7 +59,7 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
     return SurveySection(
         title: Text('Variedad a Evaluar'),
         content: FormFieldWidget.generateElements({
-          'variedad': {
+          'variedadId': {
           'label': 'Variedad',
           'type': FieldType.dropdown,
           'dropdownOptions': [
@@ -66,7 +69,7 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
           ],
           'required': true
         },
-          'gradoCm': {
+          'procesoTamanioBotonGradoVariedad': {
           'label': 'Grado(cm)',
           'type': FieldType.numeric,
           'required': true
@@ -104,27 +107,27 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
 
   SurveySection _sectionD() {
     var options = [
-      'largo',
-      'ancho'
+      'procesoTamanioBotonLargoArea',
+      'rocesoTamanioBotonAnchoArea'
       
     ];
 
     return SurveySection(
       title: Text('AREA DEL RAMO'),
       content: FormFieldWidget.generateElements({
-        'largo': {
+        'procesoTamanioBotonLargoArea': {
           'label': 'Largo',
           'type': FieldType.multiplication,
           'options': options,
           'result':'area'
         },
-        'ancho': {
+        'rocesoTamanioBotonAnchoArea': {
           'label': 'Ancho',
           'type': FieldType.multiplication,
           'options': options,
           'result':'area'
         },
-        'area': {
+        'procesoTamanioBotonAreaRamo': {
           'label': 'El Area es',
           'type': FieldType.numberResult,
         },
@@ -135,34 +138,34 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
   SurveySection _sectionE() {
 
     var options = [
-      'tamanoBoton1',
-      'tamanoBoton2',
-      'tamanoBoton3',
+      'procesoTamanioBotonTamanoBoton1',
+      'procesoTamanioBotonTamanoBoton2',
+      'procesoTamanioBotonTamanoBoton3',
     ];
 
 
     return SurveySection(
       title: Text('Tamano de Boton'),
       content: FormFieldWidget.generateElements({
-        'tamanoBoton1': {
+        'procesoTamanioBotonTamanoBoton1': {
           'label': 'Tamano Boton1',
           'type': FieldType.average,
           'options': options,
           'result': 'resultTamanoBoton'
         },
-        'tamanoBoton2': {
+        'procesoTamanioBotonTamanoBoton2': {
           'label': 'Tamano Boton2',
           'type': FieldType.average,
           'options': options,
           'result': 'resultTamanoBoton'
         },
-        'tamanoBoton3': {
+        'procesoTamanioBotonTamanoBoton3': {
           'label': 'Tamano Boton3',
           'type': FieldType.average,
           'options':options,
           'result': 'resultTamanoBoton'
         },
-        'resultTamanoBoton': {
+        'procesoTamanioBotonTamanoBotonPromedio': {
           'label': 'Promedio Tamano Boton',
           'type': FieldType.numberResult,
         },
@@ -175,7 +178,7 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
         title: Text('Numero de Petalos'),
         content: FormFieldWidget.generateElements({
           
-          'numeroPetalos': {
+          'procesoTamanioBotonNumeroPetalos': {
           'label': 'Numero de Petalos',
           'type': FieldType.numeric,
           'required': true

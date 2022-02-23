@@ -23,23 +23,13 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
     return SurveySection(
       title: Text('Información General Evaluación Finca'),
       content: FormFieldWidget.generateElements({
-        // 'fechaAuditoria': {
-        //   'label': 'Fecha de Auditoria',
-        //   'type': FieldType.date,
-        //   'required': true
-        // },
-        // 'codigoTecnico': {
-        //   'label': 'Código del técnico',
-        //   'type': FieldType.text,
-        //   'required': true
-        // },
-        'nombreFinca': {
+        'postcosechaId': {
           'label': 'Nombre de la Finca',
           'type': FieldType.dropdown,
           'dropdownOptions': [1, '2', 3, 'a', 'c'],
           'required': true
         },
-        'nombreSubFinca': {
+        'postcosechaId': {
           'label': 'Nombre Sub-Finca (si aplica) ',
           'type': FieldType.dropdown,
           'dropdownOptions': [
@@ -57,24 +47,25 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
     return SurveySection(
         title: Text('Rendimiento Promedio'),
         content: FormFieldWidget.generateElements({
-          'RendimientoSala': {
+          'informacionAuditoriaPromedioSala': {
             'label': 'Rendimiento Sala',
             'required': true,
           },
-          'RendimientoBoncheo': {
+          'informacionAuditoriaPromedioBoncheo': {
             'label': 'Rendimiento Boncheo',
             'required': true,
           },
-          'RendimientoCorte': {
+          'informacionAuditoriaPromedioCorte': {
             'label': 'Rendimiento Corte',
             'required': true,
           },
-          'RendimientoFinca': {
+          'informacionAuditoriaPromedioLargoFinca': {
             'label': 'Largo Promedio de la Finca',
             'required': true,
           },
         }, _formKey));
   }
+
 
   SurveySection _sectionC() {
     return SurveySection(
@@ -85,7 +76,7 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
         //   'type': FieldType.date,
         //   'required': true
         // },
-        'porcentajeFlorNacional': {
+        'informacionAuditoriaPorcentajeFlorNacional': {
           'label': '% Flor Nacional',
           'type': FieldType.numeric,
           'required': true
