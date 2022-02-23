@@ -135,6 +135,10 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
           'label': 'Promedio Tamano Boton',
           'type': FieldType.numberResult,
         },
+        'foto': {
+          'label': 'Promedio Tamano Boton',
+          'type': FieldType.photo,
+        },
       }, _formKey),
     );
   }

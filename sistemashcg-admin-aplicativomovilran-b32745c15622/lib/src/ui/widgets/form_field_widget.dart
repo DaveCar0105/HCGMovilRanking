@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_image_picker/form_builder_image_picker.dart';
 import 'package:ranking_app/src/dtos/generic.dto.dart';
 
 enum FieldType {
@@ -14,6 +15,7 @@ enum FieldType {
   multiplication,
   futureField,
   percent,
+  photo
 }
 
 class FormFieldWidget extends StatelessWidget {
@@ -92,6 +94,12 @@ class FormFieldWidget extends StatelessWidget {
         },
         decoration: inputDecoration,
         keyboardType: TextInputType.number,
+      );
+    if (e.value['type'] == FieldType.photo)
+      return FormBuilderImagePicker(
+        name: 'photos',
+        decoration: const InputDecoration(labelText: 'Pick Photos'),
+        maxImages: 1,
       );
     if (e.value['type'] == FieldType.percent)
       return FormBuilderTextField(
