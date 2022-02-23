@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:ranking_app/locator.dart';
-import 'package:ranking_app/src/dtos/cliente.dto.dart';
 import 'package:ranking_app/src/dtos/generic.dto.dart';
 
 enum FieldType {
@@ -14,7 +12,8 @@ enum FieldType {
   average,
   numberResult,
   multiplication,
-  futureField
+  futureField,
+  percent,
 }
 
 class FormFieldWidget extends StatelessWidget {
@@ -61,6 +60,7 @@ class FormFieldWidget extends StatelessWidget {
       );
     if (e.value['type'] == FieldType.average)
       return FormBuilderTextField(
+        valueTransformer: (text) => num.tryParse(text),
         name: e.key,
         onChanged: (_) {
           _getAverage(e.value['options'], e.value['result']);
@@ -70,15 +70,36 @@ class FormFieldWidget extends StatelessWidget {
       );
     if (e.value['type'] == FieldType.numberResult)
       return FormBuilderTextField(
+        enabled: false,
         name: e.key,
+        valueTransformer: (text) => num.tryParse(text),
+        decoration: inputDecoration,
+        keyboardType: TextInputType.number,
+      );
+    if (e.value['type'] == FieldType.numeric)
+      return FormBuilderTextField(
+        name: e.key,
+        valueTransformer: (text) => num.tryParse(text),
         decoration: inputDecoration,
         keyboardType: TextInputType.number,
       );
     if (e.value['type'] == FieldType.multiplication)
       return FormBuilderTextField(
         name: e.key,
+        valueTransformer: (text) => num.tryParse(text),
         onChanged: (_) {
           _getMultiplication(e.value['options'], e.value['result']);
+        },
+        decoration: inputDecoration,
+        keyboardType: TextInputType.number,
+      );
+    if (e.value['type'] == FieldType.percent)
+      return FormBuilderTextField(
+        valueTransformer: (text) => num.tryParse(text),
+        name: e.key,
+        onChanged: (_) {
+          _getPercent(e.value['options'].elementAt(0),
+              e.value['options'].elementAt(1), e.value['options'].elementAt(2));
         },
         decoration: inputDecoration,
         keyboardType: TextInputType.number,
@@ -189,7 +210,7 @@ class FutureFormField extends StatelessWidget {
           if (s.hasData) {
             List a = s.data.map((s) {
               GenericDto dto = s;
-              return dto.nombre;
+              return dto.id;
             }).toList();
             print(s.toString());
             element.value['type'] = FieldType.dropdown;

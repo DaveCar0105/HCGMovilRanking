@@ -8,6 +8,7 @@ import 'package:ranking_app/src/repositories/error.repository.dart';
 import 'package:ranking_app/src/repositories/pais.repository.dart';
 import 'package:ranking_app/src/repositories/postcosecha.repository.dart';
 import 'package:ranking_app/src/repositories/producto.repository.dart';
+import 'package:ranking_app/src/repositories/tamano-boton.repository.dart';
 import 'package:ranking_app/src/repositories/tipo-caja.repository.dart';
 import 'package:ranking_app/src/repositories/variedad.repository.dart';
 import 'package:ranking_app/src/services/sincronize-information-server.service.dart';
@@ -44,6 +45,9 @@ void setUpDI() {
   );
   locator.registerLazySingleton<VariedadRepository>(
     () => VariedadRepository(locator()),
+  );
+  locator.registerLazySingleton<TamanoBotonRepository>(
+    () => TamanoBotonRepository(locator()),
   );
 
   //

@@ -45,15 +45,16 @@ class ProcesoMaltratoForm extends StatelessWidget {
           'type': FieldType.futureField,
           'subType': FieldType.dropdown,
           'dropdownOptions': clientes,
-          'future': locator<ClienteRepository>().selectAllGeneric(),
+          'future': locator<PostcosechaRepository>().selectAllGeneric(),
           'required': true
         },
-        'postcosechaId': {
+        'postcosechaChiId': {
           'label': 'Nombre Sub-Finca (si aplica) ',
           'type': FieldType.futureField,
           'subType': FieldType.dropdown,
           'dropdownOptions': clientes,
-          'future': locator<VariedadRepository>().selectAllGeneric(),
+          'future': locator<PostcosechaRepository>().selectAllGeneric(),
+          'required': true
         }
       }, _formKey),
     );
@@ -63,16 +64,14 @@ class ProcesoMaltratoForm extends StatelessWidget {
     return SurveySection(
         title: Text('Variedad a Evaluar'),
         content: FormFieldWidget.generateElements({
-         'variedadId': {
-          'label': 'Nombre Sub-Finca (si aplica) ',
-          'type': FieldType.dropdown,
-          'dropdownOptions': [
-            '🐶',
-            '😀',
-            '😍',
-          ],
-          'required': true
-        }
+          'variedadId': {
+            'label': 'Nombre Sub-Finca (si aplica) ',
+            'type': FieldType.futureField,
+            'subType': FieldType.dropdown,
+            'dropdownOptions': clientes,
+            'future': locator<VariedadRepository>().selectAllGeneric(),
+            'required': true
+          }
         }, _formKey));
   }
 
@@ -88,12 +87,12 @@ class ProcesoMaltratoForm extends StatelessWidget {
       content: FormFieldWidget.generateElements({
         'procesoMaltratoTallosMuestreadoRecepcion': {
           'label': 'Tallos Muestreados Recepción',
-          'type': FieldType.average,
+          'type': FieldType.percent,
           'options': options,
         },
         'procesoMaltratoTallosMaltratoRecepcion': {
           'label': 'Presencia de Maltrato Recepción....',
-          'type': FieldType.average,
+          'type': FieldType.percent,
           'options': options,
         },
         'procesoMaltratoPorcentajeIndicenciaRecepcion': {
@@ -116,12 +115,12 @@ class ProcesoMaltratoForm extends StatelessWidget {
       content: FormFieldWidget.generateElements({
         'procesoMaltratoTallosMuestreadoBoncheo': {
           'label': 'Tallos Muestreados Clasificación',
-          'type': FieldType.average,
+          'type': FieldType.percent,
           'options': options,
         },
         'procesoMaltratoTallosMaltratoBoncheo': {
           'label': 'Presencia de Maltrato Clasificación',
-          'type': FieldType.average,
+          'type': FieldType.percent,
           'options': options,
         },
         'procesoMaltratoPorcentajeIndicenciaBoncheo': {
@@ -144,12 +143,12 @@ class ProcesoMaltratoForm extends StatelessWidget {
       content: FormFieldWidget.generateElements({
         'procesoMaltratoTallosMuestreadoCuartoFrio': {
           'label': 'Tallos Muestreados Cuarto Frio',
-          'type': FieldType.average,
+          'type': FieldType.percent,
           'options': options,
         },
         'procesoMaltratoTallosMaltratoCuartoFrio': {
           'label': 'Presencia de Maltrato Cuarto Frio',
-          'type': FieldType.average,
+          'type': FieldType.percent,
           'options': options,
         },
         'procesoMaltratoPorcentajeIndicenciaCuartoFrio': {
@@ -171,12 +170,12 @@ class ProcesoMaltratoForm extends StatelessWidget {
       content: FormFieldWidget.generateElements({
         'procesoMaltratoTallosMuestreadoEmpaque': {
           'label': 'Tallos Muestreados Empaque',
-          'type': FieldType.average,
+          'type': FieldType.percent,
           'options': options,
         },
         'procesoMaltratoTallosMaltratoEmpaque': {
           'label': 'Presencia de Maltrato Empaque',
-          'type': FieldType.average,
+          'type': FieldType.percent,
           'options': options,
         },
         'procesoMaltratoPorcentajeIndicenciaEmpaque': {
