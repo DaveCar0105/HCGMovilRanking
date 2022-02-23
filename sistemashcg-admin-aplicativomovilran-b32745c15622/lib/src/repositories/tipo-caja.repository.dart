@@ -3,6 +3,8 @@ import 'package:ranking_app/src/database-creator.dart';
 import 'package:ranking_app/src/dtos/tipo-caja.dto.dart';
 import 'package:ranking_app/src/repositories/error.repository.dart';
 
+import '../dtos/generic.dto.dart';
+
 class TipoCajaRepository {
   final ErrorRepository _errorRepository;
   final moduloRepository = 'TipoCaja ';
@@ -34,6 +36,25 @@ class TipoCajaRepository {
         tipoCajasDto.add(new TipoCajaDto(
             tipoCajaId: node[DatabaseCreator.tipoCajaId],
             tipoCajaNombre: node[DatabaseCreator.tipoCajaNombre]));
+      }
+    } catch (ex) {
+      await this
+          ._errorRepository
+          .addErrorWithDetalle(moduloRepository, ex.toString());
+    }
+    return tipoCajasDto;
+  }
+
+  Future<List<GenericDto>> selectAllGeneric() async {
+    List<GenericDto> tipoCajasDto = [];
+    try {
+      final sql = '''SELECT * FROM ${DatabaseCreator.tipoCajaTable} 
+      WHERE ${DatabaseCreator.tipoCajaEstado} = ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}''';
+      final data = await db.rawQuery(sql);
+      for (final node in data) {
+        tipoCajasDto.add(new GenericDto(
+            id: node[DatabaseCreator.tipoCajaId],
+            nombre: node[DatabaseCreator.tipoCajaNombre]));
       }
     } catch (ex) {
       await this

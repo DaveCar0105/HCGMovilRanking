@@ -1,6 +1,7 @@
 import 'package:ranking_app/src/constant.dart';
 import 'package:ranking_app/src/database-creator.dart';
 import 'package:ranking_app/src/dtos/carguera.dto.dart';
+import 'package:ranking_app/src/dtos/generic.dto.dart';
 import 'package:ranking_app/src/repositories/error.repository.dart';
 
 class CargueraRepository {
@@ -34,6 +35,25 @@ class CargueraRepository {
         carguerasDto.add(new CargueraDto(
             cargueraId: node[DatabaseCreator.cargueraId],
             cargueraNombre: node[DatabaseCreator.cargueraNombre]));
+      }
+    } catch (ex) {
+      await this
+          ._errorRepository
+          .addErrorWithDetalle(moduloRepository, ex.toString());
+    }
+    return carguerasDto;
+  }
+
+  Future<List<GenericDto>> selectAllGeneric() async {
+    List<GenericDto> carguerasDto = [];
+    try {
+      final sql = '''SELECT * FROM ${DatabaseCreator.cargueraTable} 
+      WHERE ${DatabaseCreator.cargueraEstado} = ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO};''';
+      final data = await db.rawQuery(sql);
+      for (final node in data) {
+        carguerasDto.add(new GenericDto(
+            id: node[DatabaseCreator.cargueraId],
+            nombre: node[DatabaseCreator.cargueraNombre]));
       }
     } catch (ex) {
       await this

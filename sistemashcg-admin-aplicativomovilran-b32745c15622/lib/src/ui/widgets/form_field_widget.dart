@@ -187,10 +187,13 @@ class FutureFormField extends StatelessWidget {
         future: future,
         builder: (_, s) {
           if (s.hasData) {
-            List a = s.data.map((s) => s.toString()).toList();
+            List a = s.data.map((s) {
+              GenericDto dto = s;
+              return dto.nombre;
+            }).toList();
             print(s.toString());
             element.value['type'] = FieldType.dropdown;
-            element.value['dropdownOptions'] = [1, 2, 3];
+            element.value['dropdownOptions'] = a;
             return FormFieldWidget(
               formKey: formKey,
               element: element,

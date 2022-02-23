@@ -3,6 +3,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:ranking_app/locator.dart';
 import 'package:ranking_app/src/repositories/cliente.repository.dart';
 import 'package:ranking_app/src/repositories/postcosecha.repository.dart';
+import 'package:ranking_app/src/repositories/variedad.repository.dart';
 import 'package:ranking_app/src/ui/widgets/form_field_widget.dart';
 import 'package:ranking_app/src/ui/widgets/form_footer.widget.dart';
 import 'package:ranking_app/src/ui/widgets/section_widget.dart';
@@ -52,7 +53,7 @@ class ProcesoMaltratoForm extends StatelessWidget {
           'type': FieldType.futureField,
           'subType': FieldType.dropdown,
           'dropdownOptions': clientes,
-          'future': locator<ClienteRepository>().selectAllGeneric(),
+          'future': locator<VariedadRepository>().selectAllGeneric(),
         }
       }, _formKey),
     );

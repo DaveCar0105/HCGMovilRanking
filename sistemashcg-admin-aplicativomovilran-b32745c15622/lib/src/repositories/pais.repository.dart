@@ -3,6 +3,8 @@ import 'package:ranking_app/src/database-creator.dart';
 import 'package:ranking_app/src/dtos/pais.dto.dart';
 import 'package:ranking_app/src/repositories/error.repository.dart';
 
+import '../dtos/generic.dto.dart';
+
 class PaisRepository {
   final ErrorRepository _errorRepository;
   final moduloRepository = 'Pais ';
@@ -34,6 +36,25 @@ class PaisRepository {
         paisesDto.add(new PaisDto(
             paisId: node[DatabaseCreator.paisId],
             paisNombre: node[DatabaseCreator.paisNombre]));
+      }
+    } catch (ex) {
+      await this
+          ._errorRepository
+          .addErrorWithDetalle(moduloRepository, ex.toString());
+    }
+    return paisesDto;
+  }
+
+  Future<List<GenericDto>> selectAllGeneric() async {
+    List<GenericDto> paisesDto = [];
+    try {
+      final sql = '''SELECT * FROM ${DatabaseCreator.paisTable} 
+      WHERE ${DatabaseCreator.paisEstado} = ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}''';
+      final data = await db.rawQuery(sql);
+      for (final node in data) {
+        paisesDto.add(new GenericDto(
+            id: node[DatabaseCreator.paisId],
+            nombre: node[DatabaseCreator.paisNombre]));
       }
     } catch (ex) {
       await this
