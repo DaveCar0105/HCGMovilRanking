@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:ranking_app/locator.dart';
+import 'package:ranking_app/src/dtos/cliente.dto.dart';
+import 'package:ranking_app/src/dtos/generic.dto.dart';
 
 enum FieldType {
   date,
@@ -10,7 +13,8 @@ enum FieldType {
   numeric,
   average,
   numberResult,
-  multiplication
+  multiplication,
+  futureField
 }
 
 class FormFieldWidget extends StatelessWidget {
@@ -22,10 +26,10 @@ class FormFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return fieldGenerator(element);
+    return _fieldGenerator(element);
   }
 
-  fieldGenerator(MapEntry e) {
+  _fieldGenerator(MapEntry e) {
     var inputDecoration = InputDecoration(
       labelText: e.value['label'],
     );
@@ -57,7 +61,6 @@ class FormFieldWidget extends StatelessWidget {
       );
     if (e.value['type'] == FieldType.average)
       return FormBuilderTextField(
-        initialValue: '0',
         name: e.key,
         onChanged: (_) {
           _getAverage(e.value['options'], e.value['result']);
@@ -73,13 +76,18 @@ class FormFieldWidget extends StatelessWidget {
       );
     if (e.value['type'] == FieldType.multiplication)
       return FormBuilderTextField(
-        initialValue: '0',
         name: e.key,
         onChanged: (_) {
           _getMultiplication(e.value['options'], e.value['result']);
         },
         decoration: inputDecoration,
         keyboardType: TextInputType.number,
+      );
+    if (e.value['type'] == FieldType.futureField)
+      return FutureFormField(
+        formKey: formKey,
+        element: e,
+        future: e.value['future'],
       );
     else
       return FormBuilderTextField(
@@ -89,7 +97,7 @@ class FormFieldWidget extends StatelessWidget {
       );
   }
 
-  void _getPercent(
+  _getPercent(
     String s,
     String t,
     String v,
@@ -104,29 +112,26 @@ class FormFieldWidget extends StatelessWidget {
     }
   }
 
-  void _getAverage(
+  _getAverage(
     List<String> list,
     String v,
   ) {
-    //var map=list.map((s) =>formKey.currentState.fields[s]?.value ?? "");
-
     if (list.isNotEmpty) {
-      List<int> nombresList = list
-          .map((i) => int.tryParse(formKey.currentState.fields[i].value) ?? 0)
-          .toList();
+      List<int> nombresList = list.map((i) {
+        var result =
+            int.tryParse(formKey.currentState.fields[i].value ?? "") ?? 0;
+        return result;
+      }).toList();
 
       var result =
           ((nombresList.reduce((value, element) => value + element)) ?? 0) /
               list.length;
-      formKey.currentState.fields[v].didChange(result.toString());
+      if (v != null)
+        formKey.currentState.fields[v].didChange(result?.toString() ?? "");
     }
   }
 
-  void _getArea(
-    String s,
-    String t,
-    String v,
-  ) {
+  _getArea(String s, String t, String v) {
     var firstValue = formKey.currentState.fields[s]?.value ?? "";
     var secondValue = formKey.currentState.fields[t]?.value ?? "";
     if (firstValue.isNotEmpty && secondValue.isNotEmpty) {
@@ -137,20 +142,17 @@ class FormFieldWidget extends StatelessWidget {
     }
   }
 
-  _getMultiplication(
-    List<String> list,
-    String v,
-  ) {
-    //var map=list.map((s) =>formKey.currentState.fields[s]?.value ?? "");
-
+  _getMultiplication(List<String> list, String v) {
     if (list.isNotEmpty) {
       List<int> nombresList = list
-          .map((i) => int.tryParse(formKey.currentState.fields[i].value) ?? 0)
+          .map((i) =>
+              int.tryParse(formKey.currentState.fields[i].value ?? "") ?? 0)
           .toList();
 
       var result =
           (nombresList.reduce((value, element) => value * element)) ?? 0;
-      formKey.currentState.fields[v].didChange(result.toString());
+      if (v != null)
+        formKey.currentState.fields[v].didChange(result.toString());
     }
   }
 
@@ -161,5 +163,40 @@ class FormFieldWidget extends StatelessWidget {
               element: e,
             ))
         .toList();
+  }
+
+  static generateField(MapEntry args, formKey) {
+    return FormFieldWidget(
+      formKey: formKey,
+      element: args,
+    );
+  }
+}
+
+class FutureFormField extends StatelessWidget {
+  final GlobalKey<FormBuilderState> formKey;
+  final MapEntry element;
+  final Future future;
+
+  const FutureFormField({Key key, this.formKey, this.element, this.future})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: future,
+        builder: (_, s) {
+          if (s.hasData) {
+            List a = s.data.map((s) => s.toString()).toList();
+            print(s.toString());
+            element.value['type'] = FieldType.dropdown;
+            element.value['dropdownOptions'] = [1, 2, 3];
+            return FormFieldWidget(
+              formKey: formKey,
+              element: element,
+            );
+          } else
+            return CircularProgressIndicator();
+        });
   }
 }

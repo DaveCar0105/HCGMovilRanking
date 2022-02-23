@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:ranking_app/locator.dart';
+import 'package:ranking_app/src/repositories/cliente.repository.dart';
+import 'package:ranking_app/src/repositories/postcosecha.repository.dart';
 import 'package:ranking_app/src/ui/widgets/form_field_widget.dart';
+import 'package:ranking_app/src/ui/widgets/form_footer.widget.dart';
 import 'package:ranking_app/src/ui/widgets/section_widget.dart';
 
 class ProcesoMaltratoForm extends StatelessWidget {
@@ -21,7 +25,10 @@ class ProcesoMaltratoForm extends StatelessWidget {
             _sectionD(),
             _sectionE(),
             _sectionF(),
-            _footer(context)
+            FormFooter(
+              onSubmit: _onSubmitCallback,
+              onReset: _onResetCallbak,
+            ),
           ],
         ),
       ),
@@ -34,19 +41,18 @@ class ProcesoMaltratoForm extends StatelessWidget {
       content: FormFieldWidget.generateElements({
         'nombreFinca': {
           'label': 'Nombre de la Finca',
-          'type': FieldType.dropdown,
+          'type': FieldType.futureField,
+          'subType': FieldType.dropdown,
           'dropdownOptions': clientes,
+          'future': locator<ClienteRepository>().selectAllGeneric(),
           'required': true
         },
         'nombreSubFinca': {
           'label': 'Nombre Sub-Finca (si aplica) ',
-          'type': FieldType.dropdown,
-          'dropdownOptions': [
-            '🐶',
-            '😀',
-            '😍',
-          ],
-          'required': true
+          'type': FieldType.futureField,
+          'subType': FieldType.dropdown,
+          'dropdownOptions': clientes,
+          'future': locator<ClienteRepository>().selectAllGeneric(),
         }
       }, _formKey),
     );
@@ -174,29 +180,6 @@ class ProcesoMaltratoForm extends StatelessWidget {
     );
 
     return b;
-  }
-
-  Row _footer(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        footerButton(context, "Submit", _onSubmitCallback),
-        SizedBox(width: 20),
-        footerButton(context, "Reset", _onResetCallbak)
-      ],
-    );
-  }
-
-  Expanded footerButton(BuildContext context, text, callback) {
-    return Expanded(
-      child: MaterialButton(
-        color: Theme.of(context).colorScheme.secondary,
-        child: Text(
-          text,
-          style: TextStyle(color: Colors.white),
-        ),
-        onPressed: callback,
-      ),
-    );
   }
 
   void _onSubmitCallback() {
