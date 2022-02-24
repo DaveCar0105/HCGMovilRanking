@@ -49,8 +49,8 @@ class _MainSincroPageState extends State<MainSincroPage>{
                       Row(
                        children: [
                         RaisedButton(child: Text('Sicronizar'),
-                        color: Colors.orange,
-                        disabledColor:Colors.red,
+                        color: Colors.green,
+                        disabledColor:Colors.green,
                         padding: EdgeInsets.all(10),
                         onPressed: (){print("sincronizado");},
                         
@@ -68,8 +68,8 @@ class _MainSincroPageState extends State<MainSincroPage>{
                       Row(
                        children: [
                         RaisedButton(child: Text('Sicronizar'),
-                        color: Colors.orange,
-                        disabledColor:Colors.red,
+                        color: Colors.green,
+                        disabledColor:Colors.green,
                         padding: EdgeInsets.all(10),
                         onPressed: (){print("sincronizado");},
                         
@@ -88,8 +88,8 @@ class _MainSincroPageState extends State<MainSincroPage>{
                       Row(
                        children: [
                         RaisedButton(child: Text('Sicronizar'),
-                        color: Colors.orange,
-                        disabledColor:Colors.red,
+                        color: Colors.green,
+                        disabledColor:Colors.green,
                         padding: EdgeInsets.all(10),
                         onPressed: (){print("sincronizado");},
                         
@@ -107,8 +107,8 @@ class _MainSincroPageState extends State<MainSincroPage>{
                       Row(
                        children: [
                         RaisedButton(child: Text('Sicronizar'),
-                        color: Colors.orange,
-                        disabledColor:Colors.red,
+                        color: Colors.green,
+                        disabledColor:Colors.green,
                         padding: EdgeInsets.all(10),
                         onPressed: (){print("sincronizado");},
                         
@@ -123,11 +123,11 @@ class _MainSincroPageState extends State<MainSincroPage>{
                      Row(
                        children: [Text('Numero de Formulios:',style: Theme.of(context).textTheme.subtitle1),],
                      ),
-                      Row(
+                      Row(  
                        children: [
                         RaisedButton(child: Text('Sicronizar'),
-                        color: Colors.orange,
-                        disabledColor:Colors.red,
+                        color: Colors.green,
+                        disabledColor:Colors.green,
                         padding: EdgeInsets.all(10),
                         onPressed: (){print("sincronizado");},
                         
