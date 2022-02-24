@@ -38,8 +38,8 @@ class _MainEvalutionPageState extends State<MainEvalutionPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Text(
-                      'TINAS Y CAJAS',
-                      style: TextStyle(fontSize: 12),
+                      'EVAlUACION',
+                      style: TextStyle(fontSize: 15),
                     ),
                     Icon(Icons.local_florist_outlined)
                   ],
