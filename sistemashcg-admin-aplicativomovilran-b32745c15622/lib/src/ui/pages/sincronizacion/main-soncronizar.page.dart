@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:ranking_app/src/ui/pages/procesos/tamano-boton/proceso-tamano-boton.page.dart';
 
 class MainSincroPage extends StatefulWidget {
@@ -10,212 +12,181 @@ class MainSincroPage extends StatefulWidget {
 class _MainSincroPageState extends State<MainSincroPage>{
   bool _switchVal = true;
   bool sinc = false;
+    final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+    final _formKey = GlobalKey<FormBuilderState>();
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: GridView.count(
-        crossAxisCount: 2,
-        children: <Widget>[
-          Botones(
-            child: RaisedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                     MaterialPageRoute(
-                    builder: (context) => ProcesoTamanoBotonPage(
-                      valor: this._switchVal,
-                      ramosId: 10,
-                    ),
-                  ),);
-              },
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              color: Colors.black,
-              textColor: Colors.white,
-              child: Container(
-                width: 120,
-                height: 70,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Text(
-                      'sincronizar',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    Icon(Icons.local_florist_outlined)
-                  ],
-                ),
-              ),
-            ),
-          ),
-          // Botones(
-          //   child: RaisedButton(
-          //     shape: RoundedRectangleBorder(
-          //         borderRadius: BorderRadius.circular(10)),
-          //     color: Colors.red,
-          //     textColor: Colors.white,
-          //     onPressed: () {
-          //       Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) =>
-          //                   EmpaqueElitePage(this._switchVal, 0)));
-          //     },
-          //     child: Container(
-          //       width: 120,
-          //       height: 70,
-          //       child: Row(
-          //         crossAxisAlignment: CrossAxisAlignment.center,
-          //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //         children: <Widget>[
-          //           Text(
-          //             'Empaque',
-          //             style: TextStyle(fontSize: 15),
-          //           ),
-          //           Icon(Icons.all_inbox)
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          //   //text: 'raise botton',
-          // ),
-          // Botones(
-          //   child: RaisedButton(
-          //     shape: RoundedRectangleBorder(
-          //         borderRadius: BorderRadius.circular(10)),
-          //     color: Colors.red,
-          //     textColor: Colors.white,
-          //     onPressed: () {
-          //       Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) => BandaPage(this._switchVal, 0)));
-          //     },
-          //     child: Container(
-          //       width: 120,
-          //       height: 70,
-          //       child: Row(
-          //         crossAxisAlignment: CrossAxisAlignment.center,
-          //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //         children: <Widget>[
-          //           Text(
-          //             'Final banda',
-          //             style: TextStyle(fontSize: 15),
-          //           ),
-          //           Icon(Icons.set_meal)
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          //   //text: 'raise botton',
-          // ),
-          // Botones(
-          //   child: RaisedButton(
-          //     shape: RoundedRectangleBorder(
-          //         borderRadius: BorderRadius.circular(10)),
-          //     color: Colors.red,
-          //     textColor: Colors.white,
-          //     onPressed: () {
-          //       Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) => EcuadorPage(this._switchVal, 0)));
-          //     },
-          //     child: Container(
-          //       width: 120,
-          //       height: 70,
-          //       child: Row(
-          //         crossAxisAlignment: CrossAxisAlignment.center,
-          //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //         children: <Widget>[
-          //           Text(
-          //             'Ecuador',
-          //             style: TextStyle(fontSize: 15),
-          //           ),
-          //           Icon(Icons.flag)
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          // ),
-          // Botones(
-          //   child: RaisedButton(
-          //     shape: RoundedRectangleBorder(
-          //         borderRadius: BorderRadius.circular(10)),
-          //     color: Colors.red,
-          //     textColor: Colors.white,
-          //     onPressed: () {
-          //       Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) =>
-          //                   ControlDestinoEcommercePage(this._switchVal, 10)));
-          //     },
-          //     child: Container(
-          //       width: 120,
-          //       height: 70,
-          //       child: Row(
-          //         crossAxisAlignment: CrossAxisAlignment.center,
-          //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //         children: <Widget>[
-          //           Column(
-          //             mainAxisAlignment: MainAxisAlignment.center,
-          //             children: [
-          //               Text(
-          //                 'Destino',
-          //                 style: TextStyle(fontSize: 15),
-          //               ),
-          //               Text(
-          //                 'E-commerce',
-          //                 style: TextStyle(fontSize: 15),
-          //               ),
-          //             ],
-          //           ),
-          //           Icon(Icons.local_shipping)
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          //   //text: 'raise botton',
-          // ),
-        ],
-      ),
+   Widget build(BuildContext context) {
+     var width = MediaQuery.of(context).size.width;
+     return  Scaffold(
+       key: scaffoldKey,
 
-    );
-  }
-}
+      //  appBar: AppBar(title: Text('Proceso tamano boton'),
+      //  ),
+       body: Container(
+         margin: EdgeInsets.all(10),
+         padding: EdgeInsets.all(15),
+         decoration: BoxDecoration(
+           borderRadius: BorderRadius.circular(10),
+           border: Border.all(color: Colors.orange, width: 2),
+         ),
+         width: double.infinity,
+         child: Container(
+           child: ListView(children:<Widget> [
+             Column(
+          
+               mainAxisAlignment: MainAxisAlignment.start,
+               crossAxisAlignment: CrossAxisAlignment.center,
+               children: <Widget>[
+                Text('INFORMACION GENERAL EVALUACION FINCA'),
+                Divider(),
+                 Column(
+                   children: [
+                     Text('TAMANO BOTON', style: Theme.of(context).textTheme.headline6),
+                     Row(
+                       children: [Text('Numero de Formulios:',style: Theme.of(context).textTheme.subtitle1),],
+                     ),
+                      Row(
+                       children: [
+                        RaisedButton(child: Text('Sicronizar'),
+                        color: Colors.orange,
+                        disabledColor:Colors.red,
+                        padding: EdgeInsets.all(10),
+                        onPressed: (){print("sincronizado");},
+                        
+                         )],
+                     ),
+                   ],
+                 ),
+                 Divider(),
+                  Column(
+                    children: [
+                     Text('MALTRATO', style: Theme.of(context).textTheme.headline6),
+                     Row(
+                       children: [Text('Numero de Formulios:',style: Theme.of(context).textTheme.subtitle1),],
+                     ),
+                      Row(
+                       children: [
+                        RaisedButton(child: Text('Sicronizar'),
+                        color: Colors.orange,
+                        disabledColor:Colors.red,
+                        padding: EdgeInsets.all(10),
+                        onPressed: (){print("sincronizado");},
+                        
+                         )],
+                     ),
+                   ],
+                 ),
+                
+                Divider(),
+                 Column(
+                children: [
+                     Text('INFORMACION ADICIONAL', style: Theme.of(context).textTheme.headline6),
+                     Row(
+                       children: [Text('Numero de Formulios:',style: Theme.of(context).textTheme.subtitle1),],
+                     ),
+                      Row(
+                       children: [
+                        RaisedButton(child: Text('Sicronizar'),
+                        color: Colors.orange,
+                        disabledColor:Colors.red,
+                        padding: EdgeInsets.all(10),
+                        onPressed: (){print("sincronizado");},
+                        
+                         )],
+                     ),
+                   ],
+                 ),
+                 Divider(),
+                  Column(
+                   children: [
+                     Text('REPORTE DE AGENCIA HC', style: Theme.of(context).textTheme.headline6),
+                     Row(
+                       children: [Text('Numero de Formulios:',style: Theme.of(context).textTheme.subtitle1),],
+                     ),
+                      Row(
+                       children: [
+                        RaisedButton(child: Text('Sicronizar'),
+                        color: Colors.orange,
+                        disabledColor:Colors.red,
+                        padding: EdgeInsets.all(10),
+                        onPressed: (){print("sincronizado");},
+                        
+                         )],
+                     ),
+                   ],
+                 ),
+                 Divider(),
+                  Column(
+                   children: [
+                     Text('EVALUACION TINAS Y CAJAS', style: Theme.of(context).textTheme.headline6),
+                     Row(
+                       children: [Text('Numero de Formulios:',style: Theme.of(context).textTheme.subtitle1),],
+                     ),
+                      Row(
+                       children: [
+                        RaisedButton(child: Text('Sicronizar'),
+                        color: Colors.orange,
+                        disabledColor:Colors.red,
+                        padding: EdgeInsets.all(10),
+                        onPressed: (){print("sincronizado");},
+                        
+                         )],
+                     ),
+                   ],
+                 ),
+                
+
+               ],
+             ),
+            //  Column(children: <Widget>[
+            //           Expanded(
+            //             child: RaisedButton.icon(
+            //               //onPressed: _validarFormulario,
+            //               color: Colors.red,
+            //               textColor: Colors.white,
+            //               icon: Icon(Icons.save),
+            //               label: Text('Guardar'),
+            //             ),
+            //           )
+            //         ],
+            //         ),
+
+           ],),
+         ),
+       ),
+     );
+   }
 
 
-class Botones extends StatelessWidget {
-  final Widget child;
-  //final String text;
-  const Botones({
-    @required this.child,
-    // @required this.text,
-    Key key,
-  }) : super(key: key);
+// class Botones extends StatelessWidget {
+//   final Widget child;
+//   //final String text;
+//   const Botones({
+//     @required this.child,
+//     // @required this.text,
+//     Key key,
+//   }) : super(key: key);
 
-@override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              this.child,
-              SizedBox(
-                height: 10,
-              ),
-              //Text(this.text, textAlign: TextAlign.center),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+// @override
+//   Widget build(BuildContext context) {
+//     return Card(
+//       child: Padding(
+//         padding: const EdgeInsets.all(12.0),
+//         child: Center(
+//           child: Column(
+//             mainAxisSize: MainAxisSize.min,
+//             children: <Widget>[
+//               this.child,
+//               SizedBox(
+//                 height: 10,
+//               ),
+//               //Text(this.text, textAlign: TextAlign.center),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 }
