@@ -1,10 +1,12 @@
 import 'dart:convert';
 
+import 'package:ranking_app/src/dtos/generic.dto.dart';
+
 ClienteDto clienteDtoFromJson(String str) =>
     ClienteDto.fromJson(json.decode(str));
 String clienteDtoToJson(ClienteDto data) => json.encode(data.toJson());
 
-class ClienteDto {
+class ClienteDto extends GenericDto {
   ClienteDto({this.clienteId, this.clienteNombre, this.clienteEstado});
 
   int clienteId;
@@ -16,6 +18,7 @@ class ClienteDto {
       clienteNombre: json["clienteNombre"],
       clienteEstado: json["estado"]);
 
+  @override
   Map<String, dynamic> toJson() => {
         "clienteId": clienteId,
         "clienteNombre": clienteNombre,

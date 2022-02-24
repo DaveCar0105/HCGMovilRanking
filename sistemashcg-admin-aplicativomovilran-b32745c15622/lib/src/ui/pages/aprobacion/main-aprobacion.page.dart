@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ranking_app/src/ui/pages/aprobacion/aprobacion.page.dart';
 import 'package:ranking_app/src/ui/pages/procesos/tamano-boton/proceso-tamano-boton.page.dart';
 
 class MainAprobacionPage extends StatefulWidget {
@@ -22,12 +23,12 @@ class _MainAprobacionPageState extends State<MainAprobacionPage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => ProcesoTamanoBotonPage(
-                      valor: this._switchVal,
-                      ramosId: 10,
-                    ),
-                  ),
+                 MaterialPageRoute(
+                      builder: (context) => AprobacionPage(
+                        valor: this._switchVal,
+                        ramosId: 10,
+                      ),
+                    )
                 );
               },
               shape: RoundedRectangleBorder(

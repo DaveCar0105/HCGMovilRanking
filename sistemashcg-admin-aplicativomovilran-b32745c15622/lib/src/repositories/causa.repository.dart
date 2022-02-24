@@ -3,6 +3,8 @@ import 'package:ranking_app/src/database-creator.dart';
 import 'package:ranking_app/src/dtos/causa.dto.dart';
 import 'package:ranking_app/src/repositories/error.repository.dart';
 
+import '../dtos/generic.dto.dart';
+
 class CausaRepository {
   final ErrorRepository _errorRepository;
   final moduloRepository = 'Causa ';
@@ -34,6 +36,25 @@ class CausaRepository {
         causasDto.add(new CausaDto(
             causaId: node[DatabaseCreator.causaId],
             causaNombre: node[DatabaseCreator.causaNombre]));
+      }
+    } catch (ex) {
+      await this
+          ._errorRepository
+          .addErrorWithDetalle(moduloRepository, ex.toString());
+    }
+    return causasDto;
+  }
+
+  Future<List<GenericDto>> selectAllGeneric() async {
+    List<GenericDto> causasDto = [];
+    try {
+      final sql = '''SELECT * FROM ${DatabaseCreator.causaTable} 
+      WHERE ${DatabaseCreator.causaEstado} = ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}''';
+      final data = await db.rawQuery(sql);
+      for (final node in data) {
+        causasDto.add(new GenericDto(
+            id: node[DatabaseCreator.causaId],
+            nombre: node[DatabaseCreator.causaNombre]));
       }
     } catch (ex) {
       await this

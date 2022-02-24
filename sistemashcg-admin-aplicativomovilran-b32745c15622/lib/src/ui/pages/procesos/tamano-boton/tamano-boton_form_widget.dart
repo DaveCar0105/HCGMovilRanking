@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:ranking_app/locator.dart';
 import 'package:ranking_app/src/ui/widgets/form_field_widget.dart';
 import 'package:ranking_app/src/ui/widgets/section_widget.dart';
+
+import '../../../../dtos/tamano-boton.dto.dart';
+import '../../../../repositories/postcosecha.repository.dart';
+import '../../../../repositories/tamano-boton.repository.dart';
+import '../../../../repositories/variedad.repository.dart';
 
 class ProcesoTamanoBotonForm extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
@@ -16,7 +22,7 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
           children: [
             _section(),
             _sectionB(),
-           // _sectionC(),
+            // _sectionC(),
             _sectionD(),
             _sectionE(),
             _sectionPetalos(),
@@ -31,21 +37,18 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
     return SurveySection(
       title: Text('Información General Evaluación Finca'),
       content: FormFieldWidget.generateElements({
-        
-        'nombreFinca': {
+        'postcosechaId': {
           'label': 'Nombre de la Finca',
-          'type': FieldType.dropdown,
-          'dropdownOptions': [1, '2', 3, 'a', 'c'],
+          'type': FieldType.futureField,
+          'subType': FieldType.dropdown,
+          'future': locator<PostcosechaRepository>().selectAllGeneric(),
           'required': true
         },
-        'nombreSubFinca': {
+        'postcosechaChiId': {
           'label': 'Nombre Sub-Finca (si aplica) ',
-          'type': FieldType.dropdown,
-          'dropdownOptions': [
-            '🐶',
-            '😀',
-            '😍',
-          ],
+          'type': FieldType.futureField,
+          'subType': FieldType.dropdown,
+          'future': locator<PostcosechaRepository>().selectAllGeneric(),
           'required': true
         }
       }, _formKey),
@@ -56,75 +59,43 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
     return SurveySection(
         title: Text('Variedad a Evaluar'),
         content: FormFieldWidget.generateElements({
-          'variedad': {
-          'label': 'Variedad',
-          'type': FieldType.dropdown,
-          'dropdownOptions': [
-            '🐶',
-            '😀',
-            '😍',
-          ],
-          'required': true
-        },
-          'gradoCm': {
-          'label': 'Grado(cm)',
-          'type': FieldType.numeric,
-          'required': true
-        }
+          'variedadId': {
+            'label': 'Nombre Sub-Finca (si aplica) ',
+            'type': FieldType.futureField,
+            'subType': FieldType.dropdown,
+            'future': locator<VariedadRepository>().selectAllGeneric(),
+            'required': true
+          },
+          'procesoTamanioBotonGradoVariedad': {
+            'label': 'Grado(cm)',
+            'type': FieldType.numeric,
+            'required': true
+          }
         }, _formKey));
   }
 
-  // SurveySection _sectionC() {
-  //   var options = [
-  //     'tallosMuestradosRecepcion',
-  //     'precenciaMaltratoRecepcion',
-  //     'porcentajeIncidenciaRecepcion',
-  //   ];
-
-  //   return SurveySection(
-  //     title: Text('Recepcion'),
-  //     content: FormFieldWidget.generateElements({
-  //       'tallosMuestradosRecepcion': {
-  //         'label': 'Tallos Muestreados Recepción',
-  //         'type': FieldType.average,
-  //         'options': options,
-  //       },
-  //       'precenciaMaltratoRecepcion': {
-  //         'label': 'Presencia de Maltrato Recepción....',
-  //         'type': FieldType.average,
-  //         'options': options,
-  //       },
-  //       'porcentajeIncidenciaRecepcion': {
-  //         'label': '% Incidencia Recepción',
-  //         'type': FieldType.numberResult,
-  //       },
-  //     }, _formKey),
-  //   );
-  // }
-
   SurveySection _sectionD() {
     var options = [
-      'largo',
-      'ancho'
-      
+      'procesoTamanioBotonLargoArea',
+      'procesoTamanioBotonAnchoArea'
     ];
 
     return SurveySection(
       title: Text('AREA DEL RAMO'),
       content: FormFieldWidget.generateElements({
-        'largo': {
+        'procesoTamanioBotonLargoArea': {
           'label': 'Largo',
           'type': FieldType.multiplication,
           'options': options,
-          'result':'area'
+          'result': 'procesoTamanioBotonAreaRamo'
         },
-        'ancho': {
+        'procesoTamanioBotonAnchoArea': {
           'label': 'Ancho',
           'type': FieldType.multiplication,
           'options': options,
-          'result':'area'
+          'result': 'procesoTamanioBotonAreaRamo'
         },
-        'area': {
+        'procesoTamanioBotonAreaRamo': {
           'label': 'El Area es',
           'type': FieldType.numberResult,
         },
@@ -133,38 +104,40 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
   }
 
   SurveySection _sectionE() {
-
     var options = [
-      'tamanoBoton1',
-      'tamanoBoton2',
-      'tamanoBoton3',
+      'procesoTamanioBotonTamanoBoton1',
+      'procesoTamanioBotonTamanoBoton2',
+      'procesoTamanioBotonTamanoBoton3',
     ];
-
 
     return SurveySection(
       title: Text('Tamano de Boton'),
       content: FormFieldWidget.generateElements({
-        'tamanoBoton1': {
+        'procesoTamanioBotonTamanoBoton1': {
           'label': 'Tamano Boton1',
           'type': FieldType.average,
           'options': options,
-          'result': 'resultTamanoBoton'
+          'result': 'procesoTamanioBotonTamanoBotonPromedio'
         },
-        'tamanoBoton2': {
+        'procesoTamanioBotonTamanoBoton2': {
           'label': 'Tamano Boton2',
           'type': FieldType.average,
           'options': options,
-          'result': 'resultTamanoBoton'
+          'result': 'procesoTamanioBotonTamanoBotonPromedio'
         },
-        'tamanoBoton3': {
+        'procesoTamanioBotonTamanoBoton3': {
           'label': 'Tamano Boton3',
           'type': FieldType.average,
-          'options':options,
-          'result': 'resultTamanoBoton'
+          'options': options,
+          'result': 'procesoTamanioBotonTamanoBotonPromedio'
         },
-        'resultTamanoBoton': {
+        'procesoTamanioBotonTamanoBotonPromedio': {
           'label': 'Promedio Tamano Boton',
           'type': FieldType.numberResult,
+        },
+        'foto': {
+          'label': 'Promedio Tamano Boton',
+          'type': FieldType.photo,
         },
       }, _formKey),
     );
@@ -174,16 +147,13 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
     return SurveySection(
         title: Text('Numero de Petalos'),
         content: FormFieldWidget.generateElements({
-          
-          'numeroPetalos': {
-          'label': 'Numero de Petalos',
-          'type': FieldType.numeric,
-          'required': true
-        }
+          'procesoTamanioBotonNumeroPetalos': {
+            'label': 'Numero de Petalos',
+            'type': FieldType.numeric,
+            'required': true
+          }
         }, _formKey));
   }
-
-
 
   Row _footer(BuildContext context) {
     return Row(
@@ -208,9 +178,17 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
     );
   }
 
-  void _onSubmitCallback() {
+  void _onSubmitCallback() async {
     _formKey.currentState.save();
     var result = _formKey.currentState.value;
+
+    try {
+      var dto = TamanoBotonDto.fromJson(result);
+      var insertResult = await locator<TamanoBotonRepository>().insert(dto);
+      print(insertResult.toString());
+    } catch (e) {
+      print(e.toString());
+    }
     if (_formKey.currentState.validate()) {
       print(_formKey.currentState.value);
     } else {

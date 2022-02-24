@@ -19,19 +19,19 @@ class TamanoBotonDto {
       this.procesoTamanioBotonTamanoBoton3,
       this.procesoTamanioBotonTamanoBotonPromedio,
       this.procesoTamanioBotonNumeroPetalos});
-  int usuarioId;
-  int procesoTamanioBotonId;
+  num usuarioId;
+  num procesoTamanioBotonId;
   DateTime procesoTamanioBotonFecha;
-  int variedadId;
-  int procesoTamanioBotonGradoVariedad;
-  double procesoTamanioBotonLargoArea;
-  double procesoTamanioBotonAnchoArea;
-  double procesoTamanioBotonAreaRamo;
-  double procesoTamanioBotonTamanoBoton1;
-  double procesoTamanioBotonTamanoBoton2;
-  double procesoTamanioBotonTamanoBoton3;
-  double procesoTamanioBotonTamanoBotonPromedio;
-  int procesoTamanioBotonNumeroPetalos;
+  num variedadId;
+  num procesoTamanioBotonGradoVariedad;
+  num procesoTamanioBotonLargoArea;
+  num procesoTamanioBotonAnchoArea;
+  num procesoTamanioBotonAreaRamo;
+  num procesoTamanioBotonTamanoBoton1;
+  num procesoTamanioBotonTamanoBoton2;
+  num procesoTamanioBotonTamanoBoton3;
+  num procesoTamanioBotonTamanoBotonPromedio;
+  num procesoTamanioBotonNumeroPetalos;
 
   factory TamanoBotonDto.fromJson(Map<String, dynamic> json) => TamanoBotonDto(
       usuarioId: json["usuarioId"], //consultar
@@ -54,7 +54,7 @@ class TamanoBotonDto {
   Map<String, dynamic> toJson() => {
         "usuarioId": usuarioId,
         "procesoTamanioBotonId": procesoTamanioBotonId,
-        "procesoTamanioBotonFecha": procesoTamanioBotonFecha,
+        "procesoTamanioBotonFecha": DateTime.now(),
         "variedadId": variedadId,
         "procesoTamanioBotonGradoVariedad": procesoTamanioBotonGradoVariedad,
         "procesoTamanioBotonLargoArea": procesoTamanioBotonLargoArea,

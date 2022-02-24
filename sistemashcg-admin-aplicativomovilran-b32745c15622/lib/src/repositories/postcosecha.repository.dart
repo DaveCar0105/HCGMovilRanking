@@ -3,6 +3,8 @@ import 'package:ranking_app/src/database-creator.dart';
 import 'package:ranking_app/src/dtos/postcosecha.dto.dart';
 import 'package:ranking_app/src/repositories/error.repository.dart';
 
+import '../dtos/generic.dto.dart';
+
 class PostcosechaRepository {
   final ErrorRepository _errorRepository;
   final moduloRepository = 'Postcosecha ';
@@ -37,6 +39,25 @@ class PostcosechaRepository {
             postcosechaId: node[DatabaseCreator.postcosechaId],
             postcosechaPadreId: node[DatabaseCreator.postcosechaPadreId],
             postcosechaNombre: node[DatabaseCreator.postcosechaNombre]));
+      }
+    } catch (ex) {
+      await this
+          ._errorRepository
+          .addErrorWithDetalle(moduloRepository, ex.toString());
+    }
+    return postcosechasDto;
+  }
+
+  Future<List<GenericDto>> selectAllGeneric() async {
+    List<GenericDto> postcosechasDto = [];
+    try {
+      final sql = '''SELECT * FROM ${DatabaseCreator.postcosechaTable} 
+      WHERE ${DatabaseCreator.postcosechaEstado} = ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}''';
+      final data = await db.rawQuery(sql);
+      for (final node in data) {
+        postcosechasDto.add(new GenericDto(
+            id: node[DatabaseCreator.postcosechaId],
+            nombre: node[DatabaseCreator.postcosechaNombre]));
       }
     } catch (ex) {
       await this

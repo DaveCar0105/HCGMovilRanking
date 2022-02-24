@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:ranking_app/locator.dart';
+import 'package:ranking_app/src/repositories/cliente.repository.dart';
+import 'package:ranking_app/src/repositories/postcosecha.repository.dart';
+import 'package:ranking_app/src/repositories/variedad.repository.dart';
 import 'package:ranking_app/src/ui/widgets/form_field_widget.dart';
+import 'package:ranking_app/src/ui/widgets/form_footer.widget.dart';
 import 'package:ranking_app/src/ui/widgets/section_widget.dart';
 
 class ProcesoMaltratoForm extends StatelessWidget {
@@ -21,7 +26,10 @@ class ProcesoMaltratoForm extends StatelessWidget {
             _sectionD(),
             _sectionE(),
             _sectionF(),
-            _footer(context)
+            FormFooter(
+              onSubmit: _onSubmitCallback,
+              onReset: _onResetCallbak,
+            ),
           ],
         ),
       ),
@@ -32,20 +40,20 @@ class ProcesoMaltratoForm extends StatelessWidget {
     return SurveySection(
       title: Text('Información General Evaluación Finca'),
       content: FormFieldWidget.generateElements({
-        'nombreFinca': {
+        'postcosechaId': {
           'label': 'Nombre de la Finca',
-          'type': FieldType.dropdown,
+          'type': FieldType.futureField,
+          'subType': FieldType.dropdown,
           'dropdownOptions': clientes,
+          'future': locator<PostcosechaRepository>().selectAllGeneric(),
           'required': true
         },
-        'nombreSubFinca': {
+        'postcosechaChiId': {
           'label': 'Nombre Sub-Finca (si aplica) ',
-          'type': FieldType.dropdown,
-          'dropdownOptions': [
-            '🐶',
-            '😀',
-            '😍',
-          ],
+          'type': FieldType.futureField,
+          'subType': FieldType.dropdown,
+          'dropdownOptions': clientes,
+          'future': locator<PostcosechaRepository>().selectAllGeneric(),
           'required': true
         }
       }, _formKey),
@@ -56,34 +64,38 @@ class ProcesoMaltratoForm extends StatelessWidget {
     return SurveySection(
         title: Text('Variedad a Evaluar'),
         content: FormFieldWidget.generateElements({
-          'variedad': {
-            'label': 'Variedad',
-            'required': true,
-          },
+          'variedadId': {
+            'label': 'Nombre Sub-Finca (si aplica) ',
+            'type': FieldType.futureField,
+            'subType': FieldType.dropdown,
+            'dropdownOptions': clientes,
+            'future': locator<VariedadRepository>().selectAllGeneric(),
+            'required': true
+          }
         }, _formKey));
   }
 
   SurveySection _sectionC() {
     var options = [
-      'tallosMuestradosRecepcion',
-      'precenciaMaltratoRecepcion',
-      'porcentajeIncidenciaRecepcion',
+      'procesoMaltratoTallosMuestreadoRecepcion',
+      'procesoMaltratoTallosMaltratoRecepcion',
+      'procesoMaltratoPorcentajeIndicenciaRecepcion',
     ];
 
     return SurveySection(
       title: Text('Recepcion'),
       content: FormFieldWidget.generateElements({
-        'tallosMuestradosRecepcion': {
+        'procesoMaltratoTallosMuestreadoRecepcion': {
           'label': 'Tallos Muestreados Recepción',
-          'type': FieldType.average,
+          'type': FieldType.percent,
           'options': options,
         },
-        'precenciaMaltratoRecepcion': {
+        'procesoMaltratoTallosMaltratoRecepcion': {
           'label': 'Presencia de Maltrato Recepción....',
-          'type': FieldType.average,
+          'type': FieldType.percent,
           'options': options,
         },
-        'porcentajeIncidenciaRecepcion': {
+        'procesoMaltratoPorcentajeIndicenciaRecepcion': {
           'label': '% Incidencia Recepción',
           'type': FieldType.numberResult,
         },
@@ -93,25 +105,25 @@ class ProcesoMaltratoForm extends StatelessWidget {
 
   SurveySection _sectionD() {
     var options = [
-      'tallosMuestradosClasificación',
-      'precenciaMaltratoClasificación',
-      'porcentajeIncidenciaClasificación',
+      'procesoMaltratoTallosMuestreadoBoncheo',
+      'procesoMaltratoTallosMaltratoBoncheo',
+      'procesoMaltratoPorcentajeIndicenciaBoncheo',
     ];
 
     return SurveySection(
       title: Text('Clasificación - Boncheo'),
       content: FormFieldWidget.generateElements({
-        'tallosMuestradosClasificación': {
+        'procesoMaltratoTallosMuestreadoBoncheo': {
           'label': 'Tallos Muestreados Clasificación',
-          'type': FieldType.average,
+          'type': FieldType.percent,
           'options': options,
         },
-        'precenciaMaltratoClasificación': {
+        'procesoMaltratoTallosMaltratoBoncheo': {
           'label': 'Presencia de Maltrato Clasificación',
-          'type': FieldType.average,
+          'type': FieldType.percent,
           'options': options,
         },
-        'porcentajeIncidenciaClasificación': {
+        'procesoMaltratoPorcentajeIndicenciaBoncheo': {
           'label': '% Incidencia Clasificación',
           'type': FieldType.numberResult,
         },
@@ -121,25 +133,25 @@ class ProcesoMaltratoForm extends StatelessWidget {
 
   SurveySection _sectionE() {
     var options = [
-      'tallosMuestreadosCuartoFrio',
-      'presenciaMaltratoCuartoFrio',
-      'porcentajeIncidenciaCuartoFrio',
+      'procesoMaltratoTallosMuestreadoCuartoFrio',
+      'procesoMaltratoTallosMaltratoCuartoFrio',
+      'procesoMaltratoPorcentajeIndicenciaCuartoFrio',
     ];
 
     return SurveySection(
       title: Text('Cuarto Frio'),
       content: FormFieldWidget.generateElements({
-        'tallosMuestreadosCuartoFrio': {
+        'procesoMaltratoTallosMuestreadoCuartoFrio': {
           'label': 'Tallos Muestreados Cuarto Frio',
-          'type': FieldType.average,
+          'type': FieldType.percent,
           'options': options,
         },
-        'presenciaMaltratoCuartoFrio': {
+        'procesoMaltratoTallosMaltratoCuartoFrio': {
           'label': 'Presencia de Maltrato Cuarto Frio',
-          'type': FieldType.average,
+          'type': FieldType.percent,
           'options': options,
         },
-        'porcentajeIncidenciaCuartoFrio': {
+        'procesoMaltratoPorcentajeIndicenciaCuartoFrio': {
           'label': '% Incidencia Cuarto Frio',
           'type': FieldType.numberResult,
         },
@@ -149,24 +161,24 @@ class ProcesoMaltratoForm extends StatelessWidget {
 
   SurveySection _sectionF() {
     var options = [
-      'tallosMuestreadosEmpaque',
-      'presenciaMaltratoEmpaque',
-      'porcentajeIncidenciaEmpaque',
+      'procesoMaltratoTallosMuestreadoEmpaque',
+      'procesoMaltratoTallosMaltratoEmpaque',
+      'procesoMaltratoPorcentajeIndicenciaEmpaque',
     ];
     var b = SurveySection(
       title: Text('Empaque'),
       content: FormFieldWidget.generateElements({
-        'tallosMuestreadosEmpaque': {
+        'procesoMaltratoTallosMuestreadoEmpaque': {
           'label': 'Tallos Muestreados Empaque',
-          'type': FieldType.average,
+          'type': FieldType.percent,
           'options': options,
         },
-        'presenciaMaltratoEmpaque': {
+        'procesoMaltratoTallosMaltratoEmpaque': {
           'label': 'Presencia de Maltrato Empaque',
-          'type': FieldType.average,
+          'type': FieldType.percent,
           'options': options,
         },
-        'porcentajeIncidenciaEmpaque': {
+        'procesoMaltratoPorcentajeIndicenciaEmpaque': {
           'label': '% Incidencia Empaque',
           'type': FieldType.numberResult,
         },
@@ -176,32 +188,10 @@ class ProcesoMaltratoForm extends StatelessWidget {
     return b;
   }
 
-  Row _footer(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        footerButton(context, "Submit", _onSubmitCallback),
-        SizedBox(width: 20),
-        footerButton(context, "Reset", _onResetCallbak)
-      ],
-    );
-  }
-
-  Expanded footerButton(BuildContext context, text, callback) {
-    return Expanded(
-      child: MaterialButton(
-        color: Theme.of(context).colorScheme.secondary,
-        child: Text(
-          text,
-          style: TextStyle(color: Colors.white),
-        ),
-        onPressed: callback,
-      ),
-    );
-  }
-
   void _onSubmitCallback() {
     _formKey.currentState.save();
     var result = _formKey.currentState.value;
+
     print(result.toString());
     if (_formKey.currentState.validate()) {
       print(_formKey.currentState.value);

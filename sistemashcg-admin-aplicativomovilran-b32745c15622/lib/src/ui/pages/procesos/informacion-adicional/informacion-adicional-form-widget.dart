@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:ranking_app/src/dtos/tamano-boton.dto.dart';
 import 'package:ranking_app/src/ui/widgets/form_field_widget.dart';
 import 'package:ranking_app/src/ui/widgets/section_widget.dart';
+
+import '../../../../../locator.dart';
+import '../../../../repositories/causa.repository.dart';
+import '../../../../repositories/postcosecha.repository.dart';
 
 class ProcesoInformacionAdicionalForm extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
@@ -23,30 +28,18 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
     return SurveySection(
       title: Text('Información General Evaluación Finca'),
       content: FormFieldWidget.generateElements({
-        // 'fechaAuditoria': {
-        //   'label': 'Fecha de Auditoria',
-        //   'type': FieldType.date,
-        //   'required': true
-        // },
-        // 'codigoTecnico': {
-        //   'label': 'Código del técnico',
-        //   'type': FieldType.text,
-        //   'required': true
-        // },
-        'nombreFinca': {
+        'postcosechaId': {
           'label': 'Nombre de la Finca',
-          'type': FieldType.dropdown,
-          'dropdownOptions': [1, '2', 3, 'a', 'c'],
+          'type': FieldType.futureField,
+          'subType': FieldType.dropdown,
+          'future': locator<PostcosechaRepository>().selectAllGeneric(),
           'required': true
         },
-        'nombreSubFinca': {
+        'postcosechaChiId': {
           'label': 'Nombre Sub-Finca (si aplica) ',
-          'type': FieldType.dropdown,
-          'dropdownOptions': [
-            '🐶',
-            '😀',
-            '😍',
-          ],
+          'type': FieldType.futureField,
+          'subType': FieldType.dropdown,
+          'future': locator<PostcosechaRepository>().selectAllGeneric(),
           'required': true
         }
       }, _formKey),
@@ -57,19 +50,19 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
     return SurveySection(
         title: Text('Rendimiento Promedio'),
         content: FormFieldWidget.generateElements({
-          'RendimientoSala': {
+          'informacionAuditoriaPromedioSala': {
             'label': 'Rendimiento Sala',
             'required': true,
           },
-          'RendimientoBoncheo': {
+          'informacionAuditoriaPromedioBoncheo': {
             'label': 'Rendimiento Boncheo',
             'required': true,
           },
-          'RendimientoCorte': {
+          'informacionAuditoriaPromedioCorte': {
             'label': 'Rendimiento Corte',
             'required': true,
           },
-          'RendimientoFinca': {
+          'informacionAuditoriaPromedioLargoFinca': {
             'label': 'Largo Promedio de la Finca',
             'required': true,
           },
@@ -85,15 +78,16 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
         //   'type': FieldType.date,
         //   'required': true
         // },
-        'porcentajeFlorNacional': {
+        'informacionAuditoriaPorcentajeFlorNacional': {
           'label': '% Flor Nacional',
           'type': FieldType.numeric,
           'required': true
         },
         'Causa1': {
           'label': 'Seleccione una causa',
-          'type': FieldType.dropdown,
-          'dropdownOptions': [1, '2', 3, 'a', 'c'],
+          'type': FieldType.futureField,
+          'subType': FieldType.dropdown,
+          'future': locator<CausaRepository>().selectAllGeneric(),
           'required': true
         },
         'porcentajeAfectacionCausa1': {
@@ -103,8 +97,9 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
         },
         'Causa2': {
           'label': 'Seleccione una causa',
-          'type': FieldType.dropdown,
-          'dropdownOptions': [1, '2', 3, 'a', 'c'],
+          'type': FieldType.futureField,
+          'subType': FieldType.dropdown,
+          'future': locator<CausaRepository>().selectAllGeneric(),
           'required': true
         },
         'porcentajeAfectacionCausa2': {
@@ -114,8 +109,9 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
         },
         'Causa3': {
           'label': 'Seleccione una causa',
-          'type': FieldType.dropdown,
-          'dropdownOptions': [1, '2', 3, 'a', 'c'],
+          'type': FieldType.futureField,
+          'subType': FieldType.dropdown,
+          'future': locator<CausaRepository>().selectAllGeneric(),
           'required': true
         },
         'porcentajeAfectacionCausa3': {
@@ -125,8 +121,9 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
         },
         'Causa4': {
           'label': 'Seleccione una causa',
-          'type': FieldType.dropdown,
-          'dropdownOptions': [1, '2', 3, 'a', 'c'],
+          'type': FieldType.futureField,
+          'subType': FieldType.dropdown,
+          'future': locator<CausaRepository>().selectAllGeneric(),
           'required': true
         },
         'porcentajeAfectacionCausa4': {
@@ -136,8 +133,9 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
         },
         'Causa5': {
           'label': 'Seleccione una causa',
-          'type': FieldType.dropdown,
-          'dropdownOptions': [1, '2', 3, 'a', 'c'],
+          'type': FieldType.futureField,
+          'subType': FieldType.dropdown,
+          'future': locator<CausaRepository>().selectAllGeneric(),
           'required': true
         },
         'porcentajeAfectacionCausa5': {
@@ -175,6 +173,7 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
   void _onSubmitCallback() {
     _formKey.currentState.save();
     var result = _formKey.currentState.value;
+
     print(result.toString());
     if (_formKey.currentState.validate()) {
       print(_formKey.currentState.value);
