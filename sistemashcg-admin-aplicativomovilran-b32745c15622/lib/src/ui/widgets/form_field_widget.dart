@@ -103,7 +103,7 @@ class FormFieldWidget extends StatelessWidget {
       );
     if (e.value['type'] == FieldType.percent)
       return FormBuilderTextField(
-        valueTransformer: (text) => num.tryParse(text),
+        valueTransformer: _numericTransform,
         name: e.key,
         onChanged: (_) {
           _getPercent(e.value['options'].elementAt(0),

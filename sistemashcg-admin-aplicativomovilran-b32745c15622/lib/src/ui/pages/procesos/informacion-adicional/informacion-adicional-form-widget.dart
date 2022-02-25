@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:ranking_app/src/dtos/tamano-boton.dto.dart';
 import 'package:ranking_app/src/ui/widgets/form_field_widget.dart';
 import 'package:ranking_app/src/ui/widgets/section_widget.dart';
 

@@ -10,6 +10,9 @@ import 'package:ranking_app/src/ui/widgets/form_field_widget.dart';
 import 'package:ranking_app/src/ui/widgets/form_footer.widget.dart';
 import 'package:ranking_app/src/ui/widgets/section_widget.dart';
 
+import '../../../../dtos/session.dto.dart';
+import '../../../../preference.dart';
+
 class ProcesoMaltratoForm extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
   final clientes = [];
@@ -197,7 +200,11 @@ class ProcesoMaltratoForm extends StatelessWidget {
 
     try {
       var dto = MaltratoDto.fromJson(result);
+      // SessionDto sesionDto = locator<Preferences>().getAutentication;
+      // dto.usuarioId = sesionDto?.usuarioDto?.usuarioId ?? 1;
+      // dto.procesoTamanioBotonFecha = DateTime.now().toLocal();
       insertResult = await locator<MaltratoRepository>().insert(dto);
+      var resultForm = await locator<MaltratoRepository>().selectAll();
       print("Resultado maltrato: " + insertResult.toString());
       print(result.toString());
     } catch (e) {
