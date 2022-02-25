@@ -96,7 +96,7 @@ class _TinasCajasFormWidgerState extends State<TinasCajasFormWidger> {
             },
             'dtoPuntosLongitud': {
               'label': 'Dto. puntos: Longitud',
-              'type': FieldType.,
+              'type': FieldType.numeric,
               'required': true
             },
             'nombreFinca': {
