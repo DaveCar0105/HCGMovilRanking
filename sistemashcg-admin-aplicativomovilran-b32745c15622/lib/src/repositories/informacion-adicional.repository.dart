@@ -16,27 +16,53 @@ InformacionAdicionalRepository(this._errorRepository);
 
 Future<bool> insert(InformacionAdicionalDto informacionAdicionalDto)async{
   final sql =''' INSERT INTO ${DatabaseCreator.informacionAuditoriaTable}(
-    ${DatabaseCreator.postcosechaPadreId},${DatabaseCreator.postcosechaId},${DatabaseCreator.informacionAuditoriaPromedioSala},
-    ${DatabaseCreator.informacionAuditoriaPromedioBoncheo},${DatabaseCreator.informacionAuditoriaPromedioCorte},
-    ${DatabaseCreator.informacionAuditoriaPromedioLargoFinca},${DatabaseCreator.informacionAuditoriaPorcentajeFlorNacional},
-    ${DatabaseCreator.causaId},${DatabaseCreator.auditoriaCausaPorcentajeAfectacion},
-    ${DatabaseCreator.causaId},${DatabaseCreator.auditoriaCausaPorcentajeAfectacion},
-    ${DatabaseCreator.causaId},${DatabaseCreator.auditoriaCausaPorcentajeAfectacion},
-    ${DatabaseCreator.causaId},${DatabaseCreator.auditoriaCausaPorcentajeAfectacion},
-    ${DatabaseCreator.causaId},${DatabaseCreator.auditoriaCausaPorcentajeAfectacion}
+    ${DatabaseCreator.usuarioId},
+    ${DatabaseCreator.informacionAuditoriaId},
+    ${DatabaseCreator.informacionAuditoriaFecha},
+    ${DatabaseCreator.postcosechaPadreId},
+    ${DatabaseCreator.postcosechaId},
+    ${DatabaseCreator.informacionAuditoriaPromedioSala},
+    ${DatabaseCreator.informacionAuditoriaPromedioBoncheo},
+    ${DatabaseCreator.informacionAuditoriaPromedioCorte},
+    ${DatabaseCreator.informacionAuditoriaPromedioLargoFinca},
+    ${DatabaseCreator.informacionAuditoriaPorcentajeFlorNacional},
+    ${DatabaseCreator.causaId},
+    ${DatabaseCreator.auditoriaCausaPorcentajeAfectacion},
+    
   )
   VALUES(
-    '${informacionAdicionalDto.nombreFinca}','${informacionAdicionalDto.nombreSubFinca}',
-    ${informacionAdicionalDto.rendimientoSala},${informacionAdicionalDto.rendimientoBoncheo},
-    ${informacionAdicionalDto.rendimientoCorte},${informacionAdicionalDto.rendimientoCorte},
-    ${informacionAdicionalDto.rendimientoFinca},${informacionAdicionalDto.porcentajeFlorNacional},
-    '${informacionAdicionalDto.causa1}',${informacionAdicionalDto.porcentajeAfectacionCausa1},
-    '${informacionAdicionalDto.causa2}',${informacionAdicionalDto.porcentajeAfectacionCausa2},
-    '${informacionAdicionalDto.causa3}',${informacionAdicionalDto.porcentajeAfectacionCausa3},
-    '${informacionAdicionalDto.causa4}',${informacionAdicionalDto.porcentajeAfectacionCausa4},
-    '${informacionAdicionalDto.causa5}',${informacionAdicionalDto.porcentajeAfectacionCausa5}
+    ${informacionAdicionalDto.usuarioId},
+    ${informacionAdicionalDto.informacionAuditoriaId},
+    '${informacionAdicionalDto.informacionAuditoriaFecha}',
+    ${informacionAdicionalDto.postcosechaPadreId},
+    ${informacionAdicionalDto.postcosechaId},
+    ${informacionAdicionalDto.informacionAuditoriaPromedioSala},
+    ${informacionAdicionalDto.informacionAuditoriaPromedioBoncheo},
+    ${informacionAdicionalDto.informacionAuditoriaPromedioCorte},
+    ${informacionAdicionalDto.informacionAuditoriaPromedioLargoFinca},
+    ${informacionAdicionalDto.informacionAuditoriaPorcentajeFlorNacional},
+    ${informacionAdicionalDto.causaId},
+    ${informacionAdicionalDto.auditoriaCausaPorcentajeAfectacion},
+    
   )''';
 }
+// ${DatabaseCreator.causaId},
+//     ${DatabaseCreator.auditoriaCausaPorcentajeAfectacion},
+//     ${DatabaseCreator.causaId},
+//     ${DatabaseCreator.auditoriaCausaPorcentajeAfectacion},
+//     ${DatabaseCreator.causaId},
+//     ${DatabaseCreator.auditoriaCausaPorcentajeAfectacion},
+//     ${DatabaseCreator.causaId},
+//     ${DatabaseCreator.auditoriaCausaPorcentajeAfectacion}
+
+// '${informacionAdicionalDto.causa2}',
+//     ${informacionAdicionalDto.porcentajeAfectacionCausa2},
+//     '${informacionAdicionalDto.causa3}',
+//     ${informacionAdicionalDto.porcentajeAfectacionCausa3},
+//     '${informacionAdicionalDto.causa4}',
+//     ${informacionAdicionalDto.porcentajeAfectacionCausa4},
+//     '${informacionAdicionalDto.causa5}',
+//     ${informacionAdicionalDto.porcentajeAfectacionCausa5}
 
 Future<List<InformacionAdicionalDto>> selectAll()async{
   List<InformacionAdicionalDto> informacionAdicionDto=[];
@@ -46,23 +72,26 @@ Future<List<InformacionAdicionalDto>> selectAll()async{
     final data = await db.rawQuery(sql);
     for(final node in data){
       informacionAdicionDto.add(new InformacionAdicionalDto(
-        nombreFinca: node[DatabaseCreator.postcosechaPadreId].toString(),
-        nombreSubFinca: node[DatabaseCreator.postcosechaId].toString(),
-        rendimientoSala: node[DatabaseCreator.informacionAuditoriaPromedioSala],
-        rendimientoBoncheo: node[DatabaseCreator.informacionAuditoriaPromedioBoncheo],
-        rendimientoCorte: node[DatabaseCreator.informacionAuditoriaPromedioCorte],
-        rendimientoFinca: node[DatabaseCreator.informacionAuditoriaPromedioLargoFinca],
-        porcentajeFlorNacional: node[DatabaseCreator.informacionAuditoriaPorcentajeFlorNacional],
-        causa1: node[DatabaseCreator.causaId],
-        porcentajeAfectacionCausa1: node[DatabaseCreator.auditoriaCausaPorcentajeAfectacion],
-        causa2: node[DatabaseCreator.causaId],
-        porcentajeAfectacionCausa2: node[DatabaseCreator.auditoriaCausaPorcentajeAfectacion],
-        causa3: node[DatabaseCreator.causaId],
-        porcentajeAfectacionCausa3: node[DatabaseCreator.auditoriaCausaPorcentajeAfectacion],
-        causa4: node[DatabaseCreator.causaId],
-        porcentajeAfectacionCausa4: node[DatabaseCreator.auditoriaCausaPorcentajeAfectacion],
-        causa5: node[DatabaseCreator.causaId],
-        porcentajeAfectacionCausa5: node[DatabaseCreator.auditoriaCausaPorcentajeAfectacion]
+        usuarioId: node[DatabaseCreator.usuarioId],
+        informacionAuditoriaId: node[DatabaseCreator.informacionAuditoriaId],
+        informacionAuditoriaFecha: node[DatabaseCreator.informacionAuditoriaFecha],
+       postcosechaPadreId: node[DatabaseCreator.postcosechaPadreId],
+        postcosechaId: node[DatabaseCreator.postcosechaId],
+        informacionAuditoriaPromedioSala: node[DatabaseCreator.informacionAuditoriaPromedioSala],
+        informacionAuditoriaPromedioBoncheo: node[DatabaseCreator.informacionAuditoriaPromedioBoncheo],
+        informacionAuditoriaPromedioCorte: node[DatabaseCreator.informacionAuditoriaPromedioCorte],
+        informacionAuditoriaPromedioLargoFinca: node[DatabaseCreator.informacionAuditoriaPromedioLargoFinca],
+        informacionAuditoriaPorcentajeFlorNacional: node[DatabaseCreator.informacionAuditoriaPorcentajeFlorNacional],
+        causaId: node[DatabaseCreator.causaId],
+        auditoriaCausaPorcentajeAfectacion: node[DatabaseCreator.auditoriaCausaPorcentajeAfectacion],
+        // causa2: node[DatabaseCreator.causaId],
+        // porcentajeAfectacionCausa2: node[DatabaseCreator.auditoriaCausaPorcentajeAfectacion],
+        // causa3: node[DatabaseCreator.causaId],
+        // porcentajeAfectacionCausa3: node[DatabaseCreator.auditoriaCausaPorcentajeAfectacion],
+        // causa4: node[DatabaseCreator.causaId],
+        // porcentajeAfectacionCausa4: node[DatabaseCreator.auditoriaCausaPorcentajeAfectacion],
+        // causa5: node[DatabaseCreator.causaId],
+        // porcentajeAfectacionCausa5: node[DatabaseCreator.auditoriaCausaPorcentajeAfectacion]
       ));
       
     }

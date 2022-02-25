@@ -2,7 +2,7 @@ import 'package:ranking_app/src/constant.dart';
 import 'package:ranking_app/src/database-creator.dart';
 import 'package:ranking_app/src/dtos/generic.dto.dart';
 import 'package:ranking_app/src/dtos/maltrato.dt.dart';
-import 'package:ranking_app/src/dtos/tamano-boton.dto.dart';
+
 import 'package:ranking_app/src/repositories/error.repository.dart';
 
 class MaltratoRepository {
@@ -15,26 +15,9 @@ class MaltratoRepository {
     final sql = '''INSERT INTO ${DatabaseCreator.procesoMaltratoTable}(
       ${DatabaseCreator.postcosechaPadreId},
       ${DatabaseCreator.postcosechaId},
-      ${DatabaseCreator.variedadNombre},
-      ${DatabaseCreator.procesoMaltratoTallosMuestreadoRecepcion},
-      ${DatabaseCreator.procesoMaltratoTallosMuestreadoRecepcion},
-      ${DatabaseCreator.procesoMaltratoPorcentajeIndicenciaRecepcion},
-      ${DatabaseCreator.procesoMaltratoTallosMuestreadoBoncheo},
-      ${DatabaseCreator.procesoMaltratoTallosMaltratoBoncheo},
-      ${DatabaseCreator.procesoMaltratoPorcentajeIndicenciaBoncheo},
-      ${DatabaseCreator.procesoMaltratoTallosMuestreadoCuartoFrio},
-      ${DatabaseCreator.procesoMaltratoTallosMaltratoCuartoFrio},
-      ${DatabaseCreator.procesoMaltratoPorcentajeIndicenciaCuartoFrio},
-      ${DatabaseCreator.procesoMaltratoTallosMuestreadoEmpaque},
-      ${DatabaseCreator.procesoMaltratoTallosMaltratoEmpaque},
-  Future<bool> insert(MaltratoDto maltratoDto)async{
-    final sql='''INSERT INTO ${DatabaseCreator.procesoMaltratoTable}(
-      
-      ${DatabaseCreator.postcosechaPadreId},
-      ${DatabaseCreator.postcosechaId},
       ${DatabaseCreator.variedadId},
       ${DatabaseCreator.procesoMaltratoTallosMuestreadoRecepcion},
-      ${DatabaseCreator.procesoMaltratoTallosMaltratoRecepcion},
+      ${DatabaseCreator.procesoMaltratoTallosMuestreadoRecepcion},
       ${DatabaseCreator.procesoMaltratoPorcentajeIndicenciaRecepcion},
       ${DatabaseCreator.procesoMaltratoTallosMuestreadoBoncheo},
       ${DatabaseCreator.procesoMaltratoTallosMaltratoBoncheo},
@@ -46,21 +29,6 @@ class MaltratoRepository {
       ${DatabaseCreator.procesoMaltratoTallosMaltratoEmpaque},
       ${DatabaseCreator.procesoMaltratoPorcentajeIndicenciaEmpaque}
     )VALUES(
-      ${maltratoDto.nombreFinca},
-      ${maltratoDto.nombreSubFinca},
-      '${maltratoDto.variedad}',
-      ${maltratoDto.tallosMuestradosRecepcion},
-      ${maltratoDto.precenciaMaltratoRecepcion},
-      ${maltratoDto.porcentajeIncidenciaRecepcion},
-      ${maltratoDto.tallosMuestradosClasificaciN},
-      ${maltratoDto.precenciaMaltratoClasificaciN},
-      ${maltratoDto.porcentajeIncidenciaClasificaciN},
-      ${maltratoDto.tallosMuestreadosCuartoFrio},
-      ${maltratoDto.presenciaMaltratoCuartoFrio},
-      ${maltratoDto.porcentajeIncidenciaCuartoFrio},
-      ${maltratoDto.tallosMuestreadosEmpaque},
-      ${maltratoDto.presenciaMaltratoEmpaque},
-      ${maltratoDto.porcentajeIncidenciaEmpaque},
       ${maltratoDto.postcosechaPadreId},
       ${maltratoDto.postcosechaId},
       ${maltratoDto.variedadId},
@@ -90,33 +58,6 @@ class MaltratoRepository {
       final data = await db.rawQuery(sql);
       for (final node in data) {
         maltratoDto.add(new MaltratoDto(
-            nombreFinca: node[DatabaseCreator.postcosechaPadreId],
-            nombreSubFinca: node[DatabaseCreator.postcosechaId],
-            variedad: node[DatabaseCreator.variedadNombre],
-            tallosMuestradosRecepcion:
-                node[DatabaseCreator.procesoMaltratoTallosMuestreadoRecepcion],
-            precenciaMaltratoRecepcion:
-                node[DatabaseCreator.procesoMaltratoTallosMaltratoRecepcion],
-            porcentajeIncidenciaRecepcion: node[
-                DatabaseCreator.procesoMaltratoPorcentajeIndicenciaRecepcion],
-            tallosMuestradosClasificaciN:
-                node[DatabaseCreator.procesoMaltratoTallosMuestreadoBoncheo],
-            precenciaMaltratoClasificaciN:
-                node[DatabaseCreator.procesoMaltratoTallosMaltratoBoncheo],
-            porcentajeIncidenciaClasificaciN: node[
-                DatabaseCreator.procesoMaltratoPorcentajeIndicenciaBoncheo],
-            tallosMuestreadosCuartoFrio:
-                node[DatabaseCreator.procesoMaltratoTallosMuestreadoCuartoFrio],
-            presenciaMaltratoCuartoFrio:
-                node[DatabaseCreator.procesoMaltratoTallosMaltratoCuartoFrio],
-            porcentajeIncidenciaCuartoFrio: node[
-                DatabaseCreator.procesoMaltratoPorcentajeIndicenciaCuartoFrio],
-            tallosMuestreadosEmpaque:
-                node[DatabaseCreator.procesoMaltratoTallosMuestreadoEmpaque],
-            presenciaMaltratoEmpaque:
-                node[DatabaseCreator.procesoMaltratoTallosMaltratoEmpaque],
-            porcentajeIncidenciaEmpaque: node[
-                DatabaseCreator.procesoMaltratoPorcentajeIndicenciaEmpaque]));
           postcosechaPadreId: node[DatabaseCreator.postcosechaPadreId],
           postcosechaId: node[DatabaseCreator.postcosechaId],
           variedadId: node[DatabaseCreator.variedadId],
