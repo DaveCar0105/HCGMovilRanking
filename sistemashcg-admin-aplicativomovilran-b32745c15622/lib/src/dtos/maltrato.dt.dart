@@ -5,24 +5,23 @@ MaltratoDto tamanoBotonDtoFromJson(String str) =>
 String tamanoBotonDtoToJson(MaltratoDto data) => json.encode(data.toJson());
 
 class MaltratoDto {
-  String postcosechaPadreId;
-  String postcosechaId;
-  String variedadId;
+  int postcosechaId;
+  int variedadId;
   int procesoMaltratoTallosMuestreadoRecepcion;
   int procesoMaltratoTallosMaltratoRecepcion;
-  double procesoMaltratoPorcentajeIndicenciaRecepcion;
+  num procesoMaltratoPorcentajeIndicenciaRecepcion;
   int procesoMaltratoTallosMuestreadoBoncheo;
   int procesoMaltratoTallosMaltratoBoncheo;
-  double procesoMaltratoPorcentajeIndicenciaBoncheo;
+  num procesoMaltratoPorcentajeIndicenciaBoncheo;
   int procesoMaltratoTallosMuestreadoCuartoFrio;
   int procesoMaltratoTallosMaltratoCuartoFrio;
-  double procesoMaltratoPorcentajeIndicenciaCuartoFrio;
+  num procesoMaltratoPorcentajeIndicenciaCuartoFrio;
   int procesoMaltratoTallosMuestreadoEmpaque;
   int procesoMaltratoTallosMaltratoEmpaque;
-  double procesoMaltratoPorcentajeIndicenciaEmpaque;
+  num procesoMaltratoPorcentajeIndicenciaEmpaque;
 
   MaltratoDto(
-      {this.postcosechaPadreId,
+      {
       this.postcosechaId,
       this.variedadId,
       this.procesoMaltratoTallosMuestreadoRecepcion,
@@ -39,7 +38,6 @@ class MaltratoDto {
       this.procesoMaltratoPorcentajeIndicenciaEmpaque});
 
   MaltratoDto.fromJson(Map<String, dynamic> json) {
-    postcosechaPadreId = json['postcosechaPadreId'];
     postcosechaId = json['postcosechaId'];
     variedadId = json['variedadId'];
     procesoMaltratoTallosMuestreadoRecepcion = json['procesoMaltratoTallosMuestreadoRecepcion'];
@@ -59,7 +57,6 @@ class MaltratoDto {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['postcosechaPadreId'] = this.postcosechaPadreId;
     data['postcosechaId'] = this.postcosechaId;
     data['variedadId'] = this.variedadId;
     data['tallosMuestradosRecepcion'] = this.procesoMaltratoTallosMuestreadoRecepcion;

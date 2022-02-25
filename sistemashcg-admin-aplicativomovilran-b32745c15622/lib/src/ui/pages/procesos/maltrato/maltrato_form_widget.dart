@@ -198,7 +198,7 @@ class ProcesoMaltratoForm extends StatelessWidget {
     try {
       var dto = MaltratoDto.fromJson(result);
       insertResult = await locator<MaltratoRepository>().insert(dto);
-      print(insertResult.toString());
+      print("Resultado maltrato: " + insertResult.toString());
       print(result.toString());
     } catch (e) {
       print(e.toString());

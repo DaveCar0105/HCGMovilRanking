@@ -76,12 +76,12 @@ class SincronizeServerInformation {
     await this._getAllTipoCaja();
     print("variedad");
     await this._getAllVariedad();
-    print("tamano-boton");
+    /*print("tamano-boton");
     await this._getAllTamanoBoton();
     print("maltrato");
     await this._getMaltrato();
     print("informacion-adicional");
-    await this._getInformacionAdicional();
+    await this._getInformacionAdicional();*/
   }
 
   Future<void> _getAllCarguera() async {
@@ -324,6 +324,7 @@ class SincronizeServerInformation {
         List<VariedadDto> variedades = jsonDecode(respuesta.body.toString())
             .map<VariedadDto>((e) => VariedadDto.fromJson(e))
             .toList();
+            print(respuesta.body.toString());
         for (VariedadDto variedad in variedades) {
           try {
             await this._variedadRepository.insert(variedad);

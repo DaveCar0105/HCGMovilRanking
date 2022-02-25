@@ -10,6 +10,7 @@ class TamanoBotonRepository {
   TamanoBotonRepository(this._errorRepository);
 
   Future<bool> insert(TamanoBotonDto tamanoBotonDto) async {
+    print("ingresando");
     final sql = '''INSERT INTO ${DatabaseCreator.procesoTamanioBotonTable}(
   ${DatabaseCreator.usuarioId},
   ${DatabaseCreator.procesoTamanioBotonFecha},
@@ -40,6 +41,7 @@ class TamanoBotonRepository {
     ${tamanoBotonDto.procesoTamanioBotonNumeroPetalos},
     ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}
   )''';
+  print(sql);
     int id = await db.rawInsert(sql);
     return id > 0 ? true : false;
   }
@@ -50,24 +52,12 @@ class TamanoBotonRepository {
       final sql = ''' SELECT * FROM ${DatabaseCreator.procesoTamanioBotonTable}
     WHERE ${DatabaseCreator.procesoTamanioBotonEstado}=${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO};''';
       final data = await db.rawQuery(sql);
-      print(data.toString());
       for (final node in data) {
         var dto = TamanoBotonDto.fromJson(node);
-        tamanioBotonDto.add(
-            // tamanioBotonDto.add(new TamanoBotonDto(
-            //   procesoTamanioBotonId:
-            //       node[DatabaseCreator.procesoTamanioBotonId] ?? -1,
-            //   procesoTamanioBotonFecha: DateTime.tryParse(
-            //           node[DatabaseCreator.procesoTamanioBotonFecha] ?? "") ??
-            //       DateTime.now(),
-
-            // )
-            dto);
+        tamanioBotonDto.add(dto);
       }
-
-      print(tamanioBotonDto.toString());
     } catch (ex) {
-      print(ex);
+      print("asd"+ex);
     }
     return tamanioBotonDto;
   }
