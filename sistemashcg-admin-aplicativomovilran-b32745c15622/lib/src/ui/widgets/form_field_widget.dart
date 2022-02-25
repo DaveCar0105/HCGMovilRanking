@@ -62,7 +62,7 @@ class FormFieldWidget extends StatelessWidget {
       );
     if (e.value['type'] == FieldType.average)
       return FormBuilderTextField(
-        valueTransformer: (text) => num.tryParse(text),
+        valueTransformer: _numericTransform,
         name: e.key,
         onChanged: (_) {
           _getAverage(e.value['options'], e.value['result']);
@@ -74,21 +74,21 @@ class FormFieldWidget extends StatelessWidget {
       return FormBuilderTextField(
         enabled: false,
         name: e.key,
-        valueTransformer: (text) => num.tryParse(text),
+        valueTransformer: _numericTransform,
         decoration: inputDecoration,
         keyboardType: TextInputType.number,
       );
     if (e.value['type'] == FieldType.numeric)
       return FormBuilderTextField(
         name: e.key,
-        valueTransformer: (text) => num.tryParse(text),
+        valueTransformer: _numericTransform,
         decoration: inputDecoration,
         keyboardType: TextInputType.number,
       );
     if (e.value['type'] == FieldType.multiplication)
       return FormBuilderTextField(
         name: e.key,
-        valueTransformer: (text) => num.tryParse(text),
+        valueTransformer: _numericTransform,
         onChanged: (_) {
           _getMultiplication(e.value['options'], e.value['result']);
         },
@@ -199,6 +199,12 @@ class FormFieldWidget extends StatelessWidget {
       formKey: formKey,
       element: args,
     );
+  }
+
+  _numericTransform(String value) {
+    print(value);
+    var result = num.tryParse(value ?? "") ?? 0;
+    return result;
   }
 }
 
