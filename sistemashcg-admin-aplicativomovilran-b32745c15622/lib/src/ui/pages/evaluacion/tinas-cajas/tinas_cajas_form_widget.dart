@@ -1,3 +1,5 @@
+import 'package:expandable_widgets/expandable_widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:ranking_app/src/ui/widgets/form_field_widget.dart';
@@ -24,17 +26,7 @@ class TinasCajasFormWidger extends StatelessWidget {
     );
   }
 
-  Widget switchSections() {
-    switch (section) {
-      case "A":
-        return _sectionA();
-        break;
-      case "B":
-        return _sectionB();
-        break;
-      default:
-    }
-  }
+  
 
   Widget _optionB1() {
     return Padding(
