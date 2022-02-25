@@ -4,9 +4,12 @@ import 'package:ranking_app/src/constant.dart';
 import 'package:ranking_app/src/dtos/carguera.dto.dart';
 import 'package:ranking_app/src/dtos/causa.dto.dart';
 import 'package:ranking_app/src/dtos/cliente.dto.dart';
+import 'package:ranking_app/src/dtos/info-adic.dto.dart';
+import 'package:ranking_app/src/dtos/maltrato.dt.dart';
 import 'package:ranking_app/src/dtos/pais.dto.dart';
 import 'package:ranking_app/src/dtos/postcosecha.dto.dart';
 import 'package:ranking_app/src/dtos/producto.dto.dart';
+import 'package:ranking_app/src/dtos/tamano-boton.dto.dart';
 import 'package:ranking_app/src/dtos/tipo-caja.dto.dart';
 import 'package:ranking_app/src/dtos/variedad.dto.dart';
 import 'package:ranking_app/src/preference.dart';
@@ -14,9 +17,12 @@ import 'package:ranking_app/src/repositories/carguera.repository.dart';
 import 'package:ranking_app/src/repositories/causa.repository.dart';
 import 'package:ranking_app/src/repositories/cliente.repository.dart';
 import 'package:ranking_app/src/repositories/error.repository.dart';
+import 'package:ranking_app/src/repositories/informacion-adicional.repository.dart';
+import 'package:ranking_app/src/repositories/maltrato.repository.dart';
 import 'package:ranking_app/src/repositories/pais.repository.dart';
 import 'package:ranking_app/src/repositories/postcosecha.repository.dart';
 import 'package:ranking_app/src/repositories/producto.repository.dart';
+import 'package:ranking_app/src/repositories/tamano-boton.repository.dart';
 import 'package:ranking_app/src/repositories/tipo-caja.repository.dart';
 import 'package:ranking_app/src/repositories/variedad.repository.dart';
 
@@ -32,6 +38,11 @@ class SincronizeServerInformation {
   final ProductoRepository _productoRepository;
   final TipoCajaRepository _tipoCajaRepository;
   final VariedadRepository _variedadRepository;
+
+  final TamanoBotonRepository _tamanoBotonRepository;
+  final MaltratoRepository _maltratoRepository;
+  final InformacionAdicionalRepository _informacionAdicionalRepository;
+  
   final moduloService = 'SincronizeServerInformation';
 
   SincronizeServerInformation(
@@ -43,7 +54,11 @@ class SincronizeServerInformation {
       this._postcosechaRepository,
       this._productoRepository,
       this._tipoCajaRepository,
-      this._variedadRepository);
+      this._variedadRepository,
+      this._tamanoBotonRepository,
+      this._maltratoRepository,
+      this._informacionAdicionalRepository
+      );
 
   Future<void> sincronized() async {
     print("carguera");
@@ -62,6 +77,13 @@ class SincronizeServerInformation {
     await this._getAllTipoCaja();
     print("variedad");
     await this._getAllVariedad();
+    print("tamano-boton");
+    await this._getAllTamanoBoton();
+    print("maltrato");
+    await this._getMaltrato();
+    print("informacion-adicional");
+   await this._getInformacionAdicional();
+     
   }
 
   Future<void> _getAllCarguera() async {
@@ -325,7 +347,91 @@ class SincronizeServerInformation {
       return false;
     }
   }
+  Future<void> _getAllTamanoBoton()async{
+    String nameServiceServer = 'proceso_tamanio_boton';
+    this.headers = this.pref.headerAutentication ?? null;
+    try{
+      final url =
+          Uri.http(Constant.URL, ConstantServicesServer.PROCESO_TAMANO_BOTON_CONTROLLER);
+          final respuesta = await http.get(url, headers: this.headers);
+          if(respuesta.statusCode>= 200 && respuesta.statusCode <= 299){
+            List<TamanoBotonDto> tamanoBotons = jsonDecode(respuesta.body.toString())
+            .map<TamanoBotonDto>((e) => TamanoBotonDto.fromJson(e))
+            .toList();
+            for(TamanoBotonDto tamanoBoton in tamanoBotons){
+              await this._tamanoBotonRepository.insert(tamanoBoton);
+              // try{
+              //   await this._tamanoBotonRepository.insert(tamanoBoton);
+
+              // }catch(DatabaseException){
+              //   //await this._tamanoBotonRepository.update(tamanoBoton);
+              // }
+            }
+          }
+          await this._errorRepository.addErrorWithDetalle(
+          moduloService, nameServiceServer + respuesta.statusCode.toString());
+    }catch(ex){
+       await this._errorRepository.addErrorWithDetalle(
+          moduloService, nameServiceServer + ex.toString());
+      return false;
+    }
+
+  }
+
+  Future<void> _getMaltrato()async{
+    String nameServiceServer='proceso_maltrato';
+    this.headers = this.pref.headerAutentication ?? null;
+    try{
+      final url =
+          Uri.http(Constant.URL, ConstantServicesServer.PROCESO_MALTRATO_CONTROLLER);
+          final respuesta = await http.get(url, headers: this.headers);
+          if(respuesta.statusCode>= 200 && respuesta.statusCode <= 299){
+            List<MaltratoDto> maltratos = jsonDecode(respuesta.body.toString())
+            .map<MaltratoDto>((e) => MaltratoDto.fromJson(e))
+            .toList();
+            for(MaltratoDto maltrato in maltratos){
+              await this._maltratoRepository.insert(maltrato);
+            }
+
+          }
+          await this._errorRepository.addErrorWithDetalle(
+          moduloService, nameServiceServer + respuesta.statusCode.toString());
+    }catch(ex){
+      await this._errorRepository.addErrorWithDetalle(
+          moduloService, nameServiceServer + ex.toString());
+      return false;
+    }
+  }
+  Future<void> _getInformacionAdicional()async{
+  String nameServiceServer ='informacion_auditoria';
+  try{
+      final url =
+          Uri.http(Constant.URL, ConstantServicesServer.INFORMACION_AUDITORIA_CONTROLLER);
+          final respuesta = await http.get(url, headers: this.headers);
+          if(respuesta.statusCode>= 200 && respuesta.statusCode <= 299){
+            List<InformacionAdicionalDto> informacionAdicionals = jsonDecode(respuesta.body.toString())
+            .map<InformacionAdicionalDto>((e) => InformacionAdicionalDto.fromJson(e))
+            .toList();
+            for(InformacionAdicionalDto informacionAdicion in informacionAdicionals){
+              await this._informacionAdicionalRepository.insert(informacionAdicion);
+            }
+
+          }
+          await this._errorRepository.addErrorWithDetalle(
+          moduloService, nameServiceServer + respuesta.statusCode.toString());
+    }catch(ex){
+      await this._errorRepository.addErrorWithDetalle(
+          moduloService, nameServiceServer + ex.toString());
+      return false;
+    }
+  
 }
+
+
+
+}
+
+
 
 /*Future<void> getAllTipoCaja() async {
     final sessionDto = this.pref.getAutentication as SessionDto;

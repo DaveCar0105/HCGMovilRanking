@@ -42,4 +42,11 @@ class ConstantServicesServer {
   static const TIPO_CAJA_CONTROLLER = 'tipo-caja';
   //static const TIPO_CAJA_CONTROLLER = 'usuario';
   static const VARIEDAD_CONTROLLER = 'variedad';
+
+  //FORMULARIO TAMNIO BOTON
+  static const PROCESO_TAMANO_BOTON_CONTROLLER='proceso_tamanio_boton';
+  //FORMULARIO MALTRATO
+  static const PROCESO_MALTRATO_CONTROLLER ='proceso_maltrato';
+  //FORMULARIO INFORMACION ADICIONAL
+  static const INFORMACION_AUDITORIA_CONTROLLER ='informacion_auditoria';
 }
