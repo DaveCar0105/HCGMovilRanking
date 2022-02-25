@@ -73,6 +73,7 @@ class DatabaseCreator {
   static const informacionAuditoriaEstado = 'estado';
   //--postcosechaId--
   //--usuarioId--
+  static const usuarioId = 'usuarioId';
 
   //TABLA DE AUDITORIA-CAUSA
   static const auditoriaCausaTable = 'auditoriaCausa';
@@ -297,6 +298,7 @@ class DatabaseCreator {
   Future<void> createTableProcesoTamanoBoton(Database db) async {
     final ramosSql = '''CREATE TABLE $procesoTamanioBotonTable
     (
+      $usuarioId NUMERIC,
       $procesoTamanioBotonId INTEGER PRIMARY KEY AUTOINCREMENT,
       $procesoTamanioBotonFecha DATE,
       $procesoTamanioBotonGradoVariedad INTEGER,
@@ -318,6 +320,7 @@ class DatabaseCreator {
   Future<void> createTableProcesoMaltrato(Database db) async {
     final ramosSql = '''CREATE TABLE $procesoMaltratoTable
     (
+      $usuarioId NUMERIC,
       $procesoMaltratoId INTEGER PRIMARY KEY AUTOINCREMENT,
       $procesoMaltratoFecha DATE,
       $procesoMaltratoTallosMuestreadoRecepcion INTEGER,

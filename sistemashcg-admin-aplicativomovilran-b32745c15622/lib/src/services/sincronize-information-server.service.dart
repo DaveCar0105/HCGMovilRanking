@@ -42,7 +42,7 @@ class SincronizeServerInformation {
   final TamanoBotonRepository _tamanoBotonRepository;
   final MaltratoRepository _maltratoRepository;
   final InformacionAdicionalRepository _informacionAdicionalRepository;
-  
+
   final moduloService = 'SincronizeServerInformation';
 
   SincronizeServerInformation(
@@ -57,8 +57,7 @@ class SincronizeServerInformation {
       this._variedadRepository,
       this._tamanoBotonRepository,
       this._maltratoRepository,
-      this._informacionAdicionalRepository
-      );
+      this._informacionAdicionalRepository);
 
   Future<void> sincronized() async {
     print("carguera");
@@ -82,8 +81,7 @@ class SincronizeServerInformation {
     print("maltrato");
     await this._getMaltrato();
     print("informacion-adicional");
-   await this._getInformacionAdicional();
-     
+    await this._getInformacionAdicional();
   }
 
   Future<void> _getAllCarguera() async {
@@ -347,88 +345,87 @@ class SincronizeServerInformation {
       return false;
     }
   }
-  Future<void> _getAllTamanoBoton()async{
+
+  Future<void> _getAllTamanoBoton() async {
     String nameServiceServer = 'proceso-tamano-boton';
     this.headers = this.pref.headerAutentication ?? null;
-    try{
-      final url =
-          Uri.http(Constant.URL, ConstantServicesServer.PROCESO_TAMANO_BOTON_CONTROLLER);
-          final respuesta = await http.get(url, headers: this.headers);
-          if(respuesta.statusCode>= 200 && respuesta.statusCode <= 299){
-            List<TamanoBotonDto> tamanoBotons = jsonDecode(respuesta.body.toString())
-            .map<TamanoBotonDto>((e) => TamanoBotonDto.fromJson(e))
-            .toList();
-            for(TamanoBotonDto tamanoBoton in tamanoBotons){
-              await this._tamanoBotonRepository.insert(tamanoBoton);
-              // try{
-              //   await this._tamanoBotonRepository.insert(tamanoBoton);
+    try {
+      final url = Uri.http(
+          Constant.URL, ConstantServicesServer.PROCESO_TAMANO_BOTON_CONTROLLER);
+      final respuesta = await http.get(url, headers: this.headers);
+      if (respuesta.statusCode >= 200 && respuesta.statusCode <= 299) {
+        List<TamanoBotonDto> tamanoBotons =
+            jsonDecode(respuesta.body.toString())
+                .map<TamanoBotonDto>((e) => TamanoBotonDto.fromJson(e))
+                .toList();
+        for (TamanoBotonDto tamanoBoton in tamanoBotons) {
+          await this._tamanoBotonRepository.insert(tamanoBoton);
+          // try{
+          //   await this._tamanoBotonRepository.insert(tamanoBoton);
 
-              // }catch(DatabaseException){
-              //   //await this._tamanoBotonRepository.update(tamanoBoton);
-              // }
-            }
-          }
-          await this._errorRepository.addErrorWithDetalle(
+          // }catch(DatabaseException){
+          //   //await this._tamanoBotonRepository.update(tamanoBoton);
+          // }
+        }
+      }
+      await this._errorRepository.addErrorWithDetalle(
           moduloService, nameServiceServer + respuesta.statusCode.toString());
-    }catch(ex){
-       await this._errorRepository.addErrorWithDetalle(
+    } catch (ex) {
+      await this._errorRepository.addErrorWithDetalle(
           moduloService, nameServiceServer + ex.toString());
       return false;
     }
-
   }
 
-  Future<void> _getMaltrato()async{
-    String nameServiceServer='proceso-maltrato';
+  Future<void> _getMaltrato() async {
+    String nameServiceServer = 'proceso-maltrato';
     this.headers = this.pref.headerAutentication ?? null;
-    try{
-      final url =
-          Uri.http(Constant.URL, ConstantServicesServer.PROCESO_MALTRATO_CONTROLLER);
-          final respuesta = await http.get(url, headers: this.headers);
-          if(respuesta.statusCode>= 200 && respuesta.statusCode <= 299){
-            List<MaltratoDto> maltratos = jsonDecode(respuesta.body.toString())
+    try {
+      final url = Uri.http(
+          Constant.URL, ConstantServicesServer.PROCESO_MALTRATO_CONTROLLER);
+      final respuesta = await http.get(url, headers: this.headers);
+      if (respuesta.statusCode >= 200 && respuesta.statusCode <= 299) {
+        List<MaltratoDto> maltratos = jsonDecode(respuesta.body.toString())
             .map<MaltratoDto>((e) => MaltratoDto.fromJson(e))
             .toList();
-            for(MaltratoDto maltrato in maltratos){
-              await this._maltratoRepository.insert(maltrato);
-            }
-
-          }
-          await this._errorRepository.addErrorWithDetalle(
+        for (MaltratoDto maltrato in maltratos) {
+          await this._maltratoRepository.insert(maltrato);
+        }
+      }
+      await this._errorRepository.addErrorWithDetalle(
           moduloService, nameServiceServer + respuesta.statusCode.toString());
-    }catch(ex){
+    } catch (ex) {
       await this._errorRepository.addErrorWithDetalle(
           moduloService, nameServiceServer + ex.toString());
       return false;
     }
   }
-  Future<void> _getInformacionAdicional()async{
-  String nameServiceServer ='informacion-auditoria';
-  try{
-      final url =
-          Uri.http(Constant.URL, ConstantServicesServer.INFORMACION_AUDITORIA_CONTROLLER);
-          final respuesta = await http.get(url, headers: this.headers);
-          if(respuesta.statusCode>= 200 && respuesta.statusCode <= 299){
-            List<InformacionAdicionalDto> informacionAdicionals = jsonDecode(respuesta.body.toString())
-            .map<InformacionAdicionalDto>((e) => InformacionAdicionalDto.fromJson(e))
-            .toList();
-            for(InformacionAdicionalDto informacionAdicion in informacionAdicionals){
-              await this._informacionAdicionalRepository.insert(informacionAdicion);
-            }
 
-          }
-          await this._errorRepository.addErrorWithDetalle(
+  Future<void> _getInformacionAdicional() async {
+    String nameServiceServer = 'informacion-auditoria';
+    try {
+      final url = Uri.http(Constant.URL,
+          ConstantServicesServer.INFORMACION_AUDITORIA_CONTROLLER);
+      final respuesta = await http.get(url, headers: this.headers);
+      if (respuesta.statusCode >= 200 && respuesta.statusCode <= 299) {
+        List<InformacionAdicionalDto> informacionAdicionals =
+            jsonDecode(respuesta.body.toString())
+                .map<InformacionAdicionalDto>(
+                    (e) => InformacionAdicionalDto.fromJson(e))
+                .toList();
+        for (InformacionAdicionalDto informacionAdicion
+            in informacionAdicionals) {
+          await this._informacionAdicionalRepository.insert(informacionAdicion);
+        }
+      }
+      await this._errorRepository.addErrorWithDetalle(
           moduloService, nameServiceServer + respuesta.statusCode.toString());
-    }catch(ex){
+    } catch (ex) {
       await this._errorRepository.addErrorWithDetalle(
           moduloService, nameServiceServer + ex.toString());
       return false;
     }
-  
-}
-
-
-
+  }
 }
 
 

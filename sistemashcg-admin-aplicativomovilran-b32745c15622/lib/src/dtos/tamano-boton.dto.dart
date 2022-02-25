@@ -36,7 +36,9 @@ class TamanoBotonDto {
   factory TamanoBotonDto.fromJson(Map<String, dynamic> json) => TamanoBotonDto(
       usuarioId: json["usuarioId"], //consultar
       procesoTamanioBotonId: json["procesoTamanioBotonId"],
-      procesoTamanioBotonFecha: json["procesoTamanioBotonFecha"],
+      procesoTamanioBotonFecha:
+          DateTime.tryParse(json["procesoTamanioBotonFecha"] ?? "") ??
+              DateTime.now(),
       variedadId: json["variedadId"],
       procesoTamanioBotonGradoVariedad:
           json["procesoTamanioBotonGradoVariedad"],
