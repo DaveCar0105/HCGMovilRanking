@@ -11,10 +11,7 @@ class AutenticationService {
   Preferences pref = locator<Preferences>();
 
   Future<bool> postLogin(String username, String password) async {
-    const objetoAutentication = {
-      'nickname': 'adminEc',
-      'password': 'RankingHcg'
-    };
+    const objetoAutentication = {'nickname': 'admin', 'password': 'admin'};
     try {
       var url = Uri.http(Constant.URL, nombreModelo);
       final respuesta = await http.post(url, body: objetoAutentication);

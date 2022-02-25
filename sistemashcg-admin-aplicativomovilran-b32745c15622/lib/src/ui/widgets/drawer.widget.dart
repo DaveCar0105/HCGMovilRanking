@@ -50,7 +50,7 @@ class DrawerWidget extends StatelessWidget {
             title: Text("Salir"),
             onTap: () {
               Navigator.of(context).pop();
-              Navigator.pushNamed(context, '');
+              Navigator.pushNamed(context, 'login');
             },
           )
         ],

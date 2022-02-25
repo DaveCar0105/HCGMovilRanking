@@ -1,46 +1,12 @@
-import 'package:expandable_widgets/expandable_widgets.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:ranking_app/src/ui/widgets/form_field_widget.dart';
 import 'package:ranking_app/src/ui/widgets/section_widget.dart';
 
-class TinasCajasFormWidger extends StatefulWidget {
+class TinasCajasFormWidger extends StatelessWidget {
   TinasCajasFormWidger({Key key}) : super(key: key);
 
-  @override
-  State<TinasCajasFormWidger> createState() => _TinasCajasFormWidgerState();
-}
-
-class _TinasCajasFormWidgerState extends State<TinasCajasFormWidger> {
-  final _formKeyA = GlobalKey<FormBuilderState>();
-  final _formKeyB = GlobalKey<FormBuilderState>();
-  final _formKeyC = GlobalKey<FormBuilderState>();
-  final _formKeyD = GlobalKey<FormBuilderState>();
   final _formKey = GlobalKey<FormBuilderState>();
-
-  bool bonchadoraPresentacion = false;
-  bool bonchadoraBoton = false;
-  bool clasificacionBoton = false;
-  bool clasificacionTallo = false;
-  bool clasificacionFollaje = false;
-  bool clasificacionEnfermedad = false;
-  bool clasificacionPlagas = false;
-  bool mesaDeCorte = false;
-
-  List<String> _checkedbonchadoraPresentacion = [];
-  List<String> _checkedbonchadoraBoton = [];
-  List<String> _checkedclasificacionBoton = [];
-  List<String> _checkedclasificacionTallo = [];
-  List<String> _checkedclasificacionFollaje = [];
-  List<String> _checkedclasificacionEnfermedad = [];
-  List<String> _checkedclasificacionPlagas = [];
-  List<String> _checkedmesaDeCorte = [];
-
-  Map<String, dynamic> resultForm = {};
-
-  String section = "A";
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +16,8 @@ class _TinasCajasFormWidgerState extends State<TinasCajasFormWidger> {
         key: _formKey,
         child: ListView(
           children: [
-            section == "A" ? _sectionA() : Container(),
-            section == "B" ? _sectionB() : Container(),
-            section == "B" ? _optionB1() : Container(),
-            _footer(context)
+            _sectionA(),
+            _sectionB(),
           ],
         ),
       ),
@@ -218,14 +182,14 @@ class _TinasCajasFormWidgerState extends State<TinasCajasFormWidger> {
           'required': true
         },
         'variedad': {
-          'label': 'Variedad',
+          'label': 'Nombre de la Finca',
           'type': FieldType.dropdown,
           'dropdownOptions': ['RDC 1', 'AGRINA', 3, 'a', 'c'],
           'required': true
         },
         'grado': {
           'label': 'Grado (cm)',
-          'type': FieldType.numeric,
+          'type': FieldType.dropdown,
           'required': true
         },
         'tallosPorRamo': {
@@ -233,108 +197,13 @@ class _TinasCajasFormWidgerState extends State<TinasCajasFormWidger> {
           'type': FieldType.numeric,
           'required': true
         },
-      }, _formKey),
-    );
-  }
-
-  SurveySection _sectionC() {
-    return SurveySection(
-      title: Text('Bonchadora / Presentación Bonch'),
-      content: FormFieldWidget.generateElements({
-        'mesaEvaluar': {
-          'label': 'Mesa a Evaluar',
-          'type': FieldType.text,
-          'required': true
-        },
-        'variedad': {
-          'label': 'Variedad',
+        'subFinca': {
+          'label': 'Sub Finca:',
           'type': FieldType.dropdown,
-          'dropdownOptions': ['RDC 1', 'AGRINA', 3, 'a', 'c'],
-          'required': true
-        },
-        'grado': {
-          'label': 'Grado (cm)',
-          'type': FieldType.numeric,
-          'required': true
-        },
-        'tallosPorRamo': {
-          'label': 'Tallos x Ramo',
-          'type': FieldType.numeric,
+          'dropdownOptions': [1, 2, 3, 4],
           'required': true
         },
       }, _formKey),
     );
-  }
-
-  Row _footer(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        footerButton(context, "Submit", _onSubmitCallback),
-        SizedBox(width: 20),
-        footerButton(context, "Reset", _onResetCallbak)
-      ],
-    );
-  }
-
-  Expanded footerButton(BuildContext context, text, callback) {
-    return Expanded(
-      child: MaterialButton(
-        color: Theme.of(context).colorScheme.secondary,
-        child: Text(
-          text,
-          style: TextStyle(color: Colors.white),
-        ),
-        onPressed: callback,
-      ),
-    );
-  }
-
-  void _onSubmitCallback() {
-    switch (section) {
-      case "A":
-        _formKey.currentState.save();
-        var result = _formKey.currentState.value;
-        if (_formKey.currentState.validate()) {
-          resultForm.addAll(result);
-          print(resultForm.toString());
-          setState(() {
-            section = "B";
-          });
-        } else {
-          print("validation failed");
-        }
-        break;
-      case "B":
-        _formKey.currentState.save();
-        var result = _formKey.currentState.value;
-        if (_formKey.currentState.validate()) {
-          resultForm.addAll(result);
-          print(resultForm.toString());
-          setState(() {
-            section = "C";
-          });
-        } else {
-          print("validation failed");
-        }
-        break;
-      case "C":
-        _formKey.currentState.save();
-        var result = _formKey.currentState.value;
-        if (_formKey.currentState.validate()) {
-          resultForm.addAll(result);
-          print(resultForm.toString());
-          setState(() {
-            section = "D";
-          });
-        } else {
-          print("validation failed");
-        }
-        break;
-      default:
-    }
-  }
-
-  void _onResetCallbak() {
-    _formKey.currentState.reset();
   }
 }

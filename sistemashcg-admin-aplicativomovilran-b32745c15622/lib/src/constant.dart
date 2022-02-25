@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Constant {
-  static const URL = '192.168.1.8:3001';
+  static const URL = '192.168.100.5:3001';
   static const DB_NAME = 'HcgRankingV1';
   static const NAME_PREFERENCE = 'rankingHCG2021';
   static const BANDERA_PREFERENCE = 'rankingHCGBandera';
@@ -42,4 +42,11 @@ class ConstantServicesServer {
   static const TIPO_CAJA_CONTROLLER = 'tipo-caja';
   //static const TIPO_CAJA_CONTROLLER = 'usuario';
   static const VARIEDAD_CONTROLLER = 'variedad';
+
+  //FORMULARIO TAMNIO BOTON
+  static const PROCESO_TAMANO_BOTON_CONTROLLER='proceso-tamano-boton';
+  //FORMULARIO MALTRATO
+  static const PROCESO_MALTRATO_CONTROLLER ='proceso-maltrato';
+  //FORMULARIO INFORMACION ADICIONAL
+  static const INFORMACION_AUDITORIA_CONTROLLER ='informacion-auditoria';
 }

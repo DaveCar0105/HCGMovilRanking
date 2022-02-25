@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:ranking_app/locator.dart';
+import 'package:ranking_app/src/dtos/maltrato.dt.dart';
 import 'package:ranking_app/src/repositories/cliente.repository.dart';
+import 'package:ranking_app/src/repositories/maltrato.repository.dart';
 import 'package:ranking_app/src/repositories/postcosecha.repository.dart';
 import 'package:ranking_app/src/repositories/variedad.repository.dart';
 import 'package:ranking_app/src/ui/widgets/form_field_widget.dart';
@@ -188,11 +190,20 @@ class ProcesoMaltratoForm extends StatelessWidget {
     return b;
   }
 
-  void _onSubmitCallback() {
+  void _onSubmitCallback() async {
     _formKey.currentState.save();
     var result = _formKey.currentState.value;
+    var insertResult;
 
-    print(result.toString());
+    try {
+      var dto = MaltratoDto.fromJson(result);
+      insertResult = await locator<MaltratoRepository>().insert(dto);
+      print(insertResult.toString());
+      print(result.toString());
+    } catch (e) {
+      print(e.toString());
+    }
+
     if (_formKey.currentState.validate()) {
       print(_formKey.currentState.value);
     } else {

@@ -5,77 +5,77 @@ MaltratoDto tamanoBotonDtoFromJson(String str) =>
 String tamanoBotonDtoToJson(MaltratoDto data) => json.encode(data.toJson());
 
 class MaltratoDto {
-  String nombreFinca;
-  String nombreSubFinca;
-  String variedad;
-  int tallosMuestradosRecepcion;
-  int precenciaMaltratoRecepcion;
-  double porcentajeIncidenciaRecepcion;
-  int tallosMuestradosClasificaciN;
-  int precenciaMaltratoClasificaciN;
-  double porcentajeIncidenciaClasificaciN;
-  int tallosMuestreadosCuartoFrio;
-  int presenciaMaltratoCuartoFrio;
-  double porcentajeIncidenciaCuartoFrio;
-  int tallosMuestreadosEmpaque;
-  int presenciaMaltratoEmpaque;
-  double porcentajeIncidenciaEmpaque;
+  String postcosechaPadreId;
+  String postcosechaId;
+  String variedadId;
+  int procesoMaltratoTallosMuestreadoRecepcion;
+  int procesoMaltratoTallosMaltratoRecepcion;
+  double procesoMaltratoPorcentajeIndicenciaRecepcion;
+  int procesoMaltratoTallosMuestreadoBoncheo;
+  int procesoMaltratoTallosMaltratoBoncheo;
+  double procesoMaltratoPorcentajeIndicenciaBoncheo;
+  int procesoMaltratoTallosMuestreadoCuartoFrio;
+  int procesoMaltratoTallosMaltratoCuartoFrio;
+  double procesoMaltratoPorcentajeIndicenciaCuartoFrio;
+  int procesoMaltratoTallosMuestreadoEmpaque;
+  int procesoMaltratoTallosMaltratoEmpaque;
+  double procesoMaltratoPorcentajeIndicenciaEmpaque;
 
   MaltratoDto(
-      {this.nombreFinca,
-      this.nombreSubFinca,
-      this.variedad,
-      this.tallosMuestradosRecepcion,
-      this.precenciaMaltratoRecepcion,
-      this.porcentajeIncidenciaRecepcion,
-      this.tallosMuestradosClasificaciN,
-      this.precenciaMaltratoClasificaciN,
-      this.porcentajeIncidenciaClasificaciN,
-      this.tallosMuestreadosCuartoFrio,
-      this.presenciaMaltratoCuartoFrio,
-      this.porcentajeIncidenciaCuartoFrio,
-      this.tallosMuestreadosEmpaque,
-      this.presenciaMaltratoEmpaque,
-      this.porcentajeIncidenciaEmpaque});
+      {this.postcosechaPadreId,
+      this.postcosechaId,
+      this.variedadId,
+      this.procesoMaltratoTallosMuestreadoRecepcion,
+      this.procesoMaltratoTallosMaltratoRecepcion,
+      this.procesoMaltratoPorcentajeIndicenciaRecepcion,
+      this.procesoMaltratoTallosMuestreadoBoncheo,
+      this.procesoMaltratoTallosMaltratoBoncheo,
+      this.procesoMaltratoPorcentajeIndicenciaBoncheo,
+      this.procesoMaltratoTallosMuestreadoCuartoFrio,
+      this.procesoMaltratoTallosMaltratoCuartoFrio,
+      this.procesoMaltratoPorcentajeIndicenciaCuartoFrio,
+      this.procesoMaltratoTallosMuestreadoEmpaque,
+      this.procesoMaltratoTallosMaltratoEmpaque,
+      this.procesoMaltratoPorcentajeIndicenciaEmpaque});
 
   MaltratoDto.fromJson(Map<String, dynamic> json) {
-    nombreFinca = json['nombreFinca'];
-    nombreSubFinca = json['nombreSubFinca'];
-    variedad = json['variedad'];
-    tallosMuestradosRecepcion = json['tallosMuestradosRecepcion'];
-    precenciaMaltratoRecepcion = json['precenciaMaltratoRecepcion'];
-    porcentajeIncidenciaRecepcion = json['porcentajeIncidenciaRecepcion'];
-    tallosMuestradosClasificaciN = json['tallosMuestradosClasificación'];
-    precenciaMaltratoClasificaciN = json['precenciaMaltratoClasificación'];
-    porcentajeIncidenciaClasificaciN =
-        json['porcentajeIncidenciaClasificación'];
-    tallosMuestreadosCuartoFrio = json['tallosMuestreadosCuartoFrio'];
-    presenciaMaltratoCuartoFrio = json['presenciaMaltratoCuartoFrio'];
-    porcentajeIncidenciaCuartoFrio = json['porcentajeIncidenciaCuartoFrio'];
-    tallosMuestreadosEmpaque = json['tallosMuestreadosEmpaque'];
-    presenciaMaltratoEmpaque = json['presenciaMaltratoEmpaque'];
-    porcentajeIncidenciaEmpaque = json['porcentajeIncidenciaEmpaque'];
+    postcosechaPadreId = json['postcosechaPadreId'];
+    postcosechaId = json['postcosechaId'];
+    variedadId = json['variedadId'];
+    procesoMaltratoTallosMuestreadoRecepcion = json['procesoMaltratoTallosMuestreadoRecepcion'];
+    procesoMaltratoTallosMaltratoRecepcion = json['procesoMaltratoTallosMaltratoRecepcion'];
+    procesoMaltratoPorcentajeIndicenciaRecepcion = json['procesoMaltratoPorcentajeIndicenciaRecepcion'];
+    procesoMaltratoTallosMuestreadoBoncheo = json['procesoMaltratoTallosMuestreadoBoncheo'];
+    procesoMaltratoTallosMaltratoBoncheo = json['procesoMaltratoTallosMaltratoBoncheo'];
+    procesoMaltratoPorcentajeIndicenciaBoncheo =
+        json['procesoMaltratoPorcentajeIndicenciaBoncheo'];
+    procesoMaltratoTallosMuestreadoCuartoFrio = json['procesoMaltratoTallosMuestreadoCuartoFrio'];
+    procesoMaltratoTallosMaltratoCuartoFrio = json['procesoMaltratoTallosMaltratoCuartoFrio'];
+    procesoMaltratoPorcentajeIndicenciaCuartoFrio = json['procesoMaltratoPorcentajeIndicenciaCuartoFrio'];
+    procesoMaltratoTallosMuestreadoEmpaque = json['procesoMaltratoTallosMuestreadoEmpaque'];
+    procesoMaltratoTallosMaltratoEmpaque = json['procesoMaltratoTallosMaltratoEmpaque'];
+    procesoMaltratoPorcentajeIndicenciaEmpaque = json['procesoMaltratoPorcentajeIndicenciaEmpaque'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nombreFinca'] = this.nombreFinca;
-    data['nombreSubFinca'] = this.nombreSubFinca;
-    data['variedad'] = this.variedad;
-    data['tallosMuestradosRecepcion'] = this.tallosMuestradosRecepcion;
-    data['precenciaMaltratoRecepcion'] = this.precenciaMaltratoRecepcion;
-    data['porcentajeIncidenciaRecepcion'] = this.porcentajeIncidenciaRecepcion;
-    data['tallosMuestradosClasificación'] = this.tallosMuestradosClasificaciN;
-    data['precenciaMaltratoClasificación'] = this.precenciaMaltratoClasificaciN;
-    data['porcentajeIncidenciaClasificación'] =
-        this.porcentajeIncidenciaClasificaciN;
-    data['tallosMuestreadosCuartoFrio'] = this.tallosMuestreadosCuartoFrio;
-    data['presenciaMaltratoCuartoFrio'] = this.presenciaMaltratoCuartoFrio;
-    data['porcentajeIncidenciaCuartoFrio'] =
-        this.porcentajeIncidenciaCuartoFrio;
-    data['tallosMuestreadosEmpaque'] = this.tallosMuestreadosEmpaque;
-    data['presenciaMaltratoEmpaque'] = this.presenciaMaltratoEmpaque;
-    data['porcentajeIncidenciaEmpaque'] = this.porcentajeIncidenciaEmpaque;
+    data['postcosechaPadreId'] = this.postcosechaPadreId;
+    data['postcosechaId'] = this.postcosechaId;
+    data['variedadId'] = this.variedadId;
+    data['tallosMuestradosRecepcion'] = this.procesoMaltratoTallosMuestreadoRecepcion;
+    data['precenciaMaltratoRecepcion'] = this.procesoMaltratoTallosMaltratoRecepcion;
+    data['procesoMaltratoPorcentajeIndicenciaRecepcion'] = this.procesoMaltratoPorcentajeIndicenciaRecepcion;
+    data['procesoMaltratoTallosMuestreadoBoncheo'] = this.procesoMaltratoTallosMuestreadoBoncheo;
+    data['procesoMaltratoTallosMaltratoBoncheo'] = this.procesoMaltratoTallosMaltratoBoncheo;
+    data['procesoMaltratoPorcentajeIndicenciaBoncheo'] =
+        this.procesoMaltratoPorcentajeIndicenciaBoncheo;
+    data['procesoMaltratoTallosMuestreadoCuartoFrio'] = this.procesoMaltratoTallosMuestreadoCuartoFrio;
+    data['procesoMaltratoTallosMaltratoCuartoFrio'] = this.procesoMaltratoTallosMaltratoCuartoFrio;
+    data['procesoMaltratoPorcentajeIndicenciaCuartoFrio'] =
+        this.procesoMaltratoPorcentajeIndicenciaCuartoFrio;
+    data['procesoMaltratoTallosMuestreadoEmpaque'] = this.procesoMaltratoTallosMuestreadoEmpaque;
+    data['procesoMaltratoTallosMaltratoEmpaque'] = this.procesoMaltratoTallosMaltratoEmpaque;
+    data['procesoMaltratoPorcentajeIndicenciaEmpaque'] = this.procesoMaltratoPorcentajeIndicenciaEmpaque;
     return data;
   }
 }

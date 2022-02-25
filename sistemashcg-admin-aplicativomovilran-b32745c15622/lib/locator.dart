@@ -1,10 +1,13 @@
 import 'package:get_it/get_it.dart';
 import 'package:ranking_app/src/database-creator.dart';
+import 'package:ranking_app/src/dtos/info-adic.dto.dart';
 import 'package:ranking_app/src/preference.dart';
 import 'package:ranking_app/src/repositories/carguera.repository.dart';
 import 'package:ranking_app/src/repositories/causa.repository.dart';
 import 'package:ranking_app/src/repositories/cliente.repository.dart';
 import 'package:ranking_app/src/repositories/error.repository.dart';
+import 'package:ranking_app/src/repositories/informacion-adicional.repository.dart';
+import 'package:ranking_app/src/repositories/maltrato.repository.dart';
 import 'package:ranking_app/src/repositories/pais.repository.dart';
 import 'package:ranking_app/src/repositories/postcosecha.repository.dart';
 import 'package:ranking_app/src/repositories/producto.repository.dart';
@@ -49,6 +52,13 @@ void setUpDI() {
   locator.registerLazySingleton<TamanoBotonRepository>(
     () => TamanoBotonRepository(locator()),
   );
+   locator.registerLazySingleton<MaltratoRepository>(
+    () => MaltratoRepository(locator()),
+  );
+     locator.registerLazySingleton<InformacionAdicionalRepository>(
+    () => InformacionAdicionalRepository(locator()),
+  );
+  
 
   //
   locator.registerLazySingleton<SincronizeServerInformation>(
@@ -62,6 +72,9 @@ void setUpDI() {
       locator(),
       locator(),
       locator(),
+      locator(),
+      locator(),
+      locator()
     ),
   );
 
