@@ -348,7 +348,7 @@ class SincronizeServerInformation {
     }
   }
   Future<void> _getAllTamanoBoton()async{
-    String nameServiceServer = 'proceso_tamanio_boton';
+    String nameServiceServer = 'proceso-tamano-boton';
     this.headers = this.pref.headerAutentication ?? null;
     try{
       final url =
@@ -379,7 +379,7 @@ class SincronizeServerInformation {
   }
 
   Future<void> _getMaltrato()async{
-    String nameServiceServer='proceso_maltrato';
+    String nameServiceServer='proceso-maltrato';
     this.headers = this.pref.headerAutentication ?? null;
     try{
       final url =
@@ -403,7 +403,7 @@ class SincronizeServerInformation {
     }
   }
   Future<void> _getInformacionAdicional()async{
-  String nameServiceServer ='informacion_auditoria';
+  String nameServiceServer ='informacion-auditoria';
   try{
       final url =
           Uri.http(Constant.URL, ConstantServicesServer.INFORMACION_AUDITORIA_CONTROLLER);
