@@ -24,13 +24,7 @@ class _AprobacionFormState extends State<AprobacionForm>
     ),
     Tab(
       icon: Icon(Icons.local_shipping),
-    ),
-    Tab(
-      icon: Icon(Icons.directions_boat),
-    ),
-    Tab(
-      icon: Icon(Icons.anchor_rounded),
-    ),
+    )
   ];
 
   TabController _tabController;
@@ -60,9 +54,7 @@ class _AprobacionFormState extends State<AprobacionForm>
           ...[
             locator<TamanoBotonRepository>().selectAll(),
             locator<MaltratoRepository>().selectAll(),
-            locator<InformacionAdicionalRepository>().selectAll(),
-            locator<TamanoBotonRepository>().selectAll(),
-            locator<TamanoBotonRepository>().selectAll(),
+            locator<InformacionAdicionalRepository>().selectAll()
           ]
               .map(
                 (e) => FutureBuilder(

@@ -42,7 +42,7 @@ class ProcesoMaltratoForm extends StatelessWidget {
     return SurveySection(
       title: Text('Información General Evaluación Finca'),
       content: FormFieldWidget.generateElements({
-        'postcosechaId': {
+        'postcosechaPadreId': {
           'label': 'Nombre de la Finca',
           'type': FieldType.futureField,
           'subType': FieldType.dropdown,
@@ -50,7 +50,7 @@ class ProcesoMaltratoForm extends StatelessWidget {
           'future': locator<PostcosechaRepository>().selectAllGeneric(),
           'required': true
         },
-        'postcosechaChiId': {
+        'postcosechaId': {
           'label': 'Nombre Sub-Finca (si aplica) ',
           'type': FieldType.futureField,
           'subType': FieldType.dropdown,
@@ -67,7 +67,7 @@ class ProcesoMaltratoForm extends StatelessWidget {
         title: Text('Variedad a Evaluar'),
         content: FormFieldWidget.generateElements({
           'variedadId': {
-            'label': 'Nombre Sub-Finca (si aplica) ',
+            'label': 'Variedad',
             'type': FieldType.futureField,
             'subType': FieldType.dropdown,
             'dropdownOptions': clientes,
@@ -198,7 +198,7 @@ class ProcesoMaltratoForm extends StatelessWidget {
     try {
       var dto = MaltratoDto.fromJson(result);
       insertResult = await locator<MaltratoRepository>().insert(dto);
-      print(insertResult.toString());
+      print("Resultado maltrato: " + insertResult.toString());
       print(result.toString());
     } catch (e) {
       print(e.toString());

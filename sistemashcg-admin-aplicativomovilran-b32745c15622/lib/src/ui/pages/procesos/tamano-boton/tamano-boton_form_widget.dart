@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:ranking_app/locator.dart';
@@ -186,15 +188,17 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
     var insertResult;
 
     try {
+      print(result);
       var dto = TamanoBotonDto.fromJson(result);
       SessionDto sesionDto = locator<Preferences>().getAutentication;
-      dto.usuarioId = sesionDto.usuarioDto.usuarioId ?? 0;
+      dto.usuarioId = sesionDto?.usuarioDto?.usuarioId ?? 1;
       dto.procesoTamanioBotonFecha = DateTime.now().toLocal();
+      print("asdasd ingreso");
       insertResult = await locator<TamanoBotonRepository>().insert(dto);
-      var resultForm = await locator<TamanoBotonRepository>().selectAll();
+      //var resultForm = await locator<TamanoBotonRepository>().selectAll();
       print(insertResult.toString());
     } catch (e) {
-      print(e.toString());
+      print("asdsad "+e.toString());
     }
     if (_formKey.currentState.validate()) {
       print(_formKey.currentState.value);

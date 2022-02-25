@@ -139,54 +139,9 @@ class _MainSincroPageState extends State<MainSincroPage>{
 
                ],
              ),
-            //  Column(children: <Widget>[
-            //           Expanded(
-            //             child: RaisedButton.icon(
-            //               //onPressed: _validarFormulario,
-            //               color: Colors.red,
-            //               textColor: Colors.white,
-            //               icon: Icon(Icons.save),
-            //               label: Text('Guardar'),
-            //             ),
-            //           )
-            //         ],
-            //         ),
-
            ],),
          ),
        ),
      );
    }
-
-
-// class Botones extends StatelessWidget {
-//   final Widget child;
-//   //final String text;
-//   const Botones({
-//     @required this.child,
-//     // @required this.text,
-//     Key key,
-//   }) : super(key: key);
-
-// @override
-//   Widget build(BuildContext context) {
-//     return Card(
-//       child: Padding(
-//         padding: const EdgeInsets.all(12.0),
-//         child: Center(
-//           child: Column(
-//             mainAxisSize: MainAxisSize.min,
-//             children: <Widget>[
-//               this.child,
-//               SizedBox(
-//                 height: 10,
-//               ),
-//               //Text(this.text, textAlign: TextAlign.center),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
 }

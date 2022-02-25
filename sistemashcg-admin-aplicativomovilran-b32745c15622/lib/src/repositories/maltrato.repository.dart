@@ -13,7 +13,6 @@ class MaltratoRepository {
 
   Future<bool> insert(MaltratoDto maltratoDto) async {
     final sql = '''INSERT INTO ${DatabaseCreator.procesoMaltratoTable}(
-      ${DatabaseCreator.postcosechaPadreId},
       ${DatabaseCreator.postcosechaId},
       ${DatabaseCreator.variedadId},
       ${DatabaseCreator.procesoMaltratoTallosMuestreadoRecepcion},
@@ -27,9 +26,9 @@ class MaltratoRepository {
       ${DatabaseCreator.procesoMaltratoPorcentajeIndicenciaCuartoFrio},
       ${DatabaseCreator.procesoMaltratoTallosMuestreadoEmpaque},
       ${DatabaseCreator.procesoMaltratoTallosMaltratoEmpaque},
-      ${DatabaseCreator.procesoMaltratoPorcentajeIndicenciaEmpaque}
+      ${DatabaseCreator.procesoMaltratoPorcentajeIndicenciaEmpaque},
+      ${DatabaseCreator.procesoMaltratoEstado}
     )VALUES(
-      ${maltratoDto.postcosechaPadreId},
       ${maltratoDto.postcosechaId},
       ${maltratoDto.variedadId},
       ${maltratoDto.procesoMaltratoTallosMuestreadoRecepcion},
@@ -44,6 +43,7 @@ class MaltratoRepository {
       ${maltratoDto.procesoMaltratoTallosMuestreadoEmpaque},
       ${maltratoDto.procesoMaltratoTallosMaltratoEmpaque},
       ${maltratoDto.procesoMaltratoPorcentajeIndicenciaEmpaque},
+      ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}
     )''';
 
     int id = await db.rawInsert(sql);
@@ -56,9 +56,10 @@ class MaltratoRepository {
       final sql = '''SELECT * FROM ${DatabaseCreator.procesoMaltratoTable} 
       WHERE ${DatabaseCreator.procesoMaltratoEstado}=${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}''';
       final data = await db.rawQuery(sql);
+      print("maltrato");
+      print(data);
       for (final node in data) {
         maltratoDto.add(new MaltratoDto(
-          postcosechaPadreId: node[DatabaseCreator.postcosechaPadreId],
           postcosechaId: node[DatabaseCreator.postcosechaId],
           variedadId: node[DatabaseCreator.variedadId],
           procesoMaltratoTallosMuestreadoRecepcion: node[DatabaseCreator.procesoMaltratoTallosMuestreadoRecepcion],
