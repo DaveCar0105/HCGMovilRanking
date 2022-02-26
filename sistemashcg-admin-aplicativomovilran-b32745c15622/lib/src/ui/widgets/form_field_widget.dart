@@ -51,22 +51,13 @@ class FormFieldWidget extends StatelessWidget {
         name: e.key,
         decoration: inputDecoration,
         allowClear: true,
-        items: e.value['dropdownOptions']
-            .map<DropdownMenuItem>(
-              (s) => DropdownMenuItem(
-                value: s,
-                child: Text('$s'),
-              ),
-            )
-            .toList(),
+        items: _generateDropdownOption(e),
       );
     if (e.value['type'] == FieldType.average)
       return FormBuilderTextField(
         valueTransformer: _numericTransform,
         name: e.key,
-        onChanged: (_) {
-          _getAverage(e.value['options'], e.value['result']);
-        },
+        onChanged: (_) => _getAverage(e.value['options'], e.value['result']),
         decoration: inputDecoration,
         keyboardType: TextInputType.number,
       );
@@ -89,9 +80,10 @@ class FormFieldWidget extends StatelessWidget {
       return FormBuilderTextField(
         name: e.key,
         valueTransformer: _numericTransform,
-        onChanged: (_) {
-          _getMultiplication(e.value['options'], e.value['result']);
-        },
+        onChanged: (_) => _getMultiplication(
+          e.value['options'],
+          e.value['result'],
+        ),
         decoration: inputDecoration,
         keyboardType: TextInputType.number,
       );
@@ -105,10 +97,8 @@ class FormFieldWidget extends StatelessWidget {
       return FormBuilderTextField(
         valueTransformer: _numericTransform,
         name: e.key,
-        onChanged: (_) {
-          _getPercent(e.value['options'].elementAt(0),
-              e.value['options'].elementAt(1), e.value['options'].elementAt(2));
-        },
+        onChanged: (_) => _getPercent(e.value['options'].elementAt(0),
+            e.value['options'].elementAt(1), e.value['options'].elementAt(2)),
         decoration: inputDecoration,
         keyboardType: TextInputType.number,
       );
@@ -124,6 +114,17 @@ class FormFieldWidget extends StatelessWidget {
         name: e.key,
         decoration: inputDecoration,
       );
+  }
+
+  _generateDropdownOption(MapEntry<dynamic, dynamic> e) {
+    e.value['dropdownOptions']
+        .map<DropdownMenuItem>(
+          (s) => DropdownMenuItem(
+            value: s,
+            child: Text('$s'),
+          ),
+        )
+        .toList();
   }
 
   _getPercent(
@@ -157,17 +158,6 @@ class FormFieldWidget extends StatelessWidget {
               list.length;
       if (v != null)
         formKey.currentState.fields[v].didChange(result?.toString() ?? "");
-    }
-  }
-
-  _getArea(String s, String t, String v) {
-    var firstValue = formKey.currentState.fields[s]?.value ?? "";
-    var secondValue = formKey.currentState.fields[t]?.value ?? "";
-    if (firstValue.isNotEmpty && secondValue.isNotEmpty) {
-      var a = int.tryParse(formKey.currentState.fields[s].value) ?? 0;
-      var b = int.tryParse(formKey.currentState.fields[t].value) ?? 0;
-      var result = (a * b) ?? 0;
-      formKey.currentState.fields[v].didChange(result.toString());
     }
   }
 
