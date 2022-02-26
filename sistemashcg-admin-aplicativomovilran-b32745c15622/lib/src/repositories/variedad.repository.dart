@@ -122,4 +122,18 @@ class VariedadRepository {
           .addErrorWithDetalle(moduloRepository, ex.toString());
     }
   }
+
+  Future<String> selectNameByVariedadID(int idVariedad) async {
+    String variedadesDto = "S/N";
+    try {
+      final sql = '''SELECT * FROM ${DatabaseCreator.variedadTable} 
+      WHERE ${DatabaseCreator.variedadEstado} = ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}
+      and ${DatabaseCreator.variedadId} = ${idVariedad} ''';
+      final data = await db.rawQuery(sql);
+      for (final node in data) {
+        variedadesDto = node[DatabaseCreator.variedadNombre];
+      }
+    } catch (ex) {}
+    return variedadesDto;
+  }
 }

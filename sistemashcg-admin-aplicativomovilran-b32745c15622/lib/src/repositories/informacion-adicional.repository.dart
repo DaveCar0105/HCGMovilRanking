@@ -25,10 +25,7 @@ Future<bool> insert(InformacionAdicionalDto informacionAdicionalDto)async{
     ${DatabaseCreator.informacionAuditoriaPromedioBoncheo},
     ${DatabaseCreator.informacionAuditoriaPromedioCorte},
     ${DatabaseCreator.informacionAuditoriaPromedioLargoFinca},
-    ${DatabaseCreator.informacionAuditoriaPorcentajeFlorNacional},
-    ${DatabaseCreator.causaId},
-    ${DatabaseCreator.auditoriaCausaPorcentajeAfectacion},
-    
+    ${DatabaseCreator.informacionAuditoriaPorcentajeFlorNacional}
   )
   VALUES(
     ${informacionAdicionalDto.usuarioId},
@@ -40,29 +37,11 @@ Future<bool> insert(InformacionAdicionalDto informacionAdicionalDto)async{
     ${informacionAdicionalDto.informacionAuditoriaPromedioBoncheo},
     ${informacionAdicionalDto.informacionAuditoriaPromedioCorte},
     ${informacionAdicionalDto.informacionAuditoriaPromedioLargoFinca},
-    ${informacionAdicionalDto.informacionAuditoriaPorcentajeFlorNacional},
-    ${informacionAdicionalDto.causaId},
-    ${informacionAdicionalDto.auditoriaCausaPorcentajeAfectacion},
-    
+    ${informacionAdicionalDto.informacionAuditoriaPorcentajeFlorNacional}
   )''';
+  int id = await db.rawInsert(sql);
+  return id > 0 ? true : false;
 }
-// ${DatabaseCreator.causaId},
-//     ${DatabaseCreator.auditoriaCausaPorcentajeAfectacion},
-//     ${DatabaseCreator.causaId},
-//     ${DatabaseCreator.auditoriaCausaPorcentajeAfectacion},
-//     ${DatabaseCreator.causaId},
-//     ${DatabaseCreator.auditoriaCausaPorcentajeAfectacion},
-//     ${DatabaseCreator.causaId},
-//     ${DatabaseCreator.auditoriaCausaPorcentajeAfectacion}
-
-// '${informacionAdicionalDto.causa2}',
-//     ${informacionAdicionalDto.porcentajeAfectacionCausa2},
-//     '${informacionAdicionalDto.causa3}',
-//     ${informacionAdicionalDto.porcentajeAfectacionCausa3},
-//     '${informacionAdicionalDto.causa4}',
-//     ${informacionAdicionalDto.porcentajeAfectacionCausa4},
-//     '${informacionAdicionalDto.causa5}',
-//     ${informacionAdicionalDto.porcentajeAfectacionCausa5}
 
 Future<List<InformacionAdicionalDto>> selectAll()async{
   List<InformacionAdicionalDto> informacionAdicionDto=[];
@@ -81,17 +60,7 @@ Future<List<InformacionAdicionalDto>> selectAll()async{
         informacionAuditoriaPromedioBoncheo: node[DatabaseCreator.informacionAuditoriaPromedioBoncheo],
         informacionAuditoriaPromedioCorte: node[DatabaseCreator.informacionAuditoriaPromedioCorte],
         informacionAuditoriaPromedioLargoFinca: node[DatabaseCreator.informacionAuditoriaPromedioLargoFinca],
-        informacionAuditoriaPorcentajeFlorNacional: node[DatabaseCreator.informacionAuditoriaPorcentajeFlorNacional],
-        causaId: node[DatabaseCreator.causaId],
-        auditoriaCausaPorcentajeAfectacion: node[DatabaseCreator.auditoriaCausaPorcentajeAfectacion],
-        // causa2: node[DatabaseCreator.causaId],
-        // porcentajeAfectacionCausa2: node[DatabaseCreator.auditoriaCausaPorcentajeAfectacion],
-        // causa3: node[DatabaseCreator.causaId],
-        // porcentajeAfectacionCausa3: node[DatabaseCreator.auditoriaCausaPorcentajeAfectacion],
-        // causa4: node[DatabaseCreator.causaId],
-        // porcentajeAfectacionCausa4: node[DatabaseCreator.auditoriaCausaPorcentajeAfectacion],
-        // causa5: node[DatabaseCreator.causaId],
-        // porcentajeAfectacionCausa5: node[DatabaseCreator.auditoriaCausaPorcentajeAfectacion]
+        informacionAuditoriaPorcentajeFlorNacional: node[DatabaseCreator.informacionAuditoriaPorcentajeFlorNacional]
       ));
       
     }
@@ -124,5 +93,15 @@ Future<List<GenericDto>> selectAllGeneric()async{
   }
   return informacionAdicionalDto;
 }
+  Future<void> delete() async {
+    try {
+      final sqlH = 'DELETE FROM ${DatabaseCreator.informacionAuditoriaTable}';
+      await db.rawDelete(sqlH);
+    } catch (ex) {
+      await this
+          ._errorRepository
+          .addErrorWithDetalle(moduloRepository, ex.toString());
+    }
+  }
 
 }

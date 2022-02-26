@@ -61,4 +61,15 @@ class TamanoBotonRepository {
     }
     return tamanioBotonDto;
   }
+
+  Future<void> delete() async {
+    try {
+      final sqlH = 'DELETE FROM ${DatabaseCreator.procesoTamanioBotonTable}';
+      await db.rawDelete(sqlH);
+    } catch (ex) {
+      await this
+          ._errorRepository
+          .addErrorWithDetalle(moduloRepository, ex.toString());
+    }
+  }
 }

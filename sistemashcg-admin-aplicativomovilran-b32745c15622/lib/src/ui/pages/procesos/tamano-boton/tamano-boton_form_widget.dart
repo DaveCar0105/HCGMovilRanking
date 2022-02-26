@@ -64,7 +64,7 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
         title: Text('Variedad a Evaluar'),
         content: FormFieldWidget.generateElements({
           'variedadId': {
-            'label': 'Nombre Sub-Finca (si aplica) ',
+            'label': 'Variedad Nombre ',
             'type': FieldType.futureField,
             'subType': FieldType.dropdown,
             'future': locator<VariedadRepository>().selectAllGeneric(),
@@ -192,8 +192,8 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
       var dto = TamanoBotonDto.fromJson(result);
       SessionDto sesionDto = locator<Preferences>().getAutentication;
       dto.usuarioId = sesionDto?.usuarioDto?.usuarioId ?? 1;
+      print("ingreso 123");
       dto.procesoTamanioBotonFecha = DateTime.now().toLocal();
-      print("asdasd ingreso");
       insertResult = await locator<TamanoBotonRepository>().insert(dto);
       //var resultForm = await locator<TamanoBotonRepository>().selectAll();
       print(insertResult.toString());

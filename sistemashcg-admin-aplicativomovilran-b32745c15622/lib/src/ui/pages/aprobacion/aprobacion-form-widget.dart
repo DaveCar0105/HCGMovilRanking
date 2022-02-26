@@ -51,75 +51,43 @@ class _AprobacionFormState extends State<AprobacionForm>
           title: TabBar(controller: _tabController, tabs: myTabs),
         ),
         body: TabBarView(controller: _tabController, children: [
-          ...[
-            locator<TamanoBotonRepository>().selectAll(),
-            locator<MaltratoRepository>().selectAll(),
-            locator<InformacionAdicionalRepository>().selectAll()
-          ]
-              .map(
-                (e) => FutureBuilder(
-                  future: e,
-                  builder: (context, snapshot) {
+          FutureBuilder(
+            future: locator<TamanoBotonRepository>().selectAll(),
+            builder: (context, snapshot) {
                     if (!snapshot.hasData) return CircularProgressIndicator();
-
                     var list = snapshot.data;
                     return ListView.builder(
                       itemCount: list.length,
                       itemBuilder: (context, index) =>
-                          FormDetail(detailContent: list[index]),
+                          FormDetail(detailContent: list[index], titleContent: "Tamano Boton",),
                     );
-                  },
-                ),
-              )
-              .toList()
+            },
+          ),
+          FutureBuilder(
+            future: locator<MaltratoRepository>().selectAll(),
+            builder: (context, snapshot) {
+                    if (!snapshot.hasData) return CircularProgressIndicator();
+                    var list = snapshot.data;
+                    return ListView.builder(
+                      itemCount: list.length,
+                      itemBuilder: (context, index) =>
+                          FormDetail(detailContent: list[index], titleContent: "Proceso Maltrato",),
+                    );
+            },
+          ),
+          FutureBuilder(
+            future: locator<InformacionAdicionalRepository>().selectAll(),
+            builder: (context, snapshot) {
+                    if (!snapshot.hasData) return CircularProgressIndicator();
+                    var list = snapshot.data;
+                    return ListView.builder(
+                      itemCount: list.length,
+                      itemBuilder: (context, index) =>
+                          FormDetail(detailContent: list[index], titleContent: "Informacion Adicional",),
+                    );
+            },
+          ),
         ]),
-        // body: TabBarView(
-        // //   children: [
-        // //     ListView.builder(
-        // //       // itemCount: listaReportes.length,
-        // //       // itemBuilder: (context, index) =>
-        // //       //     _itemReporte(listaReportes[index], w),
-        // //     ),
-        // //     ListView.builder(
-        // //       // itemCount: listaBandas.length,
-        // //       // itemBuilder: (context, index) => _itemResumenBanda(
-        // //       //     listaBandas[index], w), //cambiar la variable despues
-        // //     ),
-        // //     ListView.builder(
-        // //       // itemCount: listaReporteDestinoEcommerce.length,
-        // //       // itemBuilder: (context, index) => _itemResumenDestinoEcommerce(
-        // //       //     listaReporteDestinoEcommerce[index], w),
-        // //     ),
-        // //     ListView.builder(
-
-        // //       // itemCount: listaProcesoMaritimo.length,
-        // //       // itemBuilder: (context, index) =>
-        // //       //     _itemResumenProcesoMaritimo(listaProcesoMaritimo, index),
-        // //     ),
-        // //     ListView.builder(
-
-        // //     //   itemCount: listaProcesoMaritimoAlstroemeria.length,
-        // //     //   itemBuilder: (context, index) =>
-        // //     //       _itemResumenProcesoMaritimoAlstroemeria(
-        // //     //           listaProcesoMaritimoAlstroemeria, index),
-        // //     )
-        // //   ],
-        // ),
-        // floatingActionButton: listaReportes.length +
-        //             listaBandas.length +
-        //             listaEcuador.length +
-        //             listaProcesoMaritimo.length +
-        //             listaReporteDestinoEcommerce.length +
-        //             listaProcesoMaritimoAlstroemeria.length >
-        //         0
-        //     ?
-        // FloatingActionButton(
-        //     onPressed: () {
-        //       Navigator.pushNamed(context, 'listaFirma');
-        //     },
-        //     child: Icon(Icons.assignment_turned_in_rounded),
-        //   )
-        // : null,
       ),
     );
   }
@@ -127,28 +95,45 @@ class _AprobacionFormState extends State<AprobacionForm>
 
 class FormDetail extends StatelessWidget {
   final detailContent;
+  final titleContent;
 
   const FormDetail({
     Key key,
     this.detailContent,
+    this.titleContent
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      margin: EdgeInsets.all(15),
+      elevation: 10,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
+            ListTile(
+              contentPadding: EdgeInsets.fromLTRB(15, 19, 25, 0),
+              title: Text(this.titleContent??"S/N", style: TextStyle(fontWeight: FontWeight.bold),),
+            ),
             ...detailContent
-                .toJson()
+                .toJsonAprobacion()
                 .entries
-                .map((e) => Text('${e.key} ${e.value}'))
+                .map((e) => detalleItemWidget(e))
                 .toList()
           ],
         ),
       ),
+    );
+  }
+
+  Widget detalleItemWidget(e){
+    return Row(
+      children: [
+        Expanded(child: Text(e.key)),
+        Expanded(child: Text(e.value.toString())),
+      ],
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ranking_app/src/ui/pages/procesos/informacion-adicional/informacion-adicional.page.dart';
 import 'package:ranking_app/src/ui/pages/procesos/maltrato/proceso-maltrato.page.dart';
-import 'package:ranking_app/src/ui/pages/procesos/reporte-auditoria/reporte-auditoria-agenciahc.page.dart';
 import 'package:ranking_app/src/ui/pages/procesos/tamano-boton/proceso-tamano-boton.page.dart';
 
 class MainProcessPage extends StatefulWidget {
@@ -122,80 +121,6 @@ class _MainProcessPageState extends State<MainProcessPage> {
             ),
             //text: 'raise botton',
           ),
-          Botones(
-            child: RaisedButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              color: Colors.red,
-              textColor: Colors.white,
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          ProcesoReporteAuditoriaAgenciahcPage(
-                        valor: this._switchVal,
-                        ramosId: 10,
-                      ),
-                    ));
-              },
-              child: Container(
-                width: 120,
-                height: 70,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Text(
-                      'REPORTE \nAGENCIA',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    Icon(Icons.flag)
-                  ],
-                ),
-              ),
-            ),
-          ),
-          // Botones(
-          //   child: RaisedButton(
-          //     shape: RoundedRectangleBorder(
-          //         borderRadius: BorderRadius.circular(10)),
-          //     color: Colors.red,
-          //     textColor: Colors.white,
-          //     onPressed: () {
-          //       Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) =>
-          //                   ControlDestinoEcommercePage(this._switchVal, 10)));
-          //     },
-          //     child: Container(
-          //       width: 120,
-          //       height: 70,
-          //       child: Row(
-          //         crossAxisAlignment: CrossAxisAlignment.center,
-          //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //         children: <Widget>[
-          //           Column(
-          //             mainAxisAlignment: MainAxisAlignment.center,
-          //             children: [
-          //               Text(
-          //                 'Destino',
-          //                 style: TextStyle(fontSize: 15),
-          //               ),
-          //               Text(
-          //                 'E-commerce',
-          //                 style: TextStyle(fontSize: 15),
-          //               ),
-          //             ],
-          //           ),
-          //           Icon(Icons.local_shipping)
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          //   //text: 'raise botton',
-          // ),
         ],
       ),
     );
@@ -224,7 +149,6 @@ class Botones extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              //Text(this.text, textAlign: TextAlign.center),
             ],
           ),
         ),

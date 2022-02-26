@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+import 'package:ranking_app/locator.dart';
+import 'package:ranking_app/src/repositories/variedad.repository.dart';
+
 TamanoBotonDto tamanoBotonDtoFromJson(String str) =>
     TamanoBotonDto.fromJson(json.decode(str));
 String tamanoBotonDtoToJson(TamanoBotonDto data) => json.encode(data.toJson());
@@ -56,7 +59,7 @@ class TamanoBotonDto {
   Map<String, dynamic> toJson() => {
         "usuarioId": usuarioId,
         "procesoTamanioBotonId": procesoTamanioBotonId,
-        "procesoTamanioBotonFecha": DateTime.now(),
+        "procesoTamanioBotonFecha": procesoTamanioBotonFecha.toIso8601String(),
         "variedadId": variedadId,
         "procesoTamanioBotonGradoVariedad": procesoTamanioBotonGradoVariedad,
         "procesoTamanioBotonLargoArea": procesoTamanioBotonLargoArea,
@@ -69,4 +72,23 @@ class TamanoBotonDto {
             procesoTamanioBotonTamanoBotonPromedio,
         "procesoTamanioBotonNumeroPetalos": procesoTamanioBotonNumeroPetalos
       };
+
+      Map<String, dynamic> toJsonAprobacion() => {
+        "Identificador": procesoTamanioBotonId,
+        "Fecha": procesoTamanioBotonFecha?.year.toString() +"-"+ procesoTamanioBotonFecha?.month.toString() +"-"+procesoTamanioBotonFecha?.day.toString(),
+        "Hora": procesoTamanioBotonFecha?.hour.toString() +":"+ procesoTamanioBotonFecha?.minute.toString() +":"+procesoTamanioBotonFecha?.second.toString(),
+        "variedad": variedadId,
+        "Grado de variedad": procesoTamanioBotonGradoVariedad,
+        "Largo de area": procesoTamanioBotonLargoArea,
+        "Ancho area": procesoTamanioBotonAnchoArea,
+        "Area del ramo": procesoTamanioBotonAreaRamo,
+        "Boton1": procesoTamanioBotonTamanoBoton1,
+        "Boton2": procesoTamanioBotonTamanoBoton2,
+        "Boton3": procesoTamanioBotonTamanoBoton3,
+        "Boton Promedio":
+            procesoTamanioBotonTamanoBotonPromedio,
+        "Numero petalos": procesoTamanioBotonNumeroPetalos
+      };
+
+      
 }

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:ranking_app/src/dtos/info-adic.dto.dart';
+import 'package:ranking_app/src/dtos/session.dto.dart';
+import 'package:ranking_app/src/preference.dart';
+import 'package:ranking_app/src/repositories/informacion-adicional.repository.dart';
 import 'package:ranking_app/src/ui/widgets/form_field_widget.dart';
 import 'package:ranking_app/src/ui/widgets/section_widget.dart';
 
@@ -51,18 +55,22 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
         content: FormFieldWidget.generateElements({
           'informacionAuditoriaPromedioSala': {
             'label': 'Rendimiento Sala',
+            'type': FieldType.numeric,
             'required': true,
           },
           'informacionAuditoriaPromedioBoncheo': {
             'label': 'Rendimiento Boncheo',
+            'type': FieldType.numeric,
             'required': true,
           },
           'informacionAuditoriaPromedioCorte': {
             'label': 'Rendimiento Corte',
+            'type': FieldType.numeric,
             'required': true,
           },
           'informacionAuditoriaPromedioLargoFinca': {
             'label': 'Largo Promedio de la Finca',
+            'type': FieldType.numeric,
             'required': true,
           },
         }, _formKey));
@@ -72,24 +80,19 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
     return SurveySection(
       title: Text('Flor Nacional'),
       content: FormFieldWidget.generateElements({
-        // 'fechaAuditoria': {
-        //   'label': 'Fecha de Auditoria',
-        //   'type': FieldType.date,
-        //   'required': true
-        // },
         'informacionAuditoriaPorcentajeFlorNacional': {
           'label': '% Flor Nacional',
           'type': FieldType.numeric,
           'required': true
         },
-        'Causa1': {
+        'CausaId': {
           'label': 'Seleccione una causa',
           'type': FieldType.futureField,
           'subType': FieldType.dropdown,
           'future': locator<CausaRepository>().selectAllGeneric(),
           'required': true
         },
-        'porcentajeAfectacionCausa1': {
+        'auditoriaCausaPorcentajeAfectacion': {
           'label': '% Afectacion Causa 01',
           'type': FieldType.numeric,
           'required': true
@@ -169,11 +172,24 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
     );
   }
 
-  void _onSubmitCallback() {
+  void _onSubmitCallback() async {
     _formKey.currentState.save();
     var result = _formKey.currentState.value;
+    var insertResult;
 
-    print(result.toString());
+    try {
+      var dto = InformacionAdicionalDto.fromJson(result);
+      SessionDto sesionDto = locator<Preferences>().getAutentication;
+      dto.usuarioId = sesionDto?.usuarioDto?.usuarioId ?? 1;
+      dto.informacionAuditoriaFecha = DateTime.now().toLocal();
+      insertResult = await locator<InformacionAdicionalRepository>().insert(dto);
+      
+      //var resultForm = await locator<MaltratoRepository>().selectAll();
+      print("Resultado maltrato: " + insertResult.toString());
+      //print(result.toString());
+    } catch (e) {
+      print(e.toString());
+    }
     if (_formKey.currentState.validate()) {
       print(_formKey.currentState.value);
     } else {

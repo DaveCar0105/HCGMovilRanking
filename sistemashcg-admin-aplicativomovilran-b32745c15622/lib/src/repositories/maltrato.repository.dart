@@ -15,8 +15,10 @@ class MaltratoRepository {
     final sql = '''INSERT INTO ${DatabaseCreator.procesoMaltratoTable}(
       ${DatabaseCreator.postcosechaId},
       ${DatabaseCreator.variedadId},
+      ${DatabaseCreator.usuarioId},
+      ${DatabaseCreator.procesoMaltratoFecha},
       ${DatabaseCreator.procesoMaltratoTallosMuestreadoRecepcion},
-      ${DatabaseCreator.procesoMaltratoTallosMuestreadoRecepcion},
+      ${DatabaseCreator.procesoMaltratoTallosMaltratoRecepcion},
       ${DatabaseCreator.procesoMaltratoPorcentajeIndicenciaRecepcion},
       ${DatabaseCreator.procesoMaltratoTallosMuestreadoBoncheo},
       ${DatabaseCreator.procesoMaltratoTallosMaltratoBoncheo},
@@ -31,6 +33,8 @@ class MaltratoRepository {
     )VALUES(
       ${maltratoDto.postcosechaId},
       ${maltratoDto.variedadId},
+      ${maltratoDto.usuarioId},
+      '${maltratoDto.procesoMaltratoFecha}',
       ${maltratoDto.procesoMaltratoTallosMuestreadoRecepcion},
       ${maltratoDto.procesoMaltratoTallosMaltratoRecepcion},
       ${maltratoDto.procesoMaltratoPorcentajeIndicenciaRecepcion},
@@ -56,28 +60,11 @@ class MaltratoRepository {
       final sql = '''SELECT * FROM ${DatabaseCreator.procesoMaltratoTable} 
       WHERE ${DatabaseCreator.procesoMaltratoEstado}=${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}''';
       final data = await db.rawQuery(sql);
-      print("maltrato");
-      print(data);
       for (final node in data) {
-        maltratoDto.add(new MaltratoDto(
-          postcosechaId: node[DatabaseCreator.postcosechaId],
-          variedadId: node[DatabaseCreator.variedadId],
-          procesoMaltratoTallosMuestreadoRecepcion: node[DatabaseCreator.procesoMaltratoTallosMuestreadoRecepcion],
-          procesoMaltratoTallosMaltratoRecepcion: node[DatabaseCreator.procesoMaltratoTallosMaltratoRecepcion],
-          procesoMaltratoPorcentajeIndicenciaRecepcion: node[DatabaseCreator.procesoMaltratoPorcentajeIndicenciaRecepcion],
-          procesoMaltratoTallosMuestreadoBoncheo: node[DatabaseCreator.procesoMaltratoTallosMuestreadoBoncheo],
-          procesoMaltratoTallosMaltratoBoncheo: node[DatabaseCreator.procesoMaltratoTallosMaltratoBoncheo],
-          procesoMaltratoPorcentajeIndicenciaBoncheo: node[DatabaseCreator.procesoMaltratoPorcentajeIndicenciaBoncheo],
-          procesoMaltratoTallosMuestreadoCuartoFrio: node[DatabaseCreator.procesoMaltratoTallosMuestreadoCuartoFrio],
-          procesoMaltratoTallosMaltratoCuartoFrio: node[DatabaseCreator.procesoMaltratoTallosMaltratoCuartoFrio],
-          procesoMaltratoPorcentajeIndicenciaCuartoFrio: node[DatabaseCreator.procesoMaltratoPorcentajeIndicenciaCuartoFrio],
-          procesoMaltratoTallosMuestreadoEmpaque: node[DatabaseCreator.procesoMaltratoTallosMuestreadoEmpaque],
-          procesoMaltratoTallosMaltratoEmpaque: node[DatabaseCreator.procesoMaltratoTallosMaltratoEmpaque],
-          procesoMaltratoPorcentajeIndicenciaEmpaque: node[DatabaseCreator.procesoMaltratoPorcentajeIndicenciaEmpaque]
-
-        ));
+        maltratoDto.add(MaltratoDto.fromJson(node));
       }
     } catch (ex) {
+      print(ex.toString());
       await this
           ._errorRepository
           .addErrorWithDetalle(moduloRepository, ex.toString());
@@ -103,6 +90,17 @@ class MaltratoRepository {
           .addErrorWithDetalle(moduloRepository, ex.toString());
     }
     return maltratoDto;
+  }
+
+  Future<void> delete() async {
+    try {
+      final sqlH = 'DELETE FROM ${DatabaseCreator.procesoMaltratoTable}';
+      await db.rawDelete(sqlH);
+    } catch (ex) {
+      await this
+          ._errorRepository
+          .addErrorWithDetalle(moduloRepository, ex.toString());
+    }
   }
 }
 //falta nombre de la finca y subfinca

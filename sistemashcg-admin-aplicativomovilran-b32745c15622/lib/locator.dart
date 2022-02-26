@@ -14,6 +14,8 @@ import 'package:ranking_app/src/repositories/producto.repository.dart';
 import 'package:ranking_app/src/repositories/tamano-boton.repository.dart';
 import 'package:ranking_app/src/repositories/tipo-caja.repository.dart';
 import 'package:ranking_app/src/repositories/variedad.repository.dart';
+import 'package:ranking_app/src/services/sincronizacion.service.dart';
+import 'package:ranking_app/src/services/sincronizar-entity-server.service.dart';
 import 'package:ranking_app/src/services/sincronize-information-server.service.dart';
 
 final locator = GetIt.instance;
@@ -84,5 +86,11 @@ void setUpDI() {
 
   locator.registerLazySingleton<Preferences>(
     () => Preferences(),
+  );
+  locator.registerLazySingleton<SincronizacionService>(
+    () => SincronizacionService(locator()),
+  );
+  locator.registerLazySingleton<SincronizeEntityServerService>(
+    () => SincronizeEntityServerService(locator()),
   );
 }

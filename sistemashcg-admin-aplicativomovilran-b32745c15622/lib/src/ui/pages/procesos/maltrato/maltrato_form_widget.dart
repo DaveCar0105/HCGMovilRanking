@@ -199,14 +199,15 @@ class ProcesoMaltratoForm extends StatelessWidget {
     var insertResult;
 
     try {
+      print(result);
       var dto = MaltratoDto.fromJson(result);
-      // SessionDto sesionDto = locator<Preferences>().getAutentication;
-      // dto.usuarioId = sesionDto?.usuarioDto?.usuarioId ?? 1;
-      // dto.procesoTamanioBotonFecha = DateTime.now().toLocal();
+      SessionDto sesionDto = locator<Preferences>().getAutentication;
+      dto.usuarioId = sesionDto?.usuarioDto?.usuarioId ?? 1;
+      dto.procesoMaltratoFecha = DateTime.now().toLocal();
       insertResult = await locator<MaltratoRepository>().insert(dto);
-      var resultForm = await locator<MaltratoRepository>().selectAll();
+      //var resultForm = await locator<MaltratoRepository>().selectAll();
       print("Resultado maltrato: " + insertResult.toString());
-      print(result.toString());
+      //print(result.toString());
     } catch (e) {
       print(e.toString());
     }
