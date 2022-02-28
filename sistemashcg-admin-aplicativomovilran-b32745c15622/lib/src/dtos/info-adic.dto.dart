@@ -11,66 +11,80 @@ class InformacionAdicionalDto {
   DateTime informacionAuditoriaFecha;
   int postcosechaPadreId;
   int postcosechaId;
-  double informacionAuditoriaPromedioSala ;
-  double informacionAuditoriaPromedioBoncheo;
-  double informacionAuditoriaPromedioCorte;
-  double informacionAuditoriaPromedioLargoFinca;
-  double informacionAuditoriaPorcentajeFlorNacional;
+  num informacionAuditoriaPromedioSala;
+  num informacionAuditoriaPromedioBoncheo;
+  num informacionAuditoriaPromedioCorte;
+  num informacionAuditoriaPromedioLargoFinca;
+  num informacionAuditoriaPorcentajeFlorNacional;
 
-  InformacionAdicionalDto(
-      {
-      this.usuarioId,
-      this.informacionAuditoriaId,
-      this.informacionAuditoriaFecha,
-      this.postcosechaPadreId,
-      this.postcosechaId,
-      this.informacionAuditoriaPromedioSala,
-      this.informacionAuditoriaPromedioBoncheo,
-      this.informacionAuditoriaPromedioCorte,
-      this.informacionAuditoriaPromedioLargoFinca,
-      this.informacionAuditoriaPorcentajeFlorNacional,
-      });
+  InformacionAdicionalDto({
+    this.usuarioId,
+    this.informacionAuditoriaId,
+    this.informacionAuditoriaFecha,
+    this.postcosechaPadreId,
+    this.postcosechaId,
+    this.informacionAuditoriaPromedioSala,
+    this.informacionAuditoriaPromedioBoncheo,
+    this.informacionAuditoriaPromedioCorte,
+    this.informacionAuditoriaPromedioLargoFinca,
+    this.informacionAuditoriaPorcentajeFlorNacional,
+  });
 
   InformacionAdicionalDto.fromJson(Map<String, dynamic> json) {
-    usuarioId =json['usuarioId'];
-    informacionAuditoriaId=json['informacionAuditoriaId'];
-    informacionAuditoriaFecha=json['informacionAuditoriaFecha'];
-     postcosechaPadreId= json['postcosechaPadreId'];
+    usuarioId = json['usuarioId'];
+    informacionAuditoriaId = json['informacionAuditoriaId'];
+    informacionAuditoriaFecha = json['informacionAuditoriaFecha'];
+    postcosechaPadreId = json['postcosechaPadreId'];
     postcosechaId = json['postcosechaId'];
     informacionAuditoriaPromedioSala = json['informacionAuditoriaPromedioSala'];
-    informacionAuditoriaPromedioBoncheo = json['informacionAuditoriaPromedioBoncheo'];
-    informacionAuditoriaPromedioCorte = json['informacionAuditoriaPromedioCorte'];
-    informacionAuditoriaPromedioLargoFinca = json['informacionAuditoriaPromedioLargoFinca'];
-    informacionAuditoriaPorcentajeFlorNacional = json['informacionAuditoriaPorcentajeFlorNacional'];
+    informacionAuditoriaPromedioBoncheo =
+        json['informacionAuditoriaPromedioBoncheo'];
+    informacionAuditoriaPromedioCorte =
+        json['informacionAuditoriaPromedioCorte'];
+    informacionAuditoriaPromedioLargoFinca =
+        json['informacionAuditoriaPromedioLargoFinca'];
+    informacionAuditoriaPorcentajeFlorNacional =
+        json['informacionAuditoriaPorcentajeFlorNacional'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['usuarioId']= this.usuarioId;
-    data['informacionAuditoriaId']= this.informacionAuditoriaId;
-    data['informacionAuditoriaFecha']= this.informacionAuditoriaFecha;
+    data['usuarioId'] = this.usuarioId;
+    data['informacionAuditoriaId'] = this.informacionAuditoriaId;
+    data['informacionAuditoriaFecha'] = this.informacionAuditoriaFecha;
     data['postcosechaPadreId'] = this.postcosechaPadreId;
     data['postcosechaId'] = this.postcosechaId;
-    data['informacionAuditoriaPromedioSala'] = this.informacionAuditoriaPromedioSala;
-    data['informacionAuditoriaPromedioBoncheo'] = this.informacionAuditoriaPromedioBoncheo;
-    data['informacionAuditoriaPromedioCorte'] = this.informacionAuditoriaPromedioCorte;
-    data['informacionAuditoriaPromedioLargoFinca'] = this.informacionAuditoriaPromedioLargoFinca;
-    data['informacionAuditoriaPorcentajeFlorNacional'] = this.informacionAuditoriaPorcentajeFlorNacional;
+    data['informacionAuditoriaPromedioSala'] =
+        this.informacionAuditoriaPromedioSala;
+    data['informacionAuditoriaPromedioBoncheo'] =
+        this.informacionAuditoriaPromedioBoncheo;
+    data['informacionAuditoriaPromedioCorte'] =
+        this.informacionAuditoriaPromedioCorte;
+    data['informacionAuditoriaPromedioLargoFinca'] =
+        this.informacionAuditoriaPromedioLargoFinca;
+    data['informacionAuditoriaPorcentajeFlorNacional'] =
+        this.informacionAuditoriaPorcentajeFlorNacional;
     return data;
   }
 
   Map<String, dynamic> toJsonAprobacion() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['usuarioId']= this.usuarioId;
-    data['informacionAuditoriaId']= this.informacionAuditoriaId;
-    data['informacionAuditoriaFecha']= this.informacionAuditoriaFecha.toIso8601String();
+    data['usuarioId'] = this.usuarioId;
+    data['informacionAuditoriaId'] = this.informacionAuditoriaId;
+    data['informacionAuditoriaFecha'] =
+        this.informacionAuditoriaFecha.toIso8601String();
     data['postcosechaPadreId'] = this.postcosechaPadreId;
     data['postcosechaId'] = this.postcosechaId;
-    data['informacionAuditoriaPromedioSala'] = this.informacionAuditoriaPromedioSala;
-    data['informacionAuditoriaPromedioBoncheo'] = this.informacionAuditoriaPromedioBoncheo;
-    data['informacionAuditoriaPromedioCorte'] = this.informacionAuditoriaPromedioCorte;
-    data['informacionAuditoriaPromedioLargoFinca'] = this.informacionAuditoriaPromedioLargoFinca;
-    data['informacionAuditoriaPorcentajeFlorNacional'] = this.informacionAuditoriaPorcentajeFlorNacional;
+    data['informacionAuditoriaPromedioSala'] =
+        this.informacionAuditoriaPromedioSala;
+    data['informacionAuditoriaPromedioBoncheo'] =
+        this.informacionAuditoriaPromedioBoncheo;
+    data['informacionAuditoriaPromedioCorte'] =
+        this.informacionAuditoriaPromedioCorte;
+    data['informacionAuditoriaPromedioLargoFinca'] =
+        this.informacionAuditoriaPromedioLargoFinca;
+    data['informacionAuditoriaPorcentajeFlorNacional'] =
+        this.informacionAuditoriaPorcentajeFlorNacional;
     return data;
   }
 }

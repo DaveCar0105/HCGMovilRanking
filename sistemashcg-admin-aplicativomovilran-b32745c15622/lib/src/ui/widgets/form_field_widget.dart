@@ -15,7 +15,8 @@ enum FieldType {
   multiplication,
   futureField,
   percent,
-  photo
+  photo,
+  numberRange,
 }
 
 class FormFieldWidget extends StatelessWidget {
@@ -54,6 +55,14 @@ class FormFieldWidget extends StatelessWidget {
         items: _generateDropdownOption(e),
       );
     if (e.value['type'] == FieldType.average)
+      return FormBuilderTextField(
+        valueTransformer: _numericTransform,
+        name: e.key,
+        onChanged: (_) => _getAverage(e.value['options'], e.value['result']),
+        decoration: inputDecoration,
+        keyboardType: TextInputType.number,
+      );
+    if (e.value['type'] == FieldType.numberRange)
       return FormBuilderTextField(
         valueTransformer: _numericTransform,
         name: e.key,
@@ -117,7 +126,7 @@ class FormFieldWidget extends StatelessWidget {
   }
 
   _generateDropdownOption(MapEntry<dynamic, dynamic> e) {
-    e.value['dropdownOptions']
+    return e.value['dropdownOptions']
         .map<DropdownMenuItem>(
           (s) => DropdownMenuItem(
             value: s,
@@ -161,6 +170,34 @@ class FormFieldWidget extends StatelessWidget {
     }
   }
 
+  _getRange(
+    int i,
+    List<Map<String, int>> ranges,
+    String v,
+  ) {
+    if (ranges.isNotEmpty) {
+      var result = _computeRange(i, ranges);
+
+      if (v != null)
+        formKey.currentState.fields[v].didChange(result?.toString() ?? "");
+    }
+  }
+
+  _computeRange(i, List<Map<String, int>> ranges) {
+    try {
+      var result = ranges
+          .where(
+            (element) =>
+                _insideRange(i, element['minimo'] ?? 0, element['max'] ?? 0),
+          )
+          .map((result) => result['cantidadaDisminuir'] ?? 0)
+          .first;
+      return result;
+    } catch (e) {
+      return double.infinity;
+    }
+  }
+
   _getMultiplication(List<String> list, String v) {
     if (list.isNotEmpty) {
       List<int> nombresList = list
@@ -173,6 +210,15 @@ class FormFieldWidget extends StatelessWidget {
       if (v != null)
         formKey.currentState.fields[v].didChange(result.toString());
     }
+  }
+
+  _insideRange(num i, num lowerLimit, num highLimit) =>
+      lowerLimit <= i && i < highLimit;
+
+  _numericTransform(String value) {
+    print(value);
+    var result = num.tryParse(value ?? "") ?? 0;
+    return result;
   }
 
   static List<FormFieldWidget> generateElements(Map args, formKey) {
@@ -189,12 +235,6 @@ class FormFieldWidget extends StatelessWidget {
       formKey: formKey,
       element: args,
     );
-  }
-
-  _numericTransform(String value) {
-    print(value);
-    var result = num.tryParse(value ?? "") ?? 0;
-    return result;
   }
 }
 

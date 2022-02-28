@@ -39,9 +39,10 @@ class TamanoBotonDto {
   factory TamanoBotonDto.fromJson(Map<String, dynamic> json) => TamanoBotonDto(
       usuarioId: json["usuarioId"], //consultar
       procesoTamanioBotonId: json["procesoTamanioBotonId"],
-      procesoTamanioBotonFecha:
-          DateTime.tryParse(json["procesoTamanioBotonFecha"] ?? "") ??
-              DateTime.now(),
+      procesoTamanioBotonFecha: DateTime.tryParse(
+              json["procesoTamanioBotonFecha"] ??
+                  DateTime.now().toIso8601String()) ??
+          DateTime.now(),
       variedadId: json["variedadId"],
       procesoTamanioBotonGradoVariedad:
           json["procesoTamanioBotonGradoVariedad"],
@@ -73,10 +74,18 @@ class TamanoBotonDto {
         "procesoTamanioBotonNumeroPetalos": procesoTamanioBotonNumeroPetalos
       };
 
-      Map<String, dynamic> toJsonAprobacion() => {
+  Map<String, dynamic> toJsonAprobacion() => {
         "Identificador": procesoTamanioBotonId,
-        "Fecha": procesoTamanioBotonFecha?.year.toString() +"-"+ procesoTamanioBotonFecha?.month.toString() +"-"+procesoTamanioBotonFecha?.day.toString(),
-        "Hora": procesoTamanioBotonFecha?.hour.toString() +":"+ procesoTamanioBotonFecha?.minute.toString() +":"+procesoTamanioBotonFecha?.second.toString(),
+        "Fecha": procesoTamanioBotonFecha?.year.toString() +
+            "-" +
+            procesoTamanioBotonFecha?.month.toString() +
+            "-" +
+            procesoTamanioBotonFecha?.day.toString(),
+        "Hora": procesoTamanioBotonFecha?.hour.toString() +
+            ":" +
+            procesoTamanioBotonFecha?.minute.toString() +
+            ":" +
+            procesoTamanioBotonFecha?.second.toString(),
         "variedad": variedadId,
         "Grado de variedad": procesoTamanioBotonGradoVariedad,
         "Largo de area": procesoTamanioBotonLargoArea,
@@ -85,10 +94,7 @@ class TamanoBotonDto {
         "Boton1": procesoTamanioBotonTamanoBoton1,
         "Boton2": procesoTamanioBotonTamanoBoton2,
         "Boton3": procesoTamanioBotonTamanoBoton3,
-        "Boton Promedio":
-            procesoTamanioBotonTamanoBotonPromedio,
+        "Boton Promedio": procesoTamanioBotonTamanoBotonPromedio,
         "Numero petalos": procesoTamanioBotonNumeroPetalos
       };
-
-      
 }

@@ -1,8 +1,8 @@
 class EvaluacionFincaParseDto {
-  DateTime fechaAuditoria;
-  String tipoEvaluacion;
-  int postcosechaId;
   int usuarioId;
+  DateTime fechaAuditoria;
+  int postcosechaId;
+  String tipoEvaluacion;
   List<EvaluacionFincaParseDetalleDto> evaluacionDetalle;
 }
 
@@ -15,7 +15,7 @@ class EvaluacionFincaParseDetalleDto {
 }
 
 class EvaluacionFincaParseRespuestaDto {
+  int itemId;
   int cantidadRespuesta; //ingresa el usuario
   int totalRespuesta; //cantidadDisminuir, entidad mapeada
-  int itemId;
 }

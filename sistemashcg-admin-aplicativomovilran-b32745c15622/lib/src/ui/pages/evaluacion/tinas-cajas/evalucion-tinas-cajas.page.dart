@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ranking_app/src/ui/pages/evaluacion/tinas-cajas/tinas_cajas_form_widget.dart';
+
+import 'tinas_cajas_form_widget.dart';
 
 class EvaluacionTinasCajasPage extends StatefulWidget {
   bool valor;
@@ -8,6 +9,7 @@ class EvaluacionTinasCajasPage extends StatefulWidget {
     this.valor = valor;
     this.ramosId = ramosId;
   }
+
   @override
   _EvaluacionTinasCajasState createState() =>
       _EvaluacionTinasCajasState(this.valor, this.ramosId);

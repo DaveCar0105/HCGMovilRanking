@@ -28,24 +28,6 @@ class _ProcesoMaltratoState extends State<ProcesoMaltratoPage> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    _retrieveClients();
-  }
-
-  _retrieveClients() async {
-    var clientes = locator<ClienteRepository>();
-    var postCoseche = locator<PostcosechaRepository>();
-    try {
-      var clientsList = await clientes.selectAll();
-      var postCosechaList = await postCoseche.selectAll();
-      print('');
-    } catch (e) {
-      debugPrint(e);
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,

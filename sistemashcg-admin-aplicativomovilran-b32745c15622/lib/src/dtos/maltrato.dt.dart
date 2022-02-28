@@ -24,8 +24,7 @@ class MaltratoDto {
   num procesoMaltratoPorcentajeIndicenciaEmpaque;
 
   MaltratoDto(
-      {
-        this.procesoMaltratoId,
+      {this.procesoMaltratoId,
       this.postcosechaId,
       this.variedadId,
       this.usuarioId,
@@ -48,22 +47,33 @@ class MaltratoDto {
     variedadId = json['variedadId'];
     usuarioId = json['UsuarioId'];
     procesoMaltratoId = json['procesoMaltratoId'];
-    procesoMaltratoFecha =
-    DateTime.tryParse(json["procesoMaltratoFecha"] ?? "") ??
-              DateTime.now();
-    procesoMaltratoTallosMuestreadoRecepcion = json['procesoMaltratoTallosMuestreadoRecepcion'];
-    procesoMaltratoTallosMaltratoRecepcion = json['procesoMaltratoTallosMaltratoRecepcion'];
-    procesoMaltratoPorcentajeIndicenciaRecepcion = json['procesoMaltratoPorcentajeIndicenciaRecepcion'];
-    procesoMaltratoTallosMuestreadoBoncheo = json['procesoMaltratoTallosMuestreadoBoncheo'];
-    procesoMaltratoTallosMaltratoBoncheo = json['procesoMaltratoTallosMaltratoBoncheo'];
+    procesoMaltratoFecha = DateTime.tryParse(
+            json["procesoMaltratoFecha"] ?? DateTime.now().toIso8601String()) ??
+        DateTime.now();
+    procesoMaltratoTallosMuestreadoRecepcion =
+        json['procesoMaltratoTallosMuestreadoRecepcion'];
+    procesoMaltratoTallosMaltratoRecepcion =
+        json['procesoMaltratoTallosMaltratoRecepcion'];
+    procesoMaltratoPorcentajeIndicenciaRecepcion =
+        json['procesoMaltratoPorcentajeIndicenciaRecepcion'];
+    procesoMaltratoTallosMuestreadoBoncheo =
+        json['procesoMaltratoTallosMuestreadoBoncheo'];
+    procesoMaltratoTallosMaltratoBoncheo =
+        json['procesoMaltratoTallosMaltratoBoncheo'];
     procesoMaltratoPorcentajeIndicenciaBoncheo =
         json['procesoMaltratoPorcentajeIndicenciaBoncheo'];
-    procesoMaltratoTallosMuestreadoCuartoFrio = json['procesoMaltratoTallosMuestreadoCuartoFrio'];
-    procesoMaltratoTallosMaltratoCuartoFrio = json['procesoMaltratoTallosMaltratoCuartoFrio'];
-    procesoMaltratoPorcentajeIndicenciaCuartoFrio = json['procesoMaltratoPorcentajeIndicenciaCuartoFrio'];
-    procesoMaltratoTallosMuestreadoEmpaque = json['procesoMaltratoTallosMuestreadoEmpaque'];
-    procesoMaltratoTallosMaltratoEmpaque = json['procesoMaltratoTallosMaltratoEmpaque'];
-    procesoMaltratoPorcentajeIndicenciaEmpaque = json['procesoMaltratoPorcentajeIndicenciaEmpaque'];
+    procesoMaltratoTallosMuestreadoCuartoFrio =
+        json['procesoMaltratoTallosMuestreadoCuartoFrio'];
+    procesoMaltratoTallosMaltratoCuartoFrio =
+        json['procesoMaltratoTallosMaltratoCuartoFrio'];
+    procesoMaltratoPorcentajeIndicenciaCuartoFrio =
+        json['procesoMaltratoPorcentajeIndicenciaCuartoFrio'];
+    procesoMaltratoTallosMuestreadoEmpaque =
+        json['procesoMaltratoTallosMuestreadoEmpaque'];
+    procesoMaltratoTallosMaltratoEmpaque =
+        json['procesoMaltratoTallosMaltratoEmpaque'];
+    procesoMaltratoPorcentajeIndicenciaEmpaque =
+        json['procesoMaltratoPorcentajeIndicenciaEmpaque'];
   }
 
   Map<String, dynamic> toJson() {
@@ -71,44 +81,68 @@ class MaltratoDto {
     data['postcosechaId'] = this.postcosechaId;
     data['procesoMaltratoId'] = this.procesoMaltratoId;
     data['variedadId'] = this.variedadId;
-    data['usuarioId']= this.usuarioId;
+    data['usuarioId'] = this.usuarioId;
     data['procesoMaltratoFecha'] = this.procesoMaltratoFecha?.toIso8601String();
-    data['tallosMuestradosRecepcion'] = this.procesoMaltratoTallosMuestreadoRecepcion;
-    data['precenciaMaltratoRecepcion'] = this.procesoMaltratoTallosMaltratoRecepcion;
-    data['procesoMaltratoPorcentajeIndicenciaRecepcion'] = this.procesoMaltratoPorcentajeIndicenciaRecepcion;
-    data['procesoMaltratoTallosMuestreadoBoncheo'] = this.procesoMaltratoTallosMuestreadoBoncheo;
-    data['procesoMaltratoTallosMaltratoBoncheo'] = this.procesoMaltratoTallosMaltratoBoncheo;
+    data['tallosMuestradosRecepcion'] =
+        this.procesoMaltratoTallosMuestreadoRecepcion;
+    data['precenciaMaltratoRecepcion'] =
+        this.procesoMaltratoTallosMaltratoRecepcion;
+    data['procesoMaltratoPorcentajeIndicenciaRecepcion'] =
+        this.procesoMaltratoPorcentajeIndicenciaRecepcion;
+    data['procesoMaltratoTallosMuestreadoBoncheo'] =
+        this.procesoMaltratoTallosMuestreadoBoncheo;
+    data['procesoMaltratoTallosMaltratoBoncheo'] =
+        this.procesoMaltratoTallosMaltratoBoncheo;
     data['procesoMaltratoPorcentajeIndicenciaBoncheo'] =
         this.procesoMaltratoPorcentajeIndicenciaBoncheo;
-    data['procesoMaltratoTallosMuestreadoCuartoFrio'] = this.procesoMaltratoTallosMuestreadoCuartoFrio;
-    data['procesoMaltratoTallosMaltratoCuartoFrio'] = this.procesoMaltratoTallosMaltratoCuartoFrio;
+    data['procesoMaltratoTallosMuestreadoCuartoFrio'] =
+        this.procesoMaltratoTallosMuestreadoCuartoFrio;
+    data['procesoMaltratoTallosMaltratoCuartoFrio'] =
+        this.procesoMaltratoTallosMaltratoCuartoFrio;
     data['procesoMaltratoPorcentajeIndicenciaCuartoFrio'] =
         this.procesoMaltratoPorcentajeIndicenciaCuartoFrio;
-    data['procesoMaltratoTallosMuestreadoEmpaque'] = this.procesoMaltratoTallosMuestreadoEmpaque;
-    data['procesoMaltratoTallosMaltratoEmpaque'] = this.procesoMaltratoTallosMaltratoEmpaque;
-    data['procesoMaltratoPorcentajeIndicenciaEmpaque'] = this.procesoMaltratoPorcentajeIndicenciaEmpaque;
+    data['procesoMaltratoTallosMuestreadoEmpaque'] =
+        this.procesoMaltratoTallosMuestreadoEmpaque;
+    data['procesoMaltratoTallosMaltratoEmpaque'] =
+        this.procesoMaltratoTallosMaltratoEmpaque;
+    data['procesoMaltratoPorcentajeIndicenciaEmpaque'] =
+        this.procesoMaltratoPorcentajeIndicenciaEmpaque;
     return data;
   }
+
   Map<String, dynamic> toJsonAprobacion() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['Identificador'] = this.procesoMaltratoId;
     data['variedad'] = this.variedadId;
-    data["Fecha"] = procesoMaltratoFecha?.year.toString() +"-"+ procesoMaltratoFecha?.month.toString() +"-"+procesoMaltratoFecha?.day.toString();
-    data["Hora"] = procesoMaltratoFecha?.hour.toString() +":"+ procesoMaltratoFecha?.minute.toString() +":"+procesoMaltratoFecha?.second.toString();
-    data['T.Muestrados Recepcion'] = this.procesoMaltratoTallosMuestreadoRecepcion;
+    data["Fecha"] = procesoMaltratoFecha?.year.toString() +
+        "-" +
+        procesoMaltratoFecha?.month.toString() +
+        "-" +
+        procesoMaltratoFecha?.day.toString();
+    data["Hora"] = procesoMaltratoFecha?.hour.toString() +
+        ":" +
+        procesoMaltratoFecha?.minute.toString() +
+        ":" +
+        procesoMaltratoFecha?.second.toString();
+    data['T.Muestrados Recepcion'] =
+        this.procesoMaltratoTallosMuestreadoRecepcion;
     data['T.Maltrato Recepcion'] = this.procesoMaltratoTallosMaltratoRecepcion;
-    data['Indicencia Recepcion'] = this.procesoMaltratoPorcentajeIndicenciaRecepcion;
+    data['Indicencia Recepcion'] =
+        this.procesoMaltratoPorcentajeIndicenciaRecepcion;
     data['T.Muestreado Boncheo'] = this.procesoMaltratoTallosMuestreadoBoncheo;
     data['T.Maltrato Boncheo'] = this.procesoMaltratoTallosMaltratoBoncheo;
     data['Indicencia Boncheo'] =
         this.procesoMaltratoPorcentajeIndicenciaBoncheo;
-    data['T.Muestreado CuartoFrio'] = this.procesoMaltratoTallosMuestreadoCuartoFrio;
-    data['T.Maltrato CuartoFrio'] = this.procesoMaltratoTallosMaltratoCuartoFrio;
+    data['T.Muestreado CuartoFrio'] =
+        this.procesoMaltratoTallosMuestreadoCuartoFrio;
+    data['T.Maltrato CuartoFrio'] =
+        this.procesoMaltratoTallosMaltratoCuartoFrio;
     data['Indicencia CuartoFrio'] =
         this.procesoMaltratoPorcentajeIndicenciaCuartoFrio;
     data['T.Muestreado Empaque'] = this.procesoMaltratoTallosMuestreadoEmpaque;
     data['T.Maltrato Empaque'] = this.procesoMaltratoTallosMaltratoEmpaque;
-    data['Indicencia Empaque'] = this.procesoMaltratoPorcentajeIndicenciaEmpaque;
+    data['Indicencia Empaque'] =
+        this.procesoMaltratoPorcentajeIndicenciaEmpaque;
     return data;
   }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:ranking_app/locator.dart';
 import 'package:ranking_app/src/dtos/maltrato.dt.dart';
-import 'package:ranking_app/src/repositories/cliente.repository.dart';
 import 'package:ranking_app/src/repositories/maltrato.repository.dart';
 import 'package:ranking_app/src/repositories/postcosecha.repository.dart';
 import 'package:ranking_app/src/repositories/variedad.repository.dart';
