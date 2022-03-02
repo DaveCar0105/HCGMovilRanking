@@ -15,6 +15,7 @@ import '../../../../repositories/variedad.repository.dart';
 
 class ProcesoTamanoBotonForm extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
+  var cache = {};
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +56,7 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
           'future': locator<PostcosechaRepository>().selectAllGeneric(),
           'required': true
         }
-      }, _formKey),
+      }, _formKey, cache: cache),
     );
   }
 
@@ -75,7 +76,7 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
             'type': FieldType.numeric,
             'required': true
           }
-        }, _formKey));
+        }, _formKey, cache: cache));
   }
 
   SurveySection _sectionD() {
@@ -103,7 +104,7 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
           'label': 'El Area es',
           'type': FieldType.numberResult,
         },
-      }, _formKey),
+      }, _formKey, cache: cache),
     );
   }
 
@@ -156,7 +157,7 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
             'type': FieldType.numeric,
             'required': true
           }
-        }, _formKey));
+        }, _formKey, cache: cache));
   }
 
   Row _footer(BuildContext context) {
@@ -183,12 +184,13 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
   }
 
   void _onSubmitCallback() async {
-    _formKey.currentState.save();
-    var result = _formKey.currentState.value;
+    var result = Map.of(_formKey.currentState.instantValue);
+    cache.entries.forEach((element) {
+      result[element.key] = element.value;
+    });
     var insertResult;
 
     try {
-      print(result);
       var dto = TamanoBotonDto.fromJson(result);
       SessionDto sesionDto = locator<Preferences>().getAutentication;
       dto.usuarioId = sesionDto?.usuarioDto?.usuarioId ?? 1;
@@ -198,7 +200,7 @@ class ProcesoTamanoBotonForm extends StatelessWidget {
       //var resultForm = await locator<TamanoBotonRepository>().selectAll();
       print(insertResult.toString());
     } catch (e) {
-      print("asdsad "+e.toString());
+      print("asdsad " + e.toString());
     }
     if (_formKey.currentState.validate()) {
       print(_formKey.currentState.value);

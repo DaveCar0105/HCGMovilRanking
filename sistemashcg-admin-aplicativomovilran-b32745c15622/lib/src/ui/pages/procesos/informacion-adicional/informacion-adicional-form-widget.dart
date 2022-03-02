@@ -13,6 +13,7 @@ import '../../../../repositories/postcosecha.repository.dart';
 
 class ProcesoInformacionAdicionalForm extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
+  var cache = {};
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
           'future': locator<PostcosechaRepository>().selectAllGeneric(),
           'required': true
         },
-      }, _formKey),
+      }, _formKey, cache: cache),
     );
   }
 
@@ -138,7 +139,7 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
           'type': FieldType.numeric,
           'required': true
         },
-      }, _formKey),
+      }, _formKey, cache: cache),
     );
   }
 
@@ -166,8 +167,10 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
   }
 
   void _onSubmitCallback() async {
-    _formKey.currentState.save();
-    var result = _formKey.currentState.value;
+    var result = Map.of(_formKey.currentState.instantValue);
+    cache.entries.forEach((element) {
+      result[element.key] = element.value;
+    });
     var insertResult;
 
     try {
