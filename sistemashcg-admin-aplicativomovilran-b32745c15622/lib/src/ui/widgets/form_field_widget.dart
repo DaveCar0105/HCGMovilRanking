@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_image_picker/form_builder_image_picker.dart';
+import 'package:ranking_app/src/dtos/evaluacion-finca-mock.dart';
 import 'package:ranking_app/src/dtos/generic.dto.dart';
+
+import '../../dtos/range.dto.dart';
 
 enum FieldType {
   date,
@@ -66,7 +69,14 @@ class FormFieldWidget extends StatelessWidget {
       return FormBuilderTextField(
         valueTransformer: _numericTransform,
         name: e.key,
-        onChanged: (_) => _getAverage(e.value['options'], e.value['result']),
+        onChanged: (_) {
+          var a = int.tryParse(_);
+          var rangesList = e.value['ranges'];
+          Item ite = e.value['item'];
+          print(a);
+          _getRange(a, rangesList, e.value['result'], ite);
+          print(a);
+        },
         decoration: inputDecoration,
         keyboardType: TextInputType.number,
       );
@@ -172,25 +182,29 @@ class FormFieldWidget extends StatelessWidget {
 
   _getRange(
     int i,
-    List<Map<String, int>> ranges,
+    List<Range> ranges,
     String v,
+    Item item,
   ) {
     if (ranges.isNotEmpty) {
       var result = _computeRange(i, ranges);
 
-      if (v != null)
+      if (v != null) {
+        item
+          ..cantidadRespuesta = result
+          ..totalRespuesta = i;
         formKey.currentState.fields[v].didChange(result?.toString() ?? "");
+      }
     }
   }
 
-  _computeRange(i, List<Map<String, int>> ranges) {
+  _computeRange(i, List<Range> ranges) {
     try {
       var result = ranges
           .where(
-            (element) =>
-                _insideRange(i, element['minimo'] ?? 0, element['max'] ?? 0),
+            (element) => _insideRange(i, element.minimo, element.maximo),
           )
-          .map((result) => result['cantidadaDisminuir'] ?? 0)
+          .map((range) => range.cantidadaDisminuir)
           .first;
       return result;
     } catch (e) {

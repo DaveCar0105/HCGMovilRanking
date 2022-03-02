@@ -1,3 +1,5 @@
+import 'package:ranking_app/src/dtos/range.dto.dart';
+
 class EvaluacionFincaMock {
   var categorias;
 
@@ -7,11 +9,13 @@ class EvaluacionFincaMock {
     ..subcategorias = [
       SubCategory()
         ..subcategoriaId = 100
-        ..subcategoriaNombre = "Presentacion Bonch"
+        ..subcategoriaNombre = "presentacionBonch"
+        ..subcategoriaNombreDesplazar = 'Presentacion Bonch'
         ..respuestas = [
           Item()
             ..itemId = 1
-            ..itemNombre = "Error Longitud"
+            ..itemNombre = "errorLongitud"
+            ..itemNombreMostrar = "Error Longitud"
             ..itemsRango = [
               Range()
                 ..minimo = 1
@@ -21,8 +25,28 @@ class EvaluacionFincaMock {
                 ..minimo = 5
                 ..maximo = 10
                 ..cantidadaDisminuir = 35
-            ]
+            ],
         ],
+      SubCategory()
+        ..subcategoriaId = 100
+        ..subcategoriaNombre = "clasificacion"
+        ..subcategoriaNombreDesplazar = 'Clasificacion Bonch'
+        ..respuestas = [
+          Item()
+            ..itemId = 1
+            ..itemNombre = "tallo"
+            ..itemNombreMostrar = "Numero Tallo"
+            ..itemsRango = [
+              Range()
+                ..minimo = 1
+                ..maximo = 10
+                ..cantidadaDisminuir = 2,
+              Range()
+                ..minimo = 10
+                ..maximo = 50
+                ..cantidadaDisminuir = 3
+            ]
+        ]
     ];
 }
 
@@ -46,10 +70,4 @@ class Item {
   List<Range> itemsRango;
   num cantidadRespuesta;
   num totalRespuesta;
-}
-
-class Range {
-  num minimo;
-  num maximo;
-  num cantidadaDisminuir;
 }

@@ -3,6 +3,7 @@ import 'package:flutter_form_builder/src/form_builder.dart';
 
 import '../../../locator.dart';
 import '../../dtos/evaluacion-finca-mock.dart';
+import '../../dtos/range.dto.dart';
 import '../../repositories/postcosecha.repository.dart';
 import 'divider_widget.dart';
 import 'form_field_widget.dart';
@@ -26,35 +27,44 @@ class SubCategorySection extends StatefulWidget {
 class _SubCategorySectionState extends State<SubCategorySection> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: widget.subCategory.respuestas.map(
-        (e) {
-          Item item = e;
-          return Row(
-            children: FormFieldWidget.generateElements({
-              'postcosechaId': {
-                'label': e.itemNombre,
-                'type': FieldType.numberRange,
-                'required': true
-              },
-              'tipoEvaluacion': {
-                'label': 'Tipo evaluacion',
-                'type': FieldType.numberResult,
-                'required': true
-              },
-            }, widget.formkey)
-                .map(
-                  (e) => Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: e,
+    var answersList = widget.subCategory.respuestas;
+    if (answersList?.isEmpty ?? true)
+      return Text('Sin items asociados');
+    else
+      return Column(
+        children: answersList.map(
+          (e) {
+            List<Range> ranges = e.itemsRango;
+            var name = e.itemNombre;
+            var nameResult = '${name}Result';
+            return Row(
+              children: FormFieldWidget.generateElements({
+                name: {
+                  'label': e.itemNombreMostrar,
+                  'type': FieldType.numberRange,
+                  'ranges': ranges,
+                  'result': nameResult,
+                  'item': e,
+                  'required': true
+                },
+                nameResult: {
+                  'label': 'Tipo evaluacion',
+                  'type': FieldType.numberResult,
+                  'required': true
+                },
+              }, widget.formkey)
+                  .map(
+                    (e) => Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: e,
+                      ),
                     ),
-                  ),
-                )
-                .toList(),
-          );
-        },
-      ).toList(),
-    );
+                  )
+                  .toList(),
+            );
+          },
+        ).toList(),
+      );
   }
 }
