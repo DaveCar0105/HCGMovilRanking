@@ -1,29 +1,16 @@
-import 'package:data_table_2/data_table_2.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
-import 'package:ranking_app/src/ui/pages/procesos/tamano-boton/proceso-tamano-boton.page.dart';
-import 'package:ranking_app/src/ui/pages/reporte-general/detalle-tinas-reporte.page.dart';
 
-class MainReportPage extends StatefulWidget {
+class DetalleTinasReportPage extends StatefulWidget {
+  DetalleTinasReportPage({key, this.id}) : super(key: key);
+
+  final String id;
+
   @override
-  _MainReportPageState createState() => _MainReportPageState();
+  State<DetalleTinasReportPage> createState() => _DetalleTinasReportPageState();
 }
 
-class _MainReportPageState extends State<MainReportPage>
-    with SingleTickerProviderStateMixin {
-  var index = 0;
-
-  static const List<Tab> myTabs = <Tab>[
-    Tab(
-      icon: Icon(Icons.local_florist),
-    ),
-    Tab(
-      icon: Icon(Icons.set_meal),
-    ),
-  ];
-
-  TabController _tabController;
+class _DetalleTinasReportPageState extends State<DetalleTinasReportPage> {
   bool _switchVal = true;
   bool sinc = false;
 
@@ -37,38 +24,22 @@ class _MainReportPageState extends State<MainReportPage>
   @override
   void initState() {
     finca.initData(5);
-    _tabController = TabController(vsync: this, length: myTabs.length);
     super.initState();
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final w = MediaQuery.of(context).size.width;
-    return DefaultTabController(
-      length: myTabs.length,
-      child: Scaffold(
-        appBar: AppBar(
-          title: TabBar(controller: _tabController, tabs: myTabs),
-        ),
-        body: TabBarView(controller: _tabController, children: [
-          tab(),
-          tab()
-        ]),
-      ),
-    );
-
-    /* return Scaffold(
-      resizeToAvoidBottomInset: false,
+    return Scaffold(
+      appBar: AppBar(),
       body: Container(
         child: HorizontalDataTable(
           leftHandSideColumnWidth: 80,
-          rightHandSideColumnWidth: MediaQuery.of(context).size.width-80,
+          rightHandSideColumnWidth: MediaQuery.of(context).size.width - 80,
           isFixedHeader: true,
           headerWidgets: _getTitleWidget(),
           leftSideItemBuilder: _generateFirstColumnRow,
@@ -112,59 +83,8 @@ class _MainReportPageState extends State<MainReportPage>
         ),
         height: MediaQuery.of(context).size.height,
       ),
-    ); */
-  }
-
-  Widget tab() {
-    return Container(
-      child: HorizontalDataTable(
-        leftHandSideColumnWidth: 80,
-        rightHandSideColumnWidth: MediaQuery.of(context).size.width - 80,
-        isFixedHeader: true,
-        headerWidgets: _getTitleWidget(),
-        leftSideItemBuilder: _generateFirstColumnRow,
-        rightSideItemBuilder: _generateRightHandSideColumnRow,
-        itemCount: finca.fincaInfo.length,
-        rowSeparatorWidget: const Divider(
-          color: Colors.black54,
-          height: 2.0,
-          thickness: 0.0,
-        ),
-        leftHandSideColBackgroundColor: Color(0xFFFFFFFF),
-        rightHandSideColBackgroundColor: Color(0xFFFFFFFF),
-        verticalScrollbarStyle: const ScrollbarStyle(
-          thumbColor: Colors.yellow,
-          isAlwaysShown: true,
-          thickness: 4.0,
-          radius: Radius.circular(5.0),
-        ),
-        horizontalScrollbarStyle: const ScrollbarStyle(
-          thumbColor: Colors.red,
-          isAlwaysShown: true,
-          thickness: 4.0,
-          radius: Radius.circular(5.0),
-        ),
-        enablePullToRefresh: true,
-        refreshIndicator: const WaterDropHeader(),
-        refreshIndicatorHeight: 60,
-        onRefresh: () async {
-          //Do sth
-          await Future.delayed(const Duration(milliseconds: 500));
-          _hdtRefreshController.refreshCompleted();
-        },
-        enablePullToLoadNewData: true,
-        loadIndicator: const ClassicFooter(),
-        onLoad: () async {
-          //Do sth
-          await Future.delayed(const Duration(milliseconds: 500));
-          _hdtRefreshController.loadComplete();
-        },
-        htdRefreshController: _hdtRefreshController,
-      ),
-      height: MediaQuery.of(context).size.height,
     );
   }
-
   List<Widget> _getTitleWidget() {
     return [
       _getTitleItemWidget('...', 50),
@@ -310,33 +230,6 @@ class FincaInfo {
   FincaInfo(this.fecha, this.nombreFinca, this.tipoFinca, this.id);
 }
 
-class Botones extends StatelessWidget {
-  final Widget child;
-  //final String text;
-  const Botones({
-    @required this.child,
-    // @required this.text,
-    Key key,
-  }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              this.child,
-              SizedBox(
-                height: 10,
-              ),
-              //Text(this.text, textAlign: TextAlign.center),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+
+
