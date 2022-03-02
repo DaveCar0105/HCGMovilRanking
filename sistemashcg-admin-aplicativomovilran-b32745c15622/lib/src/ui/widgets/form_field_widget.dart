@@ -136,6 +136,7 @@ class FormFieldWidget extends StatelessWidget {
   }
 
   _generateDropdownOption(MapEntry<dynamic, dynamic> e) {
+    print(e);
     return e.value['dropdownOptions']
         .map<DropdownMenuItem>(
           (s) => DropdownMenuItem(

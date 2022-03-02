@@ -300,7 +300,8 @@ class DatabaseCreator {
       $informacionAuditoriaPromedioLargoFinca NUMERIC,
       $informacionAuditoriaPorcentajeFlorNacional NUMERIC,
       $informacionAuditoriaEstado INTEGER,
-      $postcosechaId INTEGER
+      $postcosechaId INTEGER,
+      $usuarioId INTEGER
     )''';
     await db.execute(ramosSql);
   }

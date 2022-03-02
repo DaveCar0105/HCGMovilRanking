@@ -33,18 +33,40 @@ class InformacionAdicionalRepository {
     ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}
   )''';
     int id = await db.rawInsert(sql);
+    if(id>0){
+      await insertCausaInformacion(informacionAdicionalDto.causaId, informacionAdicionalDto.porcentajeAfectacionCausa1, id);
+      await insertCausaInformacion(informacionAdicionalDto.causa2, informacionAdicionalDto.porcentajeAfectacionCausa2, id);
+      await insertCausaInformacion(informacionAdicionalDto.causa3, informacionAdicionalDto.porcentajeAfectacionCausa3, id);
+      await insertCausaInformacion(informacionAdicionalDto.causa4, informacionAdicionalDto.porcentajeAfectacionCausa4, id);
+      await insertCausaInformacion(informacionAdicionalDto.causa5, informacionAdicionalDto.porcentajeAfectacionCausa5, id);
+    }
     return id > 0 ? true : false;
+  }
+
+  Future<int> insertCausaInformacion(int causa,num porcentaje,int id1) async{
+    final sql = ''' INSERT INTO ${DatabaseCreator.auditoriaCausaTable}(
+    ${DatabaseCreator.causaId},
+    ${DatabaseCreator.auditoriaCausaPorcentajeAfectacion},
+    ${DatabaseCreator.informacionAuditoriaId}
+  )
+  VALUES(
+    ${causa},
+    ${porcentaje},
+   ${id1}
+  )''';
+    int id = await db.rawInsert(sql);
+    return id;
   }
 
   Future<List<InformacionAdicionalDto>> selectAll() async {
     List<InformacionAdicionalDto> informacionAdicionDto = [];
     try {
-      final sql = ''' SELECT * FROM ${DatabaseCreator.informacionAuditoriaTable}
-    WHERE ${DatabaseCreator.informacionAuditoriaEstado}=${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}''';
+      final sql = ''' SELECT * FROM ${DatabaseCreator.informacionAuditoriaTable}''';
       final data = await db.rawQuery(sql);
       for (final node in data) {
         informacionAdicionDto.add(new InformacionAdicionalDto.fromJson(node));
       }
+      print(informacionAdicionDto);
     } catch (ex) {
       await this
           ._errorRepository

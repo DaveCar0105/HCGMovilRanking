@@ -77,6 +77,7 @@ class _AprobacionFormState extends State<AprobacionForm>
           ),
           FutureBuilder(
             future: locator<InformacionAdicionalRepository>().selectAll(),
+            
             builder: (context, snapshot) {
                     if (!snapshot.hasData) return CircularProgressIndicator();
                     var list = snapshot.data;
@@ -87,6 +88,7 @@ class _AprobacionFormState extends State<AprobacionForm>
                     );
             },
           ),
+          
         ]),
       ),
     );
