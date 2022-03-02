@@ -15,6 +15,7 @@ import '../../../../preference.dart';
 class ProcesoMaltratoForm extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
   final clientes = [];
+  var cache = {};
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +61,7 @@ class ProcesoMaltratoForm extends StatelessWidget {
           'future': locator<PostcosechaRepository>().selectAllGeneric(),
           'required': true
         }
-      }, _formKey),
+      }, _formKey, cache: cache),
     );
   }
 
@@ -76,7 +77,7 @@ class ProcesoMaltratoForm extends StatelessWidget {
             'future': locator<VariedadRepository>().selectAllGeneric(),
             'required': true
           }
-        }, _formKey));
+        }, _formKey, cache: cache));
   }
 
   SurveySection _sectionC() {
@@ -193,8 +194,10 @@ class ProcesoMaltratoForm extends StatelessWidget {
   }
 
   void _onSubmitCallback() async {
-    _formKey.currentState.save();
-    var result = _formKey.currentState.value;
+    var result = Map.of(_formKey.currentState.instantValue);
+    cache.entries.forEach((element) {
+      result[element.key] = element.value;
+    });
     var insertResult;
 
     try {

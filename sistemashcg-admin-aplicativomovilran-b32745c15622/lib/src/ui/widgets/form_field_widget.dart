@@ -25,8 +25,9 @@ enum FieldType {
 class FormFieldWidget extends StatelessWidget {
   final GlobalKey<FormBuilderState> formKey;
   final MapEntry element;
+  final Map cache;
 
-  const FormFieldWidget({Key key, this.formKey, this.element})
+  const FormFieldWidget({Key key, this.formKey, this.element, this.cache})
       : super(key: key);
 
   @override
@@ -55,6 +56,14 @@ class FormFieldWidget extends StatelessWidget {
         name: e.key,
         decoration: inputDecoration,
         allowClear: true,
+        onSaved: (_) {},
+        onChanged: (_) {
+          List<GenericDto> a = e.value['dropdownOptionsMap'];
+          if (a != null) {
+            var result = a.firstWhere((e) => e.nombre == _);
+            cache[e.key] = result.id;
+          }
+        },
         items: _generateDropdownOption(e),
       );
     if (e.value['type'] == FieldType.average)
@@ -126,6 +135,7 @@ class FormFieldWidget extends StatelessWidget {
         formKey: formKey,
         element: e,
         future: e.value['future'],
+        cache: cache,
       );
     else
       return FormBuilderTextField(
@@ -235,12 +245,9 @@ class FormFieldWidget extends StatelessWidget {
     return result;
   }
 
-  static List<FormFieldWidget> generateElements(Map args, formKey) {
+  static List<FormFieldWidget> generateElements(Map args, formKey, {cache}) {
     return args.entries
-        .map((e) => FormFieldWidget(
-              formKey: formKey,
-              element: e,
-            ))
+        .map((e) => FormFieldWidget(formKey: formKey, element: e, cache: cache))
         .toList();
   }
 
@@ -256,8 +263,10 @@ class FutureFormField extends StatelessWidget {
   final GlobalKey<FormBuilderState> formKey;
   final MapEntry element;
   final Future future;
+  final Map cache;
 
-  const FutureFormField({Key key, this.formKey, this.element, this.future})
+  const FutureFormField(
+      {Key key, this.formKey, this.element, this.future, this.cache})
       : super(key: key);
 
   @override
@@ -268,14 +277,15 @@ class FutureFormField extends StatelessWidget {
           if (s.hasData) {
             List a = s.data.map((s) {
               GenericDto dto = s;
-              return dto.id;
+              return dto.nombre;
             }).toList();
-            print(s.toString());
             element.value['type'] = FieldType.dropdown;
             element.value['dropdownOptions'] = a;
+            element.value['dropdownOptionsMap'] = s.data;
             return FormFieldWidget(
               formKey: formKey,
               element: element,
+              cache: cache,
             );
           } else
             return CircularProgressIndicator();
