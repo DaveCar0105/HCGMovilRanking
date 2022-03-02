@@ -26,11 +26,25 @@ class EvaluacionFincaMock {
                 ..maximo = 10
                 ..cantidadaDisminuir = 35
             ],
+          Item()
+            ..itemId = 1
+            ..itemNombre = "numeroGrapasStandartFinca"
+            ..itemNombreMostrar = "Nº grapas stándard Finca"
+            ..itemsRango = [
+              Range()
+                ..minimo = 1
+                ..maximo = 5
+                ..cantidadaDisminuir = 30,
+              Range()
+                ..minimo = 5
+                ..maximo = 10
+                ..cantidadaDisminuir = 35
+            ],
         ],
       SubCategory()
         ..subcategoriaId = 100
-        ..subcategoriaNombre = "clasificacion"
-        ..subcategoriaNombreDesplazar = 'Clasificacion Bonch'
+        ..subcategoriaNombre = "boton"
+        ..subcategoriaNombreDesplazar = 'Botón'
         ..respuestas = [
           Item()
             ..itemId = 1

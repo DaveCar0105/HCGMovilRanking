@@ -12,27 +12,25 @@ class InformacionAdicionalRepository {
   Future<bool> insert(InformacionAdicionalDto informacionAdicionalDto) async {
     final sql = ''' INSERT INTO ${DatabaseCreator.informacionAuditoriaTable}(
     ${DatabaseCreator.usuarioId},
-    ${DatabaseCreator.informacionAuditoriaId},
     ${DatabaseCreator.informacionAuditoriaFecha},
-    ${DatabaseCreator.postcosechaPadreId},
-    ${DatabaseCreator.postcosechaId},
     ${DatabaseCreator.informacionAuditoriaPromedioSala},
     ${DatabaseCreator.informacionAuditoriaPromedioBoncheo},
     ${DatabaseCreator.informacionAuditoriaPromedioCorte},
     ${DatabaseCreator.informacionAuditoriaPromedioLargoFinca},
-    ${DatabaseCreator.informacionAuditoriaPorcentajeFlorNacional}
+    ${DatabaseCreator.informacionAuditoriaPorcentajeFlorNacional},
+    ${DatabaseCreator.postcosechaId},
+    ${DatabaseCreator.informacionAuditoriaEstado}
   )
   VALUES(
     ${informacionAdicionalDto.usuarioId},
-    ${informacionAdicionalDto.informacionAuditoriaId},
     '${informacionAdicionalDto.informacionAuditoriaFecha}',
-    ${informacionAdicionalDto.postcosechaPadreId},
-    ${informacionAdicionalDto.postcosechaId},
     ${informacionAdicionalDto.informacionAuditoriaPromedioSala},
     ${informacionAdicionalDto.informacionAuditoriaPromedioBoncheo},
     ${informacionAdicionalDto.informacionAuditoriaPromedioCorte},
     ${informacionAdicionalDto.informacionAuditoriaPromedioLargoFinca},
-    ${informacionAdicionalDto.informacionAuditoriaPorcentajeFlorNacional}
+    ${informacionAdicionalDto.informacionAuditoriaPorcentajeFlorNacional},
+    ${informacionAdicionalDto.postcosechaId},
+    ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}
   )''';
     int id = await db.rawInsert(sql);
     return id > 0 ? true : false;
@@ -45,24 +43,7 @@ class InformacionAdicionalRepository {
     WHERE ${DatabaseCreator.informacionAuditoriaEstado}=${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}''';
       final data = await db.rawQuery(sql);
       for (final node in data) {
-        informacionAdicionDto.add(new InformacionAdicionalDto(
-            usuarioId: node[DatabaseCreator.usuarioId],
-            informacionAuditoriaId:
-                node[DatabaseCreator.informacionAuditoriaId],
-            informacionAuditoriaFecha:
-                node[DatabaseCreator.informacionAuditoriaFecha],
-            postcosechaPadreId: node[DatabaseCreator.postcosechaPadreId],
-            postcosechaId: node[DatabaseCreator.postcosechaId],
-            informacionAuditoriaPromedioSala:
-                node[DatabaseCreator.informacionAuditoriaPromedioSala],
-            informacionAuditoriaPromedioBoncheo:
-                node[DatabaseCreator.informacionAuditoriaPromedioBoncheo],
-            informacionAuditoriaPromedioCorte:
-                node[DatabaseCreator.informacionAuditoriaPromedioCorte],
-            informacionAuditoriaPromedioLargoFinca:
-                node[DatabaseCreator.informacionAuditoriaPromedioLargoFinca],
-            informacionAuditoriaPorcentajeFlorNacional: node[
-                DatabaseCreator.informacionAuditoriaPorcentajeFlorNacional]));
+        informacionAdicionDto.add(new InformacionAdicionalDto.fromJson(node));
       }
     } catch (ex) {
       await this

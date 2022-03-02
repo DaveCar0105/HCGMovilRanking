@@ -27,6 +27,7 @@ dependencies:
   expandable_widgets: ^1.0.2
   horizontal_data_table: ^3.6.1+1
   data_table_2: ^2.2.1
+  equatable: ^2.0.3
 dev_dependencies:
   flutter_test:
     sdk: flutter

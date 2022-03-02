@@ -38,13 +38,6 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
           'future': locator<PostcosechaRepository>().selectAllGeneric(),
           'required': true
         },
-        'postcosechaChiId': {
-          'label': 'Nombre Sub-Finca (si aplica) ',
-          'type': FieldType.futureField,
-          'subType': FieldType.dropdown,
-          'future': locator<PostcosechaRepository>().selectAllGeneric(),
-          'required': true
-        }
       }, _formKey),
     );
   }
@@ -182,8 +175,9 @@ class ProcesoInformacionAdicionalForm extends StatelessWidget {
       SessionDto sesionDto = locator<Preferences>().getAutentication;
       dto.usuarioId = sesionDto?.usuarioDto?.usuarioId ?? 1;
       dto.informacionAuditoriaFecha = DateTime.now().toLocal();
-      insertResult = await locator<InformacionAdicionalRepository>().insert(dto);
-      
+      insertResult =
+          await locator<InformacionAdicionalRepository>().insert(dto);
+
       //var resultForm = await locator<MaltratoRepository>().selectAll();
       print("Resultado maltrato: " + insertResult.toString());
       //print(result.toString());

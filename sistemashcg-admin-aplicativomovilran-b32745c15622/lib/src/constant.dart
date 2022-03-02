@@ -44,9 +44,11 @@ class ConstantServicesServer {
   static const VARIEDAD_CONTROLLER = 'variedad';
 
   //FORMULARIO TAMNIO BOTON
-  static const PROCESO_TAMANO_BOTON_CONTROLLER='proceso-tamano-boton';
+  static const PROCESO_TAMANO_BOTON_CONTROLLER = 'proceso-tamano-boton';
   //FORMULARIO MALTRATO
-  static const PROCESO_MALTRATO_CONTROLLER ='proceso-maltrato';
+  static const PROCESO_MALTRATO_CONTROLLER = 'proceso-maltrato';
   //FORMULARIO INFORMACION ADICIONAL
-  static const INFORMACION_AUDITORIA_CONTROLLER ='informacion-auditoria';
+  static const INFORMACION_AUDITORIA_CONTROLLER = 'informacion-auditoria';
+  //FORMULARIO
+  static const FORMULARIO_CONTROLLER = 'formulario/formulario';
 }

@@ -4,6 +4,7 @@ import 'package:ranking_app/src/constant.dart';
 import 'package:ranking_app/src/dtos/carguera.dto.dart';
 import 'package:ranking_app/src/dtos/causa.dto.dart';
 import 'package:ranking_app/src/dtos/cliente.dto.dart';
+import 'package:ranking_app/src/dtos/dynamicForm.dto.dart';
 import 'package:ranking_app/src/dtos/info-adic.dto.dart';
 import 'package:ranking_app/src/dtos/maltrato.dt.dart';
 import 'package:ranking_app/src/dtos/pais.dto.dart';
@@ -324,7 +325,7 @@ class SincronizeServerInformation {
         List<VariedadDto> variedades = jsonDecode(respuesta.body.toString())
             .map<VariedadDto>((e) => VariedadDto.fromJson(e))
             .toList();
-            print(respuesta.body.toString());
+        print(respuesta.body.toString());
         for (VariedadDto variedad in variedades) {
           try {
             await this._variedadRepository.insert(variedad);
@@ -425,6 +426,37 @@ class SincronizeServerInformation {
       await this._errorRepository.addErrorWithDetalle(
           moduloService, nameServiceServer + ex.toString());
       return false;
+    }
+  }
+
+  Future<List<DynamicForm>> getFormulario() async {
+    String nameServiceServer = 'formulario';
+    try {
+      final url =
+          Uri.http(Constant.URL, ConstantServicesServer.FORMULARIO_CONTROLLER);
+      final respuesta = await http.get(url, headers: this.headers);
+      if (respuesta.statusCode >= 200 && respuesta.statusCode <= 299) {
+        List<DynamicForm> form = formFromJson(respuesta.body);
+        var categories = Set();
+        var subCategories = Set();
+        var items = Set();
+        form.forEach((element) {
+          element.formularioItems.forEach((fI) {
+            categories.add(fI.item.subcategoria.categoria);
+            subCategories.add(fI.item.subcategoria);
+            items.add(fI.item);
+          });
+        });
+
+        print(form);
+        return form;
+      }
+      await this._errorRepository.addErrorWithDetalle(
+          moduloService, nameServiceServer + respuesta.statusCode.toString());
+    } catch (ex) {
+      await this._errorRepository.addErrorWithDetalle(
+          moduloService, nameServiceServer + ex.toString());
+      return [];
     }
   }
 }

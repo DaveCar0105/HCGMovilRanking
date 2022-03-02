@@ -16,6 +16,7 @@ class InformacionAdicionalDto {
   num informacionAuditoriaPromedioCorte;
   num informacionAuditoriaPromedioLargoFinca;
   num informacionAuditoriaPorcentajeFlorNacional;
+  num informacionAuditoriaEstado;
 
   InformacionAdicionalDto({
     this.usuarioId,
@@ -33,7 +34,10 @@ class InformacionAdicionalDto {
   InformacionAdicionalDto.fromJson(Map<String, dynamic> json) {
     usuarioId = json['usuarioId'];
     informacionAuditoriaId = json['informacionAuditoriaId'];
-    informacionAuditoriaFecha = json['informacionAuditoriaFecha'];
+    informacionAuditoriaFecha = DateTime.tryParse(
+            json['informacionAuditoriaFecha'] ??
+                DateTime.now().toIso8601String()) ??
+        DateTime.now();
     postcosechaPadreId = json['postcosechaPadreId'];
     postcosechaId = json['postcosechaId'];
     informacionAuditoriaPromedioSala = json['informacionAuditoriaPromedioSala'];
@@ -45,6 +49,7 @@ class InformacionAdicionalDto {
         json['informacionAuditoriaPromedioLargoFinca'];
     informacionAuditoriaPorcentajeFlorNacional =
         json['informacionAuditoriaPorcentajeFlorNacional'];
+    informacionAuditoriaEstado = json['informacionAuditoriaEstado'];
   }
 
   Map<String, dynamic> toJson() {
@@ -64,6 +69,7 @@ class InformacionAdicionalDto {
         this.informacionAuditoriaPromedioLargoFinca;
     data['informacionAuditoriaPorcentajeFlorNacional'] =
         this.informacionAuditoriaPorcentajeFlorNacional;
+    data['informacionAuditoriaEstado'] = this.informacionAuditoriaEstado;
     return data;
   }
 

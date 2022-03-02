@@ -140,6 +140,26 @@ class DatabaseCreator {
   //--usuarioId--
   //--variedadId--
 
+  //TABLA EVALUACION FINCA
+  static const evaluacionFincaTable = 'evaluacionFinca';
+  static const evaluacionFincaId = 'evaluacionFincaId';
+  static const fechaAuditoria = 'fechaAuditoria';
+  static const tipoEvaluacion = 'tipoEvaluacion';
+
+  //TABLA EVALUACION DETALLE
+  static const evaluacionDetalleTable = 'evaluacionDetalle';
+  static const evaluacionDetalleId = 'evaluacionDetalleId';
+  static const numeroMesa = 'numeroMesa';
+  static const gradoVariedad = 'gradoVariedad';
+  static const tallosPorRamo = 'tallosPorRamo';
+
+  //TABLA RESPUESTAS
+  static const evaluacionRespuestasTable = 'respuestas';
+  static const respuestaId = 'respuestaId';
+  static const cantidadRespuesta = 'cantidadRespuesta';
+  static const totalRespuesta = 'totalRespuesta';
+  static const itemId = 'itemId';
+
   //TABLA DE ERRRORES
   static const errorTable = "error";
   static const errorId = "errorId";
@@ -271,6 +291,7 @@ class DatabaseCreator {
   Future<void> createTableInformacionAuditoria(Database db) async {
     final ramosSql = '''CREATE TABLE $informacionAuditoriaTable
     (
+      $usuarioId NUMERIC,
       $informacionAuditoriaId INTEGER PRIMARY KEY AUTOINCREMENT,
       $informacionAuditoriaFecha DATE,
       $informacionAuditoriaPromedioSala NUMERIC,
@@ -340,5 +361,42 @@ class DatabaseCreator {
       $variedadId INTEGER
     )''';
     await db.execute(ramosSql);
+  }
+
+  Future<void> createTableEvaluacionFinca(Database db) async {
+    final evaluacionFincaSql = '''CREATE TABLE $evaluacionFincaTable
+    (
+      $evaluacionFincaId INTEGER PRIMARY KEY AUTOINCREMENT,
+      $fechaAuditoria DATE,
+      $tipoEvaluacion TEXT,
+      $postcosechaId NUMERIC,
+      $usuarioId NUMERIC
+    )''';
+    await db.execute(evaluacionFincaSql);
+  }
+
+  Future<void> createTableEvaluacionFincaDetalle(Database db) async {
+    final evaluacionFincaSql = '''CREATE TABLE $evaluacionDetalleTable
+    (
+      $evaluacionDetalleId INTEGER PRIMARY KEY AUTOINCREMENT,
+      $numeroMesa TEXT,
+      $gradoVariedad NUMERIC,
+      $tallosPorRamo NUMERIC,
+      $variedadId NUMERIC,
+      $evaluacionFincaId NUMERIC
+    )''';
+    await db.execute(evaluacionFincaSql);
+  }
+
+  Future<void> createTableEvaluacionRespuestas(Database db) async {
+    final evaluacionFincaSql = '''CREATE TABLE $evaluacionRespuestasTable
+    (
+      $respuestaId INTEGER PRIMARY KEY AUTOINCREMENT,
+      $cantidadRespuesta NUMERIC,
+      $totalRespuesta NUMERIC,
+      $itemId NUMERIC,
+      $evaluacionDetalleId NUMERIC
+    )''';
+    await db.execute(evaluacionFincaSql);
   }
 }

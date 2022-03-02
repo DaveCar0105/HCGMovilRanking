@@ -54,30 +54,28 @@ void setUpDI() {
   locator.registerLazySingleton<TamanoBotonRepository>(
     () => TamanoBotonRepository(locator()),
   );
-   locator.registerLazySingleton<MaltratoRepository>(
+  locator.registerLazySingleton<MaltratoRepository>(
     () => MaltratoRepository(locator()),
   );
-     locator.registerLazySingleton<InformacionAdicionalRepository>(
+  locator.registerLazySingleton<InformacionAdicionalRepository>(
     () => InformacionAdicionalRepository(locator()),
   );
-  
 
   //
   locator.registerLazySingleton<SincronizeServerInformation>(
     () => SincronizeServerInformation(
-      locator(),
-      locator(),
-      locator(),
-      locator(),
-      locator(),
-      locator(),
-      locator(),
-      locator(),
-      locator(),
-      locator(),
-      locator(),
-      locator()
-    ),
+        locator(),
+        locator(),
+        locator(),
+        locator(),
+        locator(),
+        locator(),
+        locator(),
+        locator(),
+        locator(),
+        locator(),
+        locator(),
+        locator()),
   );
 
   locator.registerLazySingleton<DatabaseCreator>(
