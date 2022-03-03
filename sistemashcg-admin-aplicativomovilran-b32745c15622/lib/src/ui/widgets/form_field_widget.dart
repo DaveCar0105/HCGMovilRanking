@@ -219,7 +219,7 @@ class FormFieldWidget extends StatelessWidget {
           .first;
       return result;
     } catch (e) {
-      return double.infinity;
+      return 0;
     }
   }
 
