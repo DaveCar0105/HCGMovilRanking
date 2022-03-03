@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ranking_app/src/ui/pages/procesos/reporte-auditoria/reporte-auditoria-agenciahc-form-widget.dart';
+import 'package:ranking_app/src/ui/pages/evaluacion/reporte-auditoria/reporte-auditoria-agenciahc-form-widget.dart';
+
 
 class ProcesoReporteAuditoriaAgenciahcPage extends StatefulWidget {
   final bool valor;
@@ -32,7 +33,7 @@ class _ProcesoReporteAuditoriaAgenciahcState
       appBar: AppBar(
         title: Text('REPORTE DE AUDITORIAS'),
       ),
-      body: ProcesoReporteAuditoriaAgenciahcForm(),
+      body: EvaluacionEnAgenciaFormWidget(),
     );
   }
 }

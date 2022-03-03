@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ranking_app/src/ui/pages/evaluacion/reporte-auditoria/reporte-auditoria-agenciahc.page.dart';
 import 'package:ranking_app/src/ui/pages/evaluacion/tinas-cajas/evalucion-tinas-cajas.page.dart';
 
 class MainEvalutionPage extends StatefulWidget {
@@ -38,7 +39,7 @@ class _MainEvalutionPageState extends State<MainEvalutionPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Text(
-                      'EVAlUACION',
+                      'FINCA',
                       style: TextStyle(fontSize: 15),
                     ),
                     Icon(Icons.local_florist_outlined)
@@ -47,37 +48,37 @@ class _MainEvalutionPageState extends State<MainEvalutionPage> {
               ),
             ),
           ),
-          // Botones(
-          //   child: RaisedButton(
-          //     shape: RoundedRectangleBorder(
-          //         borderRadius: BorderRadius.circular(10)),
-          //     color: Colors.red,
-          //     textColor: Colors.white,
-          //     onPressed: () {
-          //       Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) =>
-          //                   EmpaqueElitePage(this._switchVal, 0)));
-          //     },
-          //     child: Container(
-          //       width: 120,
-          //       height: 70,
-          //       child: Row(
-          //         crossAxisAlignment: CrossAxisAlignment.center,
-          //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //         children: <Widget>[
-          //           Text(
-          //             'Empaque',
-          //             style: TextStyle(fontSize: 15),
-          //           ),
-          //           Icon(Icons.all_inbox)
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          //   //text: 'raise botton',
-          // ),
+          Botones(
+            child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              color: Colors.red,
+              textColor: Colors.white,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                     MaterialPageRoute(
+                        builder: (context) =>
+                            ProcesoReporteAuditoriaAgenciahcPage( )));
+              },
+              child: Container(
+                width: 120,
+                height: 70,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Text(
+                      'AGENCIA',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    Icon(Icons.all_inbox)
+                  ],
+                ),
+              ),
+            ),
+            //text: 'raise botton',
+          ),
           // Botones(
           //   child: RaisedButton(
           //     shape: RoundedRectangleBorder(
