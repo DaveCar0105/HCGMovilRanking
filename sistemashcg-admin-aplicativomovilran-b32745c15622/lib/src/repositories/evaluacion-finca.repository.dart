@@ -8,7 +8,7 @@ class EvaluacionFincaRepository {
 
   EvaluacionFincaRepository(this._errorRepository);
 
-  Future<bool> insert(EvaluacionFincaParseDto evaluacionFincaParseDto) async {
+  Future<int> insert(EvaluacionFincaParseDto evaluacionFincaParseDto) async {
     final sql = '''INSERT INTO ${DatabaseCreator.evaluacionFincaTable}(
 
     ${DatabaseCreator.fechaAuditoria},
@@ -23,7 +23,7 @@ class EvaluacionFincaRepository {
     )''';
 
     int id = await db.rawInsert(sql);
-    return id > 0 ? true : false;
+    return id > 0 ? id : -1;
   }
 
   Future<List<EvaluacionFincaParseDto>> selectAll() async {

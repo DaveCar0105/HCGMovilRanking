@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ranking_app/locator.dart';
 
-import '../../../../services/sincronize-information-server.service.dart';
 import 'tinas_cajas_form_widget.dart';
 
 class EvaluacionTinasCajasPage extends StatefulWidget {
@@ -25,16 +23,6 @@ class _EvaluacionTinasCajasState extends State<EvaluacionTinasCajasPage> {
   _EvaluacionTinasCajasState(bool valor, int ramosId) {
     elite = valor;
     ramosId = ramosId;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    retrieveData();
-  }
-
-  retrieveData() async {
-    var a = await locator<SincronizeServerInformation>().getFormulario();
   }
 
   @override
