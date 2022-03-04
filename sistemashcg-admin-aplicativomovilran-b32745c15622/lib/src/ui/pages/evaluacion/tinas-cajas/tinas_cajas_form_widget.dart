@@ -3,18 +3,22 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../../../../locator.dart';
 import '../../../../dtos/evaluacion-finca-mock.dart';
+import '../../../../dtos/evaluacion-finca-parse.dto.dart';
+import '../../../../dtos/session.dto.dart';
+import '../../../../preference.dart';
+import '../../../../repositories/evaluacion-finca.repository.dart';
 import '../../../../repositories/postcosecha.repository.dart';
 import '../../../../repositories/variedad.repository.dart';
 import '../../../widgets/category_section.dart';
 import '../../../widgets/form_field_widget.dart';
 import '../../../widgets/form_footer.widget.dart';
 import '../../../widgets/section_widget.dart';
-import '../../../widgets/selectable_selection.dart';
 
 class TinasCajasFormWidger extends StatelessWidget {
   TinasCajasFormWidger({Key key}) : super(key: key);
 
   final _formKey = GlobalKey<FormBuilderState>();
+  var cache = {};
   var mock = EvaluacionFincaMock.category;
 
   @override
@@ -58,7 +62,7 @@ class TinasCajasFormWidger extends StatelessWidget {
           'dropdownOptions': ['TINA', 'CAJA'],
           'required': true
         },
-      }, _formKey),
+      }, _formKey, cache: cache),
     );
   }
 
@@ -88,25 +92,27 @@ class TinasCajasFormWidger extends StatelessWidget {
           'type': FieldType.numeric,
           'required': true
         },
-      }, _formKey),
+      }, _formKey, cache: cache),
     );
   }
 
   void _onSubmitCallback() async {
-    _formKey.currentState.save();
-    var result = _formKey.currentState.value;
+    var result = Map.of(_formKey.currentState.instantValue);
+    cache.entries.forEach((element) {
+      result[element.key] = element.value;
+    });
     var insertResult;
 
     try {
       print(result);
-      // var dto = MaltratoDto.fromJson(result);
-      // SessionDto sesionDto = locator<Preferences>().getAutentication;
-      // dto.usuarioId = sesionDto?.usuarioDto?.usuarioId ?? 1;
-      // dto.procesoMaltratoFecha = DateTime.now().toLocal();
-      // insertResult = await locator<MaltratoRepository>().insert(dto);
-      //var resultForm = await locator<MaltratoRepository>().selectAll();
-      //print("Resultado maltrato: " + insertResult.toString());
-      //print(result.toString());
+      var dto = EvaluacionFincaParseDto.fromJson(result);
+      SessionDto sesionDto = locator<Preferences>().getAutentication;
+      dto.usuarioId = sesionDto?.usuarioDto?.usuarioId ?? 1;
+      dto.fechaAuditoria = DateTime.now().toLocal();
+      insertResult = await locator<EvaluacionFincaRepository>().insert(dto);
+      var resultForm = await locator<EvaluacionFincaRepository>().selectAll();
+      print("Resultado insert: " + insertResult.toString());
+      print(result.toString());
     } catch (e) {
       print(e.toString());
     }

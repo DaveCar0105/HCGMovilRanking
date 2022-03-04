@@ -1,7 +1,9 @@
-import 'package:ranking_app/src/constant.dart';
-import 'package:sqflite/sqflite.dart';
 import 'dart:io';
+
 import 'package:path/path.dart' as p;
+import 'package:sqflite/sqflite.dart';
+
+import 'constant.dart';
 
 Database db;
 
@@ -164,6 +166,7 @@ class DatabaseCreator {
   static const errorTable = "error";
   static const errorId = "errorId";
   static const errorDetalle = "errorDetalle";
+  static const estado = "estado";
 
   Future<String> getDatabasePath1(String dbName) async {
     final databasePath = await getDatabasesPath();
@@ -196,6 +199,9 @@ class DatabaseCreator {
     await createTableAuditoriaCausa(db);
     await createTableProcesoTamanoBoton(db);
     await createTableProcesoMaltrato(db);
+    await createTableEvaluacionFinca(db);
+    await createTableEvaluacionFincaDetalle(db);
+    await createTableEvaluacionRespuestas(db);
   }
 
   Future<void> createTableError(Database db) async {
@@ -300,8 +306,7 @@ class DatabaseCreator {
       $informacionAuditoriaPromedioLargoFinca NUMERIC,
       $informacionAuditoriaPorcentajeFlorNacional NUMERIC,
       $informacionAuditoriaEstado INTEGER,
-      $postcosechaId INTEGER,
-      $usuarioId INTEGER
+      $postcosechaId INTEGER
     )''';
     await db.execute(ramosSql);
   }

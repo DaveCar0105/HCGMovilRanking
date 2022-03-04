@@ -1,22 +1,23 @@
 import 'package:get_it/get_it.dart';
-import 'package:ranking_app/src/database-creator.dart';
-import 'package:ranking_app/src/dtos/info-adic.dto.dart';
-import 'package:ranking_app/src/preference.dart';
-import 'package:ranking_app/src/repositories/carguera.repository.dart';
-import 'package:ranking_app/src/repositories/causa.repository.dart';
-import 'package:ranking_app/src/repositories/cliente.repository.dart';
-import 'package:ranking_app/src/repositories/error.repository.dart';
-import 'package:ranking_app/src/repositories/informacion-adicional.repository.dart';
-import 'package:ranking_app/src/repositories/maltrato.repository.dart';
-import 'package:ranking_app/src/repositories/pais.repository.dart';
-import 'package:ranking_app/src/repositories/postcosecha.repository.dart';
-import 'package:ranking_app/src/repositories/producto.repository.dart';
-import 'package:ranking_app/src/repositories/tamano-boton.repository.dart';
-import 'package:ranking_app/src/repositories/tipo-caja.repository.dart';
-import 'package:ranking_app/src/repositories/variedad.repository.dart';
-import 'package:ranking_app/src/services/sincronizacion.service.dart';
-import 'package:ranking_app/src/services/sincronizar-entity-server.service.dart';
-import 'package:ranking_app/src/services/sincronize-information-server.service.dart';
+
+import 'src/database-creator.dart';
+import 'src/preference.dart';
+import 'src/repositories/carguera.repository.dart';
+import 'src/repositories/causa.repository.dart';
+import 'src/repositories/cliente.repository.dart';
+import 'src/repositories/error.repository.dart';
+import 'src/repositories/evaluacion-finca.repository.dart';
+import 'src/repositories/informacion-adicional.repository.dart';
+import 'src/repositories/maltrato.repository.dart';
+import 'src/repositories/pais.repository.dart';
+import 'src/repositories/postcosecha.repository.dart';
+import 'src/repositories/producto.repository.dart';
+import 'src/repositories/tamano-boton.repository.dart';
+import 'src/repositories/tipo-caja.repository.dart';
+import 'src/repositories/variedad.repository.dart';
+import 'src/services/sincronizacion.service.dart';
+import 'src/services/sincronizar-entity-server.service.dart';
+import 'src/services/sincronize-information-server.service.dart';
 
 final locator = GetIt.instance;
 
@@ -60,6 +61,9 @@ void setUpDI() {
   locator.registerLazySingleton<InformacionAdicionalRepository>(
     () => InformacionAdicionalRepository(locator()),
   );
+  locator.registerLazySingleton<EvaluacionFincaRepository>(
+    () => EvaluacionFincaRepository(locator()),
+  );
 
   //
   locator.registerLazySingleton<SincronizeServerInformation>(
@@ -77,11 +81,9 @@ void setUpDI() {
         locator(),
         locator()),
   );
-
   locator.registerLazySingleton<DatabaseCreator>(
     () => DatabaseCreator(),
   );
-
   locator.registerLazySingleton<Preferences>(
     () => Preferences(),
   );

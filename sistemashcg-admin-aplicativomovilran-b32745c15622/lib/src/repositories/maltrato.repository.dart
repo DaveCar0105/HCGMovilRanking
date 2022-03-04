@@ -1,9 +1,8 @@
-import 'package:ranking_app/src/constant.dart';
-import 'package:ranking_app/src/database-creator.dart';
-import 'package:ranking_app/src/dtos/generic.dto.dart';
-import 'package:ranking_app/src/dtos/maltrato.dt.dart';
-
-import 'package:ranking_app/src/repositories/error.repository.dart';
+import '../constant.dart';
+import '../database-creator.dart';
+import '../dtos/generic.dto.dart';
+import '../dtos/maltrato.dt.dart';
+import 'error.repository.dart';
 
 class MaltratoRepository {
   final ErrorRepository _errorRepository;
@@ -29,7 +28,7 @@ class MaltratoRepository {
       ${DatabaseCreator.procesoMaltratoTallosMuestreadoEmpaque},
       ${DatabaseCreator.procesoMaltratoTallosMaltratoEmpaque},
       ${DatabaseCreator.procesoMaltratoPorcentajeIndicenciaEmpaque},
-      ${DatabaseCreator.procesoMaltratoEstado}
+      ${DatabaseCreator.estado}
     )VALUES(
       ${maltratoDto.postcosechaId},
       ${maltratoDto.variedadId},
