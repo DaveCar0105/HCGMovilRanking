@@ -21,9 +21,8 @@ class EvaluacionFincaParseDto {
 
   factory EvaluacionFincaParseDto.fromJson(Map<String, dynamic> json) =>
       EvaluacionFincaParseDto(
-          evaluacionFincaId: json["evaluacionFincaId"], //consultar
           usuarioId: json["usuarioId"], //consultar
-          fechaAuditoria: DateTime.tryParse(json["procesoTamanioBotonFecha"] ??
+          fechaAuditoria: DateTime.tryParse(json["fechaEvaluacionFinca"] ??
                   DateTime.now().toIso8601String()) ??
               DateTime.now(),
           postcosechaId: json["postcosechaId"],
