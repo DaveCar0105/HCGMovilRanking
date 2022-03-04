@@ -64,6 +64,12 @@ class EvaluacionFincaMock {
     ];
 }
 
+class DynamicForm {
+  int id;
+  String formularioNombreDesplazar;
+  List<Category> categorias;
+}
+
 class Category {
   num categoriaId;
   String categoriaNombre;

@@ -153,12 +153,34 @@ class DatabaseCreator {
   static const gradoVariedad = 'gradoVariedad';
   static const tallosPorRamo = 'tallosPorRamo';
 
-  //TABLA RESPUESTAS
+  //TABLA EVALUACION RESPUESTAS
   static const evaluacionRespuestasTable = 'respuestas';
   static const respuestaId = 'respuestaId';
   static const cantidadRespuesta = 'cantidadRespuesta';
   static const totalRespuesta = 'totalRespuesta';
   static const itemId = 'itemId';
+
+  //TABLA AUDITORIA EN AGENCIA
+  static const auditoriaAgenciaTable ='auditoriaAgenciaTable';
+  static const auditoriaAgenciaId = 'auditoriaAgenciaId';
+  static const fechaAuditoriaAgencia ='fechaAuditoriaAgencia';
+  //TABALA AUDITORIA EN AGENCIA DETALLE
+  static const auditoriaDetalleTable ='auditoriaDetalleTable';
+  static const auditoriaDetalleId ='auditoriaDetalleId';
+  static const gradoVariedadAgencia = 'gradoVariedadAgencia';
+  static const numeroGuiaAgencia ='numeroGuiaAgencia';
+  static const identificadorCajaAgencia='identificadorCajaAgencia';
+  static const temperaturaCajaAgencia = 'temperaturaCajaAgencia';
+  static const tallosPorRamoAgencia='temperaturaCajaAgencia';
+  static const ramosPorCajaAgencia ='ramosPorCajaAgencia';
+  static const numeroTallosMuestreadosAgencia='numeroTallosMuestreadosAgencia';
+ // static const 
+ // TABLA AGENCIA RESPUESTAS
+  static const auditoriaRespuestasTable = 'auditoriaRespuestasTable';
+  static const auditoriaRespuestasId ='auditoriaRespuestasId';
+  static const auditoriaCatindadRespuesta='auditoriaCatindadRespuesta';
+  static const auditoriaTotalRespuesta ='auditoriaTotalRespuesta';
+  static const auditoriaItemId ='auditoriaItemId';
 
   //TABLA DE ERRRORES
   static const errorTable = "error";
@@ -196,6 +218,12 @@ class DatabaseCreator {
     await createTableAuditoriaCausa(db);
     await createTableProcesoTamanoBoton(db);
     await createTableProcesoMaltrato(db);
+    await createTableEvaluacionFinca(db);
+    await createTableEvaluacionFincaDetalle(db);
+    await createTableEvaluacionRespuestas(db);
+    await createTableAuditoriaAgencia(db);
+    await createTableAuditoriaAgenciaDetalle(db);
+    await createTableAuditoriaAgenciaRespuestas(db);
   }
 
   Future<void> createTableError(Database db) async {
@@ -400,4 +428,42 @@ class DatabaseCreator {
     )''';
     await db.execute(evaluacionFincaSql);
   }
+
+    Future<void> createTableAuditoriaAgencia(Database db) async {
+    final auditoriaAgenciaSql = '''CREATE TABLE $auditoriaAgenciaTable
+    (
+      $auditoriaAgenciaId INTEGER PRIMARY KEY AUTOINCREMENT,
+      $fechaAuditoriaAgencia DATE,
+      $postcosechaId NUMERIC,
+      $usuarioId NUMERIC,
+    )''';
+    await db.execute(auditoriaAgenciaSql);
+  }
+
+   Future<void> createTableAuditoriaAgenciaDetalle(Database db) async {
+    final auditoriaAgenciaDetalleSql = '''CREATE TABLE $auditoriaDetalleTable(
+    )
+    (
+      $auditoriaDetalleId INTEGER PRIMARY KEY AUTOINCREMENT,
+      $gradoVariedadAgencia NUMERIC,
+      $tallosPorRamoAgencia NUMERIC,
+      $variedadId NUMERIC,
+      $auditoriaAgenciaId NUMERIC,
+    )''';
+    await db.execute(auditoriaAgenciaDetalleSql);
+  }
+     Future<void> createTableAuditoriaAgenciaRespuestas(Database db) async {
+    final auditoriaAgenciaRespuestaSql = '''CREATE TABLE $auditoriaRespuestasTable(
+    )
+    (
+      $auditoriaRespuestasId INTEGER PRIMARY KEY AUTOINCREMENT,
+      $auditoriaCatindadRespuesta NUMERIC,
+      $auditoriaTotalRespuesta NUMERIC,
+      $auditoriaItemId NUMERIC,
+      $auditoriaDetalleId NUMERIC,
+    )''';
+    await db.execute(auditoriaAgenciaRespuestaSql);
+  }
+  
+
 }
