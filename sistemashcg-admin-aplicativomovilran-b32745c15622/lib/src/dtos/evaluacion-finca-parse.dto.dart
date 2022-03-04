@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:ranking_app/src/core/utils/utils.dart';
+
 EvaluacionFincaParseDto evaluacionFincaParseDtoFromJson(String str) =>
     EvaluacionFincaParseDto.fromJson(json.decode(str));
 
@@ -21,12 +23,12 @@ class EvaluacionFincaParseDto {
 
   factory EvaluacionFincaParseDto.fromJson(Map<String, dynamic> json) =>
       EvaluacionFincaParseDto(
-          usuarioId: json["usuarioId"], //consultar
-          fechaAuditoria: DateTime.tryParse(json["fechaEvaluacionFinca"] ??
-                  DateTime.now().toIso8601String()) ??
-              DateTime.now(),
-          postcosechaId: json["postcosechaId"],
-          tipoEvaluacion: json["tipoEvaluacion"]);
+        evaluacionFincaId: json["evaluacionFincaId"],
+        usuarioId: json["usuarioId"], //consultar
+        fechaAuditoria: parseDate(json["fechaEvaluacionFinca"]),
+        postcosechaId: json["postcosechaId"],
+        tipoEvaluacion: json["tipoEvaluacion"],
+      );
 
   Map<String, dynamic> toJson() => {
         "evaluacionFincaId": evaluacionFincaId,
