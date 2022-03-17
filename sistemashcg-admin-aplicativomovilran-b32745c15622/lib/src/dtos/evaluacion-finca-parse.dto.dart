@@ -19,7 +19,8 @@ class EvaluacionFincaParseDto {
       this.usuarioId,
       this.fechaAuditoria,
       this.postcosechaId,
-      this.tipoEvaluacion});
+      this.tipoEvaluacion,
+      this.evaluacionDetalle});
 
   factory EvaluacionFincaParseDto.fromJson(Map<String, dynamic> json) =>
       EvaluacionFincaParseDto(

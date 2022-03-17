@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:ranking_app/src/repositories/evaluacion-detalle.repository.dart';
 
 import 'src/database-creator.dart';
 import 'src/preference.dart';
@@ -63,6 +64,9 @@ void setUpDI() {
   );
   locator.registerLazySingleton<EvaluacionFincaRepository>(
     () => EvaluacionFincaRepository(locator()),
+  );
+  locator.registerLazySingleton<EvaluacionDetalleRepository>(
+    () => EvaluacionDetalleRepository(locator()),
   );
 
   //

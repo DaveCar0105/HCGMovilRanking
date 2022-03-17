@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:ranking_app/src/ui/pages/evaluacion/tinas-cajas/tinas_cajas_evaluacion_detalle.page.dart';
 
 import '../../../../../locator.dart';
 import '../../../../dtos/evaluacion-finca-mock.dart';
@@ -14,12 +15,21 @@ import '../../../widgets/form_field_widget.dart';
 import '../../../widgets/form_footer.widget.dart';
 import '../../../widgets/section_widget.dart';
 
-class TinasCajasFormWidger extends StatelessWidget {
+class TinasCajasFormWidger extends StatefulWidget {
   TinasCajasFormWidger({Key key}) : super(key: key);
 
+  @override
+  State<TinasCajasFormWidger> createState() => _TinasCajasFormWidgerState();
+}
+
+class _TinasCajasFormWidgerState extends State<TinasCajasFormWidger> {
   final _formKey = GlobalKey<FormBuilderState>();
+
   var cache = {};
+
   var mock = EvaluacionFincaMock.category;
+
+  var evaluacion = EvaluacionFincaParseDto();
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +40,26 @@ class TinasCajasFormWidger extends StatelessWidget {
         child: ListView(
           children: [
             _sectionA(),
-            _sectionB(),
-            CategorySection(
-              formKey: _formKey,
-              category: mock,
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: evaluationDetail(),
             ),
+            Expanded(
+              child: MaterialButton(
+                color: Theme.of(context).colorScheme.secondary,
+                child: Text(
+                  "Agregar Evaluacion",
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: addDetail,
+              ),
+            ),
+            // _sectionB(),
+            // CategorySection(
+            //   formKey: _formKey,
+            //   category: mock,
+            // ),
             FormFooter(
               onSubmit: _onSubmitCallback,
               onReset: _onResetCallbak,
@@ -42,6 +67,37 @@ class TinasCajasFormWidger extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  evaluationDetail() {
+    var size = evaluacion.evaluacionDetalle?.length ?? 0;
+
+    if (size == 0) return Text("No hay detalles de evaluacion");
+
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: evaluacion.evaluacionDetalle?.length ?? 0,
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text("Titulo"),
+          trailing: IconButton(
+            icon: Icon(Icons.close),
+          ),
+          onLongPress: () {
+            removeDetail(index);
+          },
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => EvaluacionDetalle(
+                        evaluacion: evaluacion.evaluacionDetalle[index],
+                      )),
+            );
+          },
+        );
+      },
     );
   }
 
@@ -111,6 +167,9 @@ class TinasCajasFormWidger extends StatelessWidget {
       dto.fechaAuditoria = DateTime.now().toLocal();
       insertResult = await locator<EvaluacionFincaRepository>().insert(dto);
       var resultForm = await locator<EvaluacionFincaRepository>().selectAll();
+
+      //InsertarDetalles Disponibles
+
       print("Resultado insert: " + insertResult.toString());
       print(result.toString());
     } catch (e) {
@@ -126,5 +185,21 @@ class TinasCajasFormWidger extends StatelessWidget {
 
   void _onResetCallbak() {
     _formKey.currentState.reset();
+  }
+
+  void addDetail() {
+    setState(() {
+      if (evaluacion.evaluacionDetalle == null)
+        evaluacion.evaluacionDetalle = [];
+      evaluacion.evaluacionDetalle.add(EvaluacionFincaParseDetalleDto());
+    });
+  }
+
+  void removeDetail(i) {
+    setState(() {
+      if (evaluacion.evaluacionDetalle == null)
+        evaluacion.evaluacionDetalle = [];
+      evaluacion.evaluacionDetalle.removeAt(i);
+    });
   }
 }

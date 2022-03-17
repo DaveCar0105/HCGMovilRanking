@@ -427,7 +427,8 @@ class DatabaseCreator {
       $cantidadRespuesta NUMERIC,
       $totalRespuesta NUMERIC,
       $itemId NUMERIC,
-      $evaluacionDetalleId NUMERIC
+      $evaluacionDetalleId NUMERIC,
+      $evaluacionFincaId NUMERIC
     )''';
     await db.execute(evaluacionFincaSql);
   }

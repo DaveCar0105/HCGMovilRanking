@@ -54,7 +54,7 @@ class _CategorySectionState extends State<CategorySection> {
               ),
             );
           },
-        )
+        ),
       ],
     );
   }
