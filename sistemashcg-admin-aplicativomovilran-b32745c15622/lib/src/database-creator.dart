@@ -462,7 +462,7 @@ class DatabaseCreator {
       $auditoriaAgenciaId INTEGER PRIMARY KEY AUTOINCREMENT,
       $fechaAuditoriaAgencia DATE,
       $postcosechaId NUMERIC,
-      $usuarioId NUMERIC,
+      $usuarioId NUMERIC
     )''';
     await db.execute(auditoriaAgenciaSql);
   }
@@ -475,7 +475,33 @@ class DatabaseCreator {
       $gradoVariedadAgencia NUMERIC,
       $tallosPorRamoAgencia NUMERIC,
       $variedadId NUMERIC,
+      $numeroGuiaAgencia NUMERIC,
+      $identificadorCajaAgencia NUMERIC,
+      $temperaturaCajaAgencia NUMERIC,
+      $tallosPorRamoAgencia NUMERIC,
+      $ramosPorCajaAgencia NUMERIC,
+      $numeroTallosMuestreadosAgencia NUMERIC,
       $auditoriaAgenciaId NUMERIC,
+      $largoDeCajaAuditoriaAgencia NUMERIC,
+      $anchoDeCajaAuditoriaAgencia NUMERIC,
+      $altoDeCajaAuditoriaAgencia NUMERIC,
+      $pesoVolumetricoAuditoriaAgencia NUMERIC,
+      $pesoRealCajaAuditoriaAgencia NUMERIC,
+      $aprovechamientoCajaAuditoriaAgencia NUMERIC,
+      $adjuntarImagenesAuditoriaAgencia NUMERIC,
+      $gradoRamoAuditoriaAgencia NUMERIC,
+      $largoDeRamoAuditoriaAgencia NUMERIC,
+      $anchoDeRamoAuditoriaAgencia NUMERIC,
+      $areaDeRamoAuditoriaAgencia NUMERIC,
+      $tamanoBoton1AuditoriaAgencia NUMERIC,
+      $tamanoBoton2AuditoriaAgencia NUMERIC,
+      $tamanoBoton3AuditoriaAgencia NUMERIC,
+      $tamanoBotonPromedioAuditoriaAgencia NUMERIC,
+      $totalTallosAfectadosAuditoriaAgencia NUMERIC,
+      $gradoCalidadEnBotonAuditoriaAgencia NUMERIC,
+      $gradoCalidadEnFollajeAuditoriaAgencia NUMERIC,
+      $gradoCalidadEnTallosAuditoriaAgencia NUMERIC,
+      $gradoCalidadGeneralAuditoriaAgencia NUMERIC
     )''';
     await db.execute(auditoriaAgenciaDetalleSql);
   }

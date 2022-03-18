@@ -42,19 +42,95 @@ class AuditoriaAgenciaParseDetalleDto {
   int gradoVariedadAgencia;
   int tallosPorRamoAgencia;
   int variedadId;
+  int numeroGuiaAgencia;
+  int identificadorCajaAgencia;
+  int temperaturaCajaAgencia;
+  int ramosPorCajaAgencia;
+  int numeroTallosMuestreadosAgencia;
+  int auditoriaAgenciaId;
+  int largoDeCajaAuditoriaAgencia;
+  int anchoDeCajaAuditoriaAgencia;
+  int altoDeCajaAuditoriaAgencia;
+  double pesoVolumetricoAuditoriaAgencia;
+  double pesoRealCajaAuditoriaAgencia;
+  double aprovechamientoCajaAuditoriaAgencia;
+  int gradoRamoAuditoriaAgencia;
+  int largoDeRamoAuditoriaAgencia;
+  int anchoDeRamoAuditoriaAgencia;
+  int areaDeRamoAuditoriaAgencia;
+  int tamanoBoton1AuditoriaAgencia;
+  int tamanoBoton2AuditoriaAgencia;
+  int tamanoBoton3AuditoriaAgencia;
+  int tamanoBotonPromedioAuditoriaAgencia;
+  int totalTallosAfectadosAuditoriaAgencia;
+  int gradoCalidadEnBotonAuditoriaAgencia;
+  int gradoCalidadEnFollajeAuditoriaAgencia;
+  int gradoCalidadEnTallosAuditoriaAgencia;
+  int gradoCalidadGeneralAuditoriaAgencia;
+
   List<AuditoriaAgenciaParseRespuestaDto> respuestasAgencia;
 
   AuditoriaAgenciaParseDetalleDto({
     
     this.gradoVariedadAgencia,
     this.tallosPorRamoAgencia,
-    this.variedadId
+    this.variedadId,
+    this.numeroGuiaAgencia,
+    this.identificadorCajaAgencia,
+    this.temperaturaCajaAgencia,
+    this.ramosPorCajaAgencia,
+    this.numeroTallosMuestreadosAgencia,
+    this.auditoriaAgenciaId,
+    this.largoDeCajaAuditoriaAgencia,
+    this.anchoDeCajaAuditoriaAgencia,
+    this.altoDeCajaAuditoriaAgencia,
+    this.pesoVolumetricoAuditoriaAgencia,
+    this.pesoRealCajaAuditoriaAgencia,
+    this.aprovechamientoCajaAuditoriaAgencia,
+    this.gradoRamoAuditoriaAgencia,
+    this.largoDeRamoAuditoriaAgencia,
+    this.anchoDeRamoAuditoriaAgencia,
+    this.areaDeRamoAuditoriaAgencia,
+    this.tamanoBoton1AuditoriaAgencia,
+    this.tamanoBoton2AuditoriaAgencia,
+    this.tamanoBoton3AuditoriaAgencia,
+    this.tamanoBotonPromedioAuditoriaAgencia,
+    this.totalTallosAfectadosAuditoriaAgencia,
+    this.gradoCalidadEnBotonAuditoriaAgencia,
+    this.gradoCalidadEnFollajeAuditoriaAgencia,
+    this.gradoCalidadEnTallosAuditoriaAgencia,
+    this.gradoCalidadGeneralAuditoriaAgencia
   });
    factory AuditoriaAgenciaParseDetalleDto.fromJson(Map<String, dynamic> json) => AuditoriaAgenciaParseDetalleDto(
        //consultar
       gradoVariedadAgencia: json["gradoVariedadAgencia"],
       tallosPorRamoAgencia: json["tallosPorRamoAgencia"],
-      variedadId: json["variedadId"]
+      variedadId: json["variedadId"],
+      numeroGuiaAgencia: json["numeroGuiaAgencia"],
+      identificadorCajaAgencia: json["identificadorCajaAgencia"],
+      temperaturaCajaAgencia: json["temperaturaCajaAgencia"],
+      ramosPorCajaAgencia: json["ramosPorCajaAgencia"],
+      numeroTallosMuestreadosAgencia: json["numeroTallosMuestreadosAgencia"],
+      auditoriaAgenciaId:json["auditoriaAgenciaId"],
+      largoDeCajaAuditoriaAgencia: json["largoDeCajaAuditoriaAgencia"],
+      anchoDeCajaAuditoriaAgencia:json["anchoDeCajaAuditoriaAgencia"],
+      altoDeCajaAuditoriaAgencia : json["altoDeCajaAuditoriaAgencia"], 
+      pesoVolumetricoAuditoriaAgencia:json["pesoVolumetricoAuditoriaAgencia"],    
+      pesoRealCajaAuditoriaAgencia: json["pesoRealCajaAuditoriaAgencia"],
+      aprovechamientoCajaAuditoriaAgencia:json["aprovechamientoCajaAuditoriaAgencia"],
+      gradoRamoAuditoriaAgencia:json["gradoRamoAuditoriaAgencia"],
+      largoDeRamoAuditoriaAgencia:json["largoDeRamoAuditoriaAgencia"],
+      anchoDeRamoAuditoriaAgencia:json["anchoDeRamoAuditoriaAgencia"],
+      areaDeRamoAuditoriaAgencia:json["areaDeRamoAuditoriaAgencia"],
+      tamanoBoton1AuditoriaAgencia:json["tamanoBoton1AuditoriaAgencia"],
+      tamanoBoton2AuditoriaAgencia:json["tamanoBoton2AuditoriaAgencia"],
+      tamanoBoton3AuditoriaAgencia:json["tamanoBoton3AuditoriaAgencia"],
+      tamanoBotonPromedioAuditoriaAgencia:json["tamanoBotonPromedioAuditoriaAgencia"],
+      totalTallosAfectadosAuditoriaAgencia: json["totalTallosAfectadosAuditoriaAgencia"],
+      gradoCalidadEnBotonAuditoriaAgencia:json["gradoCalidadEnBotonAuditoriaAgencia"],
+      gradoCalidadEnFollajeAuditoriaAgencia:json["gradoCalidadEnFollajeAuditoriaAgencia"],
+      gradoCalidadEnTallosAuditoriaAgencia:json["gradoCalidadEnTallosAuditoriaAgencia"],
+      gradoCalidadGeneralAuditoriaAgencia:json["gradoCalidadGeneralAuditoriaAgencia"],
      );
 
        Map<String, dynamic> toJson() => {
