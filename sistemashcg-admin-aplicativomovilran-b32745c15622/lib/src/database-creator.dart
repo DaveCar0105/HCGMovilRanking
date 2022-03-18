@@ -193,7 +193,12 @@ class DatabaseCreator {
   static const tamanoBoton2AuditoriaAgencia = 'tamanoBoton2AuditoriaAgencia';
   static const tamanoBoton3AuditoriaAgencia ='tamanoBoton3AuditoriaAgencia';
   static const tamanoBotonPromedioAuditoriaAgencia ='tamanoBotonPromedioAuditoriaAgencia';
- 
+  static const totalTallosAfectadosAuditoriaAgencia='totalTallosAfectadosAuditoriaAgencia';
+  static const gradoCalidadEnBotonAuditoriaAgencia ='gradoCalidadEnBotonAuditoriaAgencia';
+  static const gradoCalidadEnFollajeAuditoriaAgencia='gradoCalidadEnFollajeAuditoriaAgencia';
+  static const gradoCalidadEnTallosAuditoriaAgencia='gradoCalidadEnTallosAuditoriaAgencia';
+  static const gradoCalidadGeneralAuditoriaAgencia='gradoCalidadGeneralAuditoriaAgencia';
+
 
   // static const
   // TABLA AGENCIA RESPUESTAS
