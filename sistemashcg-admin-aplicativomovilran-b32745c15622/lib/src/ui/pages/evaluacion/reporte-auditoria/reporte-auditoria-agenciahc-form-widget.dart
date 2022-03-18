@@ -18,6 +18,7 @@ class EvaluacionEnAgenciaFormWidget extends StatelessWidget {
 
   final _formKey = GlobalKey<FormBuilderState>();
   var mock = EvaluacionFincaDto.category;
+  var cache = {};
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +139,7 @@ class EvaluacionEnAgenciaFormWidget extends StatelessWidget {
           'type': FieldType.numeric,
           'required': true
         },
-      }, _formKey),
+      }, _formKey, cache: cache),
     );
   }
 
@@ -186,7 +187,7 @@ class EvaluacionEnAgenciaFormWidget extends StatelessWidget {
           'type': FieldType.text,
           'required': true
         },
-      }, _formKey),
+      }, _formKey, cache: cache),
     );
   }
 
@@ -216,13 +217,16 @@ class EvaluacionEnAgenciaFormWidget extends StatelessWidget {
           'type': FieldType.numeric,
           'required': true
         },
-      }, _formKey),
+      }, _formKey, cache: cache),
     );
   }
 
   void _onSubmitCallback() async {
     _formKey.currentState.save();
     var result = _formKey.currentState.value;
+    cache.entries.forEach((element) {
+      result[element.key] = element.value;
+    });
     var insertResult;
 
     try {
