@@ -177,6 +177,24 @@ class DatabaseCreator {
   static const ramosPorCajaAgencia = 'ramosPorCajaAgencia';
   static const numeroTallosMuestreadosAgencia =
       'numeroTallosMuestreadosAgencia';
+  static const largoDeCajaAuditoriaAgencia ='largoDeCajaAuditoriaAgencia';
+  static const anchoDeCajaAuditoriaAgencia ='anchoDeCajaAuditoriaAgencia';
+  static const altoDeCajaAuditoriaAgencia ='altoDeCajaAuditoriaAgencia';
+  static const pesoVolumetricoAuditoriaAgencia='pesoVolumetricoAuditoriaAgencia';
+  static const pesoRealCajaAuditoriaAgencia ='pesoRealCajaAuditoriaAgencia';
+  static const aprovechamientoCajaAuditoriaAgencia='aprovechamientoCajaAuditoriaAgencia';
+  static const adjuntarImagenesAuditoriaAgencia ='adjuntarImagenesAuditoriaAgencia';
+  static const variedadRamoAuditoriaAgenciaId='variedadAuditoriaAgenciaId';
+  static const gradoRamoAuditoriaAgencia='gradoRamoAuditoriaAgencia';
+  static const largoDeRamoAuditoriaAgencia ='largoDeRamoAuditoriaAgencia';
+  static const anchoDeRamoAuditoriaAgencia ='anchoDeRamoAuditoriaAgencia';
+  static const areaDeRamoAuditoriaAgencia ='areaDeRamoAuditoriaAgencia';
+  static const tamanoBoton1AuditoriaAgencia ='tamanoBoton1AuditoriaAgencia';
+  static const tamanoBoton2AuditoriaAgencia = 'tamanoBoton2AuditoriaAgencia';
+  static const tamanoBoton3AuditoriaAgencia ='tamanoBoton3AuditoriaAgencia';
+  static const tamanoBotonPromedioAuditoriaAgencia ='tamanoBotonPromedioAuditoriaAgencia';
+ 
+
   // static const
   // TABLA AGENCIA RESPUESTAS
   static const auditoriaRespuestasTable = 'auditoriaRespuestasTable';
