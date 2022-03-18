@@ -446,8 +446,6 @@ class DatabaseCreator {
 
   Future<void> createTableAuditoriaAgenciaDetalle(Database db) async {
     final auditoriaAgenciaDetalleSql = '''CREATE TABLE $auditoriaDetalleTable(
-    )
-    (
       $auditoriaDetalleId INTEGER PRIMARY KEY AUTOINCREMENT,
       $gradoVariedadAgencia NUMERIC,
       $tallosPorRamoAgencia NUMERIC,
@@ -460,8 +458,6 @@ class DatabaseCreator {
   Future<void> createTableAuditoriaAgenciaRespuestas(Database db) async {
     final auditoriaAgenciaRespuestaSql =
         '''CREATE TABLE $auditoriaRespuestasTable(
-    )
-    (
       $auditoriaRespuestasId INTEGER PRIMARY KEY AUTOINCREMENT,
       $auditoriaCatindadRespuesta NUMERIC,
       $auditoriaTotalRespuesta NUMERIC,
