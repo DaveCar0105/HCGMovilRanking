@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/src/form_builder.dart';
-import 'package:ranking_app/src/dtos/evaluacion-finca-form-parse.dto.dart';
 
-import '../../dtos/evaluacion-finca-mock.dart';
-import '../../dtos/range.dto.dart';
+import '../../dtos/evaluacion-finca-form-parse.dto.dart';
 import 'form_field_widget.dart';
 
 class SubCategorySection extends StatefulWidget {
@@ -46,7 +44,7 @@ class _SubCategorySectionState extends State<SubCategorySection> {
                   'required': true
                 },
                 nameResult: {
-                  'label': 'Tipo evaluacion',
+                  'label': '${e.itemNombreMostrar} Resultado',
                   'type': FieldType.numberResult,
                   'required': true
                 },

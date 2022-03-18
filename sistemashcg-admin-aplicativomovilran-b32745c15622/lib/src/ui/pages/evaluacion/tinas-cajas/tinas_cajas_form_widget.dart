@@ -9,6 +9,7 @@ import '../../../../preference.dart';
 import '../../../../repositories/evaluacion-finca.repository.dart';
 import '../../../../repositories/postcosecha.repository.dart';
 import '../../../../repositories/variedad.repository.dart';
+import '../../../widgets/divider_widget.dart';
 import '../../../widgets/form_field_widget.dart';
 import '../../../widgets/form_footer.widget.dart';
 import '../../../widgets/section_widget.dart';
@@ -47,7 +48,7 @@ class _TinasCajasFormWidgerState extends State<TinasCajasFormWidger> {
         child: ListView(
           children: [
             _sectionA(),
-
+            Header(displayText: Text("Mesas a Evaluar")),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: evaluationDetail(),
@@ -78,41 +79,57 @@ class _TinasCajasFormWidgerState extends State<TinasCajasFormWidger> {
   evaluationDetail() {
     var size = evaluacion.evaluacionDetalle?.length ?? 0;
 
-    if (size == 0) return Text("No hay detalles de evaluacion");
+    if (size == 0)
+      return Center(
+        child: Column(
+          children: [
+            Icon(
+              Icons.warning_amber_rounded,
+              color: Colors.redAccent,
+              size: 64,
+            ),
+            Text("No hay detalles de evaluacion"),
+          ],
+        ),
+      );
 
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: evaluacion.evaluacionDetalle?.length ?? 0,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: InkWell(
-            child: Text("Titulo"),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => EvaluacionDetalle(
-                    //evaluacion: evaluacion.evaluacionDetalle[index],
-                    form: widget.form,
-                  ),
-                ),
-              );
-            },
-          ),
-          trailing: IconButton(
-            icon: Icon(Icons.close),
-            onPressed: () {
-              removeDetail(index);
-            },
-          ),
-        );
-      },
+    return Column(
+      children: [
+        ListView.builder(
+          shrinkWrap: true,
+          itemCount: evaluacion.evaluacionDetalle?.length ?? 0,
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: InkWell(
+                child: Text("Titulo"),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EvaluacionDetalle(
+                        //evaluacion: evaluacion.evaluacionDetalle[index],
+                        form: widget.form,
+                      ),
+                    ),
+                  );
+                },
+              ),
+              trailing: IconButton(
+                icon: Icon(Icons.close),
+                onPressed: () {
+                  removeDetail(index);
+                },
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 
   SurveySection _sectionA() {
     return SurveySection(
-      title: Text('Información General'),
+      title: Text(widget.form.formularioNombreDesplazar),
       content: FormFieldWidget.generateElements({
         'postcosechaId': {
           'label': 'Nombre Sub-Finca (si aplica) ',

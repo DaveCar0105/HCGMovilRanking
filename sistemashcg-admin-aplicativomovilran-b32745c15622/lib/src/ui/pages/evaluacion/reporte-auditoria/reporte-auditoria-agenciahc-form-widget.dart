@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:ranking_app/src/repositories/carguera.repository.dart';
-import 'package:ranking_app/src/repositories/cliente.repository.dart';
-import 'package:ranking_app/src/repositories/pais.repository.dart';
-import 'package:ranking_app/src/repositories/tipo-caja.repository.dart';
 
 import '../../../../../locator.dart';
 import '../../../../dtos/evaluacion-finca-mock.dart';
+import '../../../../repositories/carguera.repository.dart';
+import '../../../../repositories/cliente.repository.dart';
+import '../../../../repositories/pais.repository.dart';
 import '../../../../repositories/postcosecha.repository.dart';
+import '../../../../repositories/tipo-caja.repository.dart';
 import '../../../../repositories/variedad.repository.dart';
-import '../../../widgets/category_section.dart';
 import '../../../widgets/form_field_widget.dart';
 import '../../../widgets/form_footer.widget.dart';
 import '../../../widgets/section_widget.dart';
-import '../../../widgets/selectable_selection.dart';
 
 class EvaluacionEnAgenciaFormWidget extends StatelessWidget {
   EvaluacionEnAgenciaFormWidget({Key key}) : super(key: key);
@@ -33,9 +31,9 @@ class EvaluacionEnAgenciaFormWidget extends StatelessWidget {
             _seccionAnalisisMuestra(),
             _sectionC(),
             // _sectionB(),
-            CategorySection(
-              formKey: _formKey,
-            ),
+            // CategorySection(
+            //   formKey: _formKey,
+            // ),
             FormFooter(
               onSubmit: _onSubmitCallback,
               onReset: _onResetCallbak,
