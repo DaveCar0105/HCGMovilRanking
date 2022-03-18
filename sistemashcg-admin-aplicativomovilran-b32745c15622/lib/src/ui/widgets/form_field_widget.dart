@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_image_picker/form_builder_image_picker.dart';
-import 'package:ranking_app/src/dtos/evaluacion-finca-mock.dart';
-import 'package:ranking_app/src/dtos/generic.dto.dart';
 
-import '../../dtos/range.dto.dart';
+import '../../dtos/evaluacion-finca-form-parse.dto.dart';
+import '../../dtos/generic.dto.dart';
 
 enum FieldType {
   date,
@@ -81,7 +80,7 @@ class FormFieldWidget extends StatelessWidget {
         onChanged: (_) {
           var a = int.tryParse(_);
           var rangesList = e.value['ranges'];
-          Item ite = e.value['item'];
+          Respuesta ite = e.value['item'];
           print(a);
           _getRange(a, rangesList, e.value['result'], ite);
           print(a);
@@ -193,9 +192,9 @@ class FormFieldWidget extends StatelessWidget {
 
   _getRange(
     int i,
-    List<Range> ranges,
+    List<ItemsRango> ranges,
     String v,
-    Item item,
+    Respuesta item,
   ) {
     if (ranges.isNotEmpty) {
       var result = _computeRange(i, ranges);
@@ -209,7 +208,7 @@ class FormFieldWidget extends StatelessWidget {
     }
   }
 
-  _computeRange(i, List<Range> ranges) {
+  _computeRange(i, List<ItemsRango> ranges) {
     try {
       var result = ranges
           .where(

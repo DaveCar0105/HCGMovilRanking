@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/src/form_builder.dart';
+import 'package:ranking_app/src/dtos/evaluacion-finca-form-parse.dto.dart';
 
 import '../../dtos/evaluacion-finca-mock.dart';
 import '../../dtos/range.dto.dart';
 import 'form_field_widget.dart';
 
 class SubCategorySection extends StatefulWidget {
-  final Category category;
-  final SubCategory subCategory;
+  final Categoria category;
+  final Subcategoria subCategory;
   final GlobalKey<FormBuilderState> formkey;
 
   SubCategorySection({
@@ -31,7 +32,7 @@ class _SubCategorySectionState extends State<SubCategorySection> {
       return Column(
         children: answersList.map(
           (e) {
-            List<Range> ranges = e.itemsRango;
+            List<ItemsRango> ranges = e.itemsRango;
             var name = e.itemNombre;
             var nameResult = '${name}Result';
             return Row(

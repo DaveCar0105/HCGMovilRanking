@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 import '../../../../../locator.dart';
+import '../../../../dtos/evaluacion-finca-form-parse.dto.dart';
 import '../../../../dtos/evaluacion-finca-mock.dart';
 import '../../../../dtos/evaluacion-finca-parse.dto.dart';
 import '../../../../dtos/session.dto.dart';
 import '../../../../preference.dart';
 import '../../../../repositories/evaluacion-detalle.repository.dart';
-import '../../../../repositories/evaluacion-finca.repository.dart';
-import '../../../../repositories/postcosecha.repository.dart';
 import '../../../../repositories/variedad.repository.dart';
 import '../../../widgets/category_section.dart';
 import '../../../widgets/form_field_widget.dart';
@@ -16,11 +15,12 @@ import '../../../widgets/form_footer.widget.dart';
 import '../../../widgets/section_widget.dart';
 
 class EvaluacionDetalle extends StatelessWidget {
-  EvaluacionDetalle({Key key, this.evaluacion}) : super(key: key);
+  EvaluacionDetalle({Key key, this.form}) : super(key: key);
 
   final _formKey = GlobalKey<FormBuilderState>();
   var cache = {};
-  final EvaluacionFincaParseDetalleDto evaluacion;
+  //final EvaluacionFincaParseDetalleDto evaluacion;
+  final Forms form;
   var mock = EvaluacionFincaDto.category;
 
   @override
@@ -33,7 +33,10 @@ class EvaluacionDetalle extends StatelessWidget {
           child: ListView(
             children: [
               _sectionB(),
-              CategorySection(formKey: _formKey, category: mock),
+              CategorySection(
+                formKey: _formKey,
+                category: form?.categorias[0] ?? Categoria(),
+              ),
               FormFooter(
                 onSubmit: _onSubmitCallback,
                 onReset: _onResetCallbak,

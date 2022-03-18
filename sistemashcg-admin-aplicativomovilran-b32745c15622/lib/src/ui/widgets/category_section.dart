@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/src/form_builder.dart';
-import 'package:ranking_app/src/ui/widgets/selectable_selection.dart';
-import 'package:ranking_app/src/ui/widgets/sub_category_section.dart';
 
-import '../../dtos/evaluacion-finca-mock.dart';
+import '../../dtos/evaluacion-finca-form-parse.dto.dart';
 import 'divider_widget.dart';
+import 'selectable_selection.dart';
+import 'sub_category_section.dart';
 
 class CategorySection extends StatefulWidget {
-  final Category category;
+  final Categoria category;
   final GlobalKey<FormBuilderState> formKey;
 
   CategorySection({
@@ -36,7 +36,7 @@ class _CategorySectionState extends State<CategorySection> {
           shrinkWrap: true,
           itemCount: widget.category.subcategorias.length,
           itemBuilder: (context, index) {
-            SubCategory actualElement = widget.category.subcategorias[index];
+            Subcategoria actualElement = widget.category.subcategorias[index];
             return Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(

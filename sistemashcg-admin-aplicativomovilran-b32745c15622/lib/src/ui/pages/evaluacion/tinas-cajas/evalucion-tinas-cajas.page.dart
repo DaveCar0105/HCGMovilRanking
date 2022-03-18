@@ -1,38 +1,22 @@
 import 'package:flutter/material.dart';
 
+import '../../../../dtos/evaluacion-finca-form-parse.dto.dart';
 import 'tinas_cajas_form_widget.dart';
 
-class EvaluacionTinasCajasPage extends StatefulWidget {
-  bool valor;
-  int ramosId;
-  EvaluacionTinasCajasPage(bool valor, int ramosId) {
-    this.valor = valor;
-    this.ramosId = ramosId;
-  }
+class EvaluacionTinasCajasPage extends StatelessWidget {
+  final Forms forms;
 
-  @override
-  _EvaluacionTinasCajasState createState() =>
-      _EvaluacionTinasCajasState(this.valor, this.ramosId);
-}
-
-class _EvaluacionTinasCajasState extends State<EvaluacionTinasCajasPage> {
-  final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
-
-  bool elite = false;
-  int ramosId = 1;
-  _EvaluacionTinasCajasState(bool valor, int ramosId) {
-    elite = valor;
-    ramosId = ramosId;
-  }
+  EvaluacionTinasCajasPage(this.forms);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
       appBar: AppBar(
         title: Text('EVALUACION DE TINAS Y CAJAS'),
       ),
-      body: TinasCajasFormWidger(),
+      body: TinasCajasFormWidger(
+        form: forms,
+      ),
     );
   }
 }

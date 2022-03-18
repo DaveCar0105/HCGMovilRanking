@@ -35,7 +35,6 @@ class EvaluacionEnAgenciaFormWidget extends StatelessWidget {
             // _sectionB(),
             CategorySection(
               formKey: _formKey,
-              category: mock,
             ),
             FormFooter(
               onSubmit: _onSubmitCallback,

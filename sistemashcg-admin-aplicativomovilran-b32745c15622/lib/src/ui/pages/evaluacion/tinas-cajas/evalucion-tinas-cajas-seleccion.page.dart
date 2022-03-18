@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../dtos/evaluacion-finca-form-parse.dto.dart';
 import '../../../../services/form.service.dart';
+import 'evalucion-tinas-cajas.page.dart';
 import 'tinas_cajas_form_widget.dart';
 
 class EvaluacionTinasCajasSeleccionPage extends StatefulWidget {
@@ -44,8 +45,18 @@ class _EvaluacionTinasCajasState
           return ListView.builder(
               itemCount: forms?.length ?? 0,
               itemBuilder: (_, i) {
+                Forms actualForms = forms[i];
                 return ListTile(
-                  title: Text(forms[i].formularioNombreDesplazar),
+                  title: Text(actualForms.formularioNombreDesplazar),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            EvaluacionTinasCajasPage(actualForms),
+                      ),
+                    );
+                  },
                 );
               });
         },

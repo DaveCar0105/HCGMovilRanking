@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:ranking_app/src/ui/pages/evaluacion/tinas-cajas/tinas_cajas_evaluacion_detalle.page.dart';
 
 import '../../../../../locator.dart';
-import '../../../../dtos/evaluacion-finca-mock.dart';
+import '../../../../dtos/evaluacion-finca-form-parse.dto.dart';
 import '../../../../dtos/evaluacion-finca-parse.dto.dart';
 import '../../../../dtos/session.dto.dart';
 import '../../../../preference.dart';
 import '../../../../repositories/evaluacion-finca.repository.dart';
 import '../../../../repositories/postcosecha.repository.dart';
 import '../../../../repositories/variedad.repository.dart';
-import '../../../widgets/category_section.dart';
 import '../../../widgets/form_field_widget.dart';
 import '../../../widgets/form_footer.widget.dart';
 import '../../../widgets/section_widget.dart';
+import 'tinas_cajas_evaluacion_detalle.page.dart';
 
 class TinasCajasFormWidger extends StatefulWidget {
-  TinasCajasFormWidger({Key key}) : super(key: key);
+  final Forms form;
+
+  TinasCajasFormWidger({Key key, this.form}) : super(key: key);
 
   @override
   State<TinasCajasFormWidger> createState() => _TinasCajasFormWidgerState();
@@ -27,9 +28,15 @@ class _TinasCajasFormWidgerState extends State<TinasCajasFormWidger> {
 
   var cache = {};
 
-  var mock = EvaluacionFincaDto.category;
+  var mock;
 
   var evaluacion = EvaluacionFincaParseDto();
+
+  @override
+  void initState() {
+    mock = widget.form;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +92,8 @@ class _TinasCajasFormWidgerState extends State<TinasCajasFormWidger> {
                 context,
                 MaterialPageRoute(
                   builder: (context) => EvaluacionDetalle(
-                    evaluacion: evaluacion.evaluacionDetalle[index],
+                    //evaluacion: evaluacion.evaluacionDetalle[index],
+                    form: widget.form,
                   ),
                 ),
               );
