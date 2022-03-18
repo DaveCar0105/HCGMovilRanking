@@ -177,6 +177,37 @@ class DatabaseCreator {
   static const ramosPorCajaAgencia = 'ramosPorCajaAgencia';
   static const numeroTallosMuestreadosAgencia =
       'numeroTallosMuestreadosAgencia';
+  static const largoDeCajaAuditoriaAgencia = 'largoDeCajaAuditoriaAgencia';
+  static const anchoDeCajaAuditoriaAgencia = 'anchoDeCajaAuditoriaAgencia';
+  static const altoDeCajaAuditoriaAgencia = 'altoDeCajaAuditoriaAgencia';
+  static const pesoVolumetricoAuditoriaAgencia =
+      'pesoVolumetricoAuditoriaAgencia';
+  static const pesoRealCajaAuditoriaAgencia = 'pesoRealCajaAuditoriaAgencia';
+  static const aprovechamientoCajaAuditoriaAgencia =
+      'aprovechamientoCajaAuditoriaAgencia';
+  static const adjuntarImagenesAuditoriaAgencia =
+      'adjuntarImagenesAuditoriaAgencia';
+  static const variedadRamoAuditoriaAgenciaId = 'variedadAuditoriaAgenciaId';
+  static const gradoRamoAuditoriaAgencia = 'gradoRamoAuditoriaAgencia';
+  static const largoDeRamoAuditoriaAgencia = 'largoDeRamoAuditoriaAgencia';
+  static const anchoDeRamoAuditoriaAgencia = 'anchoDeRamoAuditoriaAgencia';
+  static const areaDeRamoAuditoriaAgencia = 'areaDeRamoAuditoriaAgencia';
+  static const tamanoBoton1AuditoriaAgencia = 'tamanoBoton1AuditoriaAgencia';
+  static const tamanoBoton2AuditoriaAgencia = 'tamanoBoton2AuditoriaAgencia';
+  static const tamanoBoton3AuditoriaAgencia = 'tamanoBoton3AuditoriaAgencia';
+  static const tamanoBotonPromedioAuditoriaAgencia =
+      'tamanoBotonPromedioAuditoriaAgencia';
+  static const totalTallosAfectadosAuditoriaAgencia =
+      'totalTallosAfectadosAuditoriaAgencia';
+  static const gradoCalidadEnBotonAuditoriaAgencia =
+      'gradoCalidadEnBotonAuditoriaAgencia';
+  static const gradoCalidadEnFollajeAuditoriaAgencia =
+      'gradoCalidadEnFollajeAuditoriaAgencia';
+  static const gradoCalidadEnTallosAuditoriaAgencia =
+      'gradoCalidadEnTallosAuditoriaAgencia';
+  static const gradoCalidadGeneralAuditoriaAgencia =
+      'gradoCalidadGeneralAuditoriaAgencia';
+
   // static const
   // TABLA AGENCIA RESPUESTAS
   static const auditoriaRespuestasTable = 'auditoriaRespuestasTable';
@@ -446,11 +477,37 @@ class DatabaseCreator {
 
   Future<void> createTableAuditoriaAgenciaDetalle(Database db) async {
     final auditoriaAgenciaDetalleSql = '''CREATE TABLE $auditoriaDetalleTable(
-      $auditoriaDetalleId INTEGER PRIMARY KEY AUTOINCREMENT,
+      $auditoriaAgenciaId INTEGER PRIMARY KEY AUTOINCREMENT,
       $gradoVariedadAgencia NUMERIC,
       $tallosPorRamoAgencia NUMERIC,
       $variedadId NUMERIC,
-      $auditoriaAgenciaId NUMERIC
+      $numeroGuiaAgencia NUMERIC,
+      $identificadorCajaAgencia NUMERIC,
+      $temperaturaCajaAgencia NUMERIC,
+      $tallosPorRamoAgencia NUMERIC,
+      $ramosPorCajaAgencia NUMERIC,
+      $numeroTallosMuestreadosAgencia NUMERIC,
+      $auditoriaAgenciaId NUMERIC,
+      $largoDeCajaAuditoriaAgencia NUMERIC,
+      $anchoDeCajaAuditoriaAgencia NUMERIC,
+      $altoDeCajaAuditoriaAgencia NUMERIC,
+      $pesoVolumetricoAuditoriaAgencia NUMERIC,
+      $pesoRealCajaAuditoriaAgencia NUMERIC,
+      $aprovechamientoCajaAuditoriaAgencia NUMERIC,
+      $adjuntarImagenesAuditoriaAgencia NUMERIC,
+      $gradoRamoAuditoriaAgencia NUMERIC,
+      $largoDeRamoAuditoriaAgencia NUMERIC,
+      $anchoDeRamoAuditoriaAgencia NUMERIC,
+      $areaDeRamoAuditoriaAgencia NUMERIC,
+      $tamanoBoton1AuditoriaAgencia NUMERIC,
+      $tamanoBoton2AuditoriaAgencia NUMERIC,
+      $tamanoBoton3AuditoriaAgencia NUMERIC,
+      $tamanoBotonPromedioAuditoriaAgencia NUMERIC,
+      $totalTallosAfectadosAuditoriaAgencia NUMERIC,
+      $gradoCalidadEnBotonAuditoriaAgencia NUMERIC,
+      $gradoCalidadEnFollajeAuditoriaAgencia NUMERIC,
+      $gradoCalidadEnTallosAuditoriaAgencia NUMERIC,
+      $gradoCalidadGeneralAuditoriaAgencia NUMERIC
     )''';
     await db.execute(auditoriaAgenciaDetalleSql);
   }
