@@ -173,7 +173,7 @@ class DatabaseCreator {
   static const numeroGuiaAgencia = 'numeroGuiaAgencia';
   static const identificadorCajaAgencia = 'identificadorCajaAgencia';
   static const temperaturaCajaAgencia = 'temperaturaCajaAgencia';
-  static const tallosPorRamoAgencia = 'temperaturaCajaAgencia';
+  static const tallosPorRamoAgencia = 'tallosPorRamoAgencia';
   static const ramosPorCajaAgencia = 'ramosPorCajaAgencia';
   static const numeroTallosMuestreadosAgencia =
       'numeroTallosMuestreadosAgencia';
@@ -479,7 +479,6 @@ class DatabaseCreator {
     final auditoriaAgenciaDetalleSql = '''CREATE TABLE $auditoriaDetalleTable(
       $auditoriaAgenciaId INTEGER PRIMARY KEY AUTOINCREMENT,
       $gradoVariedadAgencia NUMERIC,
-      $tallosPorRamoAgencia NUMERIC,
       $variedadId NUMERIC,
       $numeroGuiaAgencia NUMERIC,
       $identificadorCajaAgencia NUMERIC,
@@ -487,7 +486,6 @@ class DatabaseCreator {
       $tallosPorRamoAgencia NUMERIC,
       $ramosPorCajaAgencia NUMERIC,
       $numeroTallosMuestreadosAgencia NUMERIC,
-      $auditoriaAgenciaId NUMERIC,
       $largoDeCajaAuditoriaAgencia NUMERIC,
       $anchoDeCajaAuditoriaAgencia NUMERIC,
       $altoDeCajaAuditoriaAgencia NUMERIC,
