@@ -12,15 +12,39 @@ class AuditoriaAgenciaRepository{
 
   Future<bool> insert(AuditoriaAgenciaParseDto auditoriaAgenciaParseDto)async {
 
-    final sql ='''INSERT INTO ${DatabaseCreator.evaluacionFincaTable}(
+    final sql ='''INSERT INTO ${DatabaseCreator.auditoriaAgenciaTable}(
 
     ${DatabaseCreator.fechaAuditoriaAgencia},
+    ${DatabaseCreator.cantidadCajasAuditoriaAgencia},
+    ${DatabaseCreator.gradoAuditoriaAgencia},
+    ${DatabaseCreator.numeroGuiaAgencia},
+    ${DatabaseCreator.identificadorCajaAgencia},
+    ${DatabaseCreator.temperaturaCajaAgencia},
+    ${DatabaseCreator.numeroTallosAgencia},
+    ${DatabaseCreator.numeroRamosAgencia},
+    ${DatabaseCreator.numeroTallosMuestreadosAgencia},
     ${DatabaseCreator.postcosechaId},
     ${DatabaseCreator.usuarioId}
+    ${DatabaseCreator.cargueraId},
+    ${DatabaseCreator.clienteId},
+    ${DatabaseCreator.paisId},
+    ${DatabaseCreator.tipoCajaId},
     )VALUES(
       '${auditoriaAgenciaParseDto.fechaAuditoriaAgencia}',
+      ${auditoriaAgenciaParseDto.cantidadCajasAuditoriaAgencia},
+      ${auditoriaAgenciaParseDto.gradoAuditoriaAgencia},
+      ${auditoriaAgenciaParseDto.numeroGuiaAgencia},
+      ${auditoriaAgenciaParseDto.identificadorCajaAgencia},
+      ${auditoriaAgenciaParseDto.temperaturaCajaAgencia},
+      ${auditoriaAgenciaParseDto.numeroTallosAgencia},
+      ${auditoriaAgenciaParseDto.numeroRamosAgencia},
+      ${auditoriaAgenciaParseDto.numeroTallosMuestreadosAgencia},
       ${auditoriaAgenciaParseDto.postcosechaId},
       ${auditoriaAgenciaParseDto.usuarioId},
+      ${auditoriaAgenciaParseDto.cargueraId},
+      ${auditoriaAgenciaParseDto.clienteId},
+      ${auditoriaAgenciaParseDto.paisId},
+      ${auditoriaAgenciaParseDto.tipoCajaId}
       ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}
 
     )''';

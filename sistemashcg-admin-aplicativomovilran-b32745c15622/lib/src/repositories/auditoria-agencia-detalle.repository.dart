@@ -13,11 +13,12 @@ class AuditoriaAgenciaDetalleRepository{
   Future<bool> insert(AuditoriaAgenciaParseDetalleDto auditoriaAgenciaParseDetalleDto)async {
 
     final sql ='''INSERT INTO ${DatabaseCreator.auditoriaDetalleTable}(
-
+    '${DatabaseCreator.numeroMesa}',
     ${DatabaseCreator.gradoVariedadAgencia},
     ${DatabaseCreator.tallosPorRamoAgencia},
     ${DatabaseCreator.variedadId}
     )VALUES(
+      '${auditoriaAgenciaParseDetalleDto.numeroMesa}'
       ${auditoriaAgenciaParseDetalleDto.gradoVariedadAgencia},
       ${auditoriaAgenciaParseDetalleDto.tallosPorRamoAgencia},
       ${auditoriaAgenciaParseDetalleDto.variedadId},

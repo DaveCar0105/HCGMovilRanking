@@ -14,11 +14,11 @@ class AuditoriaAgenciaRespuestasRepository{
 
     final sql ='''INSERT INTO ${DatabaseCreator.auditoriaRespuestasTable}(
 
-    ${DatabaseCreator.auditoriaItemId},
+    ${DatabaseCreator.itemId},
     ${DatabaseCreator.auditoriaCatindadRespuesta},
     ${DatabaseCreator.auditoriaTotalRespuesta}
     )VALUES(
-      ${auditoriaAgenciaParseRespuestaDto.auditoriaItemId},
+      ${auditoriaAgenciaParseRespuestaDto.itemId},
       ${auditoriaAgenciaParseRespuestaDto.auditoriaCatindadRespuesta},
       ${auditoriaAgenciaParseRespuestaDto.auditoriaTotalRespuesta},
       ${ConstantDatabase.DB_COLUMN_ESTADO_DEAULT_ACTVIO}

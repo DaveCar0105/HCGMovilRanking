@@ -166,17 +166,27 @@ class DatabaseCreator {
   static const auditoriaAgenciaTable = 'auditoriaAgenciaTable';
   static const auditoriaAgenciaId = 'auditoriaAgenciaId';
   static const fechaAuditoriaAgencia = 'fechaAuditoriaAgencia';
+  static const cantidadCajasAuditoriaAgencia='cantidadCajasAuditoriaAgencia';
+  static const gradoAuditoriaAgencia='gradoAuditoriaAgencia';
+  static const numeroGuiaAgencia = 'numeroGuiaAgencia';
+  static const identificadorCajaAgencia = 'identificadorCajaAgencia';
+  static const temperaturaCajaAgencia = 'temperaturaCajaAgencia';
+  static const numeroTallosAgencia ='numeroTallosAgencia';
+  static const numeroRamosAgencia='numeroRamosAgencia';
+  static const numeroTallosMuestreadosAgencia =
+      'numeroTallosMuestreadosAgencia';
+
+
   //TABALA AUDITORIA EN AGENCIA DETALLE
   static const auditoriaDetalleTable = 'auditoriaDetalleTable';
   static const auditoriaDetalleId = 'auditoriaDetalleId';
   static const gradoVariedadAgencia = 'gradoVariedadAgencia';
-  static const numeroGuiaAgencia = 'numeroGuiaAgencia';
-  static const identificadorCajaAgencia = 'identificadorCajaAgencia';
-  static const temperaturaCajaAgencia = 'temperaturaCajaAgencia';
+  
+  
+  
   static const tallosPorRamoAgencia = 'tallosPorRamoAgencia';
   static const ramosPorCajaAgencia = 'ramosPorCajaAgencia';
-  static const numeroTallosMuestreadosAgencia =
-      'numeroTallosMuestreadosAgencia';
+  
   static const largoDeCajaAuditoriaAgencia = 'largoDeCajaAuditoriaAgencia';
   static const anchoDeCajaAuditoriaAgencia = 'anchoDeCajaAuditoriaAgencia';
   static const altoDeCajaAuditoriaAgencia = 'altoDeCajaAuditoriaAgencia';
@@ -469,43 +479,32 @@ class DatabaseCreator {
     (
       $auditoriaAgenciaId INTEGER PRIMARY KEY AUTOINCREMENT,
       $fechaAuditoriaAgencia DATE,
+      $cantidadCajasAuditoriaAgencia NUMERIC,
+      $gradoAuditoriaAgencia NUMERIC,
+      $numeroGuiaAgencia NUMERIC,
+      $identificadorCajaAgencia NUMERIC,
+      $temperaturaCajaAgencia NUMERIC,
+      $numeroTallosAgencia NUMERIC,
+      $numeroRamosAgencia NUMERIC,
+      $numeroTallosMuestreadosAgencia NUMERIC,
       $postcosechaId NUMERIC,
-      $usuarioId NUMERIC
+      $usuarioId NUMERIC,
+      $cargueraId NUMERIC,
+      $clienteId NUMERIC,
+      $paisId NUMERIC,
+      $tipoCajaId NUMERIC
     )''';
     await db.execute(auditoriaAgenciaSql);
   }
 
   Future<void> createTableAuditoriaAgenciaDetalle(Database db) async {
     final auditoriaAgenciaDetalleSql = '''CREATE TABLE $auditoriaDetalleTable(
-      $auditoriaAgenciaId INTEGER PRIMARY KEY AUTOINCREMENT,
+      $auditoriaDetalleId INTEGER PRIMARY KEY AUTOINCREMENT,
+      $numeroMesa TEXT,
       $gradoVariedadAgencia NUMERIC,
-      $variedadId NUMERIC,
-      $numeroGuiaAgencia NUMERIC,
-      $identificadorCajaAgencia NUMERIC,
-      $temperaturaCajaAgencia NUMERIC,
       $tallosPorRamoAgencia NUMERIC,
-      $ramosPorCajaAgencia NUMERIC,
-      $numeroTallosMuestreadosAgencia NUMERIC,
-      $largoDeCajaAuditoriaAgencia NUMERIC,
-      $anchoDeCajaAuditoriaAgencia NUMERIC,
-      $altoDeCajaAuditoriaAgencia NUMERIC,
-      $pesoVolumetricoAuditoriaAgencia NUMERIC,
-      $pesoRealCajaAuditoriaAgencia NUMERIC,
-      $aprovechamientoCajaAuditoriaAgencia NUMERIC,
-      $adjuntarImagenesAuditoriaAgencia NUMERIC,
-      $gradoRamoAuditoriaAgencia NUMERIC,
-      $largoDeRamoAuditoriaAgencia NUMERIC,
-      $anchoDeRamoAuditoriaAgencia NUMERIC,
-      $areaDeRamoAuditoriaAgencia NUMERIC,
-      $tamanoBoton1AuditoriaAgencia NUMERIC,
-      $tamanoBoton2AuditoriaAgencia NUMERIC,
-      $tamanoBoton3AuditoriaAgencia NUMERIC,
-      $tamanoBotonPromedioAuditoriaAgencia NUMERIC,
-      $totalTallosAfectadosAuditoriaAgencia NUMERIC,
-      $gradoCalidadEnBotonAuditoriaAgencia NUMERIC,
-      $gradoCalidadEnFollajeAuditoriaAgencia NUMERIC,
-      $gradoCalidadEnTallosAuditoriaAgencia NUMERIC,
-      $gradoCalidadGeneralAuditoriaAgencia NUMERIC
+      $variedadId NUMERIC,
+      $auditoriaAgenciaId NUMERIC
     )''';
     await db.execute(auditoriaAgenciaDetalleSql);
   }
@@ -516,7 +515,7 @@ class DatabaseCreator {
       $auditoriaRespuestasId INTEGER PRIMARY KEY AUTOINCREMENT,
       $auditoriaCatindadRespuesta NUMERIC,
       $auditoriaTotalRespuesta NUMERIC,
-      $auditoriaItemId NUMERIC,
+      $itemId NUMERIC,
       $auditoriaDetalleId NUMERIC
     )''';
     await db.execute(auditoriaAgenciaRespuestaSql);
