@@ -21,7 +21,7 @@ class EvaluacionDetalle extends StatelessWidget {
   final _formKey = GlobalKey<FormBuilderState>();
   var cache = {};
   final EvaluacionFincaParseDetalleDto evaluacion;
-  var mock = EvaluacionFincaMock.category;
+  var mock = EvaluacionFincaDto.category;
 
   @override
   Widget build(BuildContext context) {

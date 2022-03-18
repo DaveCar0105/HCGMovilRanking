@@ -1,6 +1,6 @@
 import 'package:ranking_app/src/dtos/range.dto.dart';
 
-class EvaluacionFincaMock {
+class EvaluacionFincaDto {
   var categorias;
 
   static Category category = Category()
@@ -45,6 +45,66 @@ class EvaluacionFincaMock {
         ..subcategoriaId = 100
         ..subcategoriaNombre = "boton"
         ..subcategoriaNombreDesplazar = 'Botón'
+        ..respuestas = [
+          Item()
+            ..itemId = 1
+            ..itemNombre = "tallo"
+            ..itemNombreMostrar = "Numero Tallo"
+            ..itemsRango = [
+              Range()
+                ..minimo = 1
+                ..maximo = 10
+                ..cantidadaDisminuir = 2,
+              Range()
+                ..minimo = 10
+                ..maximo = 50
+                ..cantidadaDisminuir = 3
+            ]
+        ]
+    ];
+
+  static Category secondCategory = Category()
+    ..categoriaId = 1
+    ..categoriaNombre = "Clasificación"
+    ..subcategorias = [
+      SubCategory()
+        ..subcategoriaId = 100
+        ..subcategoriaNombre = "tallo"
+        ..subcategoriaNombreDesplazar = 'Tallo'
+        ..respuestas = [
+          Item()
+            ..itemId = 1
+            ..itemNombre = "errorLongitud"
+            ..itemNombreMostrar = "Error Longitud"
+            ..itemsRango = [
+              Range()
+                ..minimo = 1
+                ..maximo = 5
+                ..cantidadaDisminuir = 30,
+              Range()
+                ..minimo = 5
+                ..maximo = 10
+                ..cantidadaDisminuir = 35
+            ],
+          Item()
+            ..itemId = 1
+            ..itemNombre = "numeroGrapasStandartFinca"
+            ..itemNombreMostrar = "Nº grapas stándard Finca"
+            ..itemsRango = [
+              Range()
+                ..minimo = 1
+                ..maximo = 5
+                ..cantidadaDisminuir = 30,
+              Range()
+                ..minimo = 5
+                ..maximo = 10
+                ..cantidadaDisminuir = 35
+            ],
+        ],
+      SubCategory()
+        ..subcategoriaId = 100
+        ..subcategoriaNombre = "follaje"
+        ..subcategoriaNombreDesplazar = 'Follaje'
         ..respuestas = [
           Item()
             ..itemId = 1

@@ -439,7 +439,7 @@ class DatabaseCreator {
       $auditoriaAgenciaId INTEGER PRIMARY KEY AUTOINCREMENT,
       $fechaAuditoriaAgencia DATE,
       $postcosechaId NUMERIC,
-      $usuarioId NUMERIC,
+      $usuarioId NUMERIC
     )''';
     await db.execute(auditoriaAgenciaSql);
   }
@@ -452,7 +452,7 @@ class DatabaseCreator {
       $gradoVariedadAgencia NUMERIC,
       $tallosPorRamoAgencia NUMERIC,
       $variedadId NUMERIC,
-      $auditoriaAgenciaId NUMERIC,
+      $auditoriaAgenciaId NUMERIC
     )''';
     await db.execute(auditoriaAgenciaDetalleSql);
   }
@@ -466,7 +466,7 @@ class DatabaseCreator {
       $auditoriaCatindadRespuesta NUMERIC,
       $auditoriaTotalRespuesta NUMERIC,
       $auditoriaItemId NUMERIC,
-      $auditoriaDetalleId NUMERIC,
+      $auditoriaDetalleId NUMERIC
     )''';
     await db.execute(auditoriaAgenciaRespuestaSql);
   }

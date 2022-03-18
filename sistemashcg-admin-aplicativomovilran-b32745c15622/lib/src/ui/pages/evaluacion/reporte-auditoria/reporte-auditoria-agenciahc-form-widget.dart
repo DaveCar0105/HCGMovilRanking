@@ -19,7 +19,7 @@ class EvaluacionEnAgenciaFormWidget extends StatelessWidget {
   EvaluacionEnAgenciaFormWidget({Key key}) : super(key: key);
 
   final _formKey = GlobalKey<FormBuilderState>();
-  var mock = EvaluacionFincaMock.category;
+  var mock = EvaluacionFincaDto.category;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class EvaluacionEnAgenciaFormWidget extends StatelessWidget {
             _sectionA(),
             _seccionAnalisisMuestra(),
             _sectionC(),
-           // _sectionB(),
+            // _sectionB(),
             CategorySection(
               formKey: _formKey,
               category: mock,
@@ -79,29 +79,27 @@ class EvaluacionEnAgenciaFormWidget extends StatelessWidget {
           'future': locator<PaisRepository>().selectAllGeneric(),
           'required': true
         },
-        
       }, _formKey),
     );
   }
 
-  SurveySection _seccionAnalisisMuestra(){
-
+  SurveySection _seccionAnalisisMuestra() {
     return SurveySection(
       title: Text('Analisis de Muestra'),
       content: FormFieldWidget.generateElements({
-         'tipoCajaId': {
+        'tipoCajaId': {
           'label': 'Tipo de Caja',
           'type': FieldType.futureField,
           'subType': FieldType.dropdown,
           'future': locator<TipoCajaRepository>().selectAllGeneric(),
           'required': true
         },
-         'cantidadCaja': {
+        'cantidadCaja': {
           'label': 'Cantidad de Cajas',
           'type': FieldType.numeric,
           'required': true
         },
-         'gradoVariedad': {
+        'gradoVariedad': {
           'label': 'Grado (cm)',
           'type': FieldType.numeric,
           'required': true
@@ -143,38 +141,39 @@ class EvaluacionEnAgenciaFormWidget extends StatelessWidget {
           'type': FieldType.numeric,
           'required': true
         },
-      },_formKey),
+      }, _formKey),
     );
   }
-SurveySection _sectionC() {
-    final options=['largoCaja','anchoCaja','altoCaja'];
-    
+
+  SurveySection _sectionC() {
+    final options = ['largoCaja', 'anchoCaja', 'altoCaja'];
+
     return SurveySection(
       title: Text('Caracteristicas Caja Auditada'),
       content: FormFieldWidget.generateElements({
-      
         'largoCaja': {
           'label': 'Largo de la caja',
           'type': FieldType.multiplication,
-          'options':options,
-          'result':'pesoVolumetrico',
+          'options': options,
+          'result': 'pesoVolumetrico',
           'required': true
         },
         'anchoCaja': {
           'label': 'Ancho de la caja',
           'type': FieldType.multiplication,
-          'options':options,
-          'result':'pesoVolumetrico',
+          'options': options,
+          'result': 'pesoVolumetrico',
           'required': true
         },
         'altoCaja': {
           'label': 'Alto de la caja',
           'type': FieldType.multiplication,
-          'options':options,
-          'result':'pesoVolumetrico',
+          'options': options,
+          'result': 'pesoVolumetrico',
           'required': true
         },
-        'pesoVolumetrico': {   // HACER EL CALCULO
+        'pesoVolumetrico': {
+          // HACER EL CALCULO
           'label': 'Peso Volumetrico',
           'type': FieldType.numberResult,
           'required': true
@@ -184,7 +183,8 @@ SurveySection _sectionC() {
           'type': FieldType.numeric,
           'required': true
         },
-        'aprovechamientoCaja': { // HACER EL CALCULO PARA EL APROVEHAMIENTO DE LA CAJA
+        'aprovechamientoCaja': {
+          // HACER EL CALCULO PARA EL APROVEHAMIENTO DE LA CAJA
           'label': 'Aprovechamiento de la caja',
           'type': FieldType.text,
           'required': true

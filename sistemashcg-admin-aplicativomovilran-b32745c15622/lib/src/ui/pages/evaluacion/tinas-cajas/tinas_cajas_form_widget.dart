@@ -27,7 +27,7 @@ class _TinasCajasFormWidgerState extends State<TinasCajasFormWidger> {
 
   var cache = {};
 
-  var mock = EvaluacionFincaMock.category;
+  var mock = EvaluacionFincaDto.category;
 
   var evaluacion = EvaluacionFincaParseDto();
 
@@ -45,15 +45,13 @@ class _TinasCajasFormWidgerState extends State<TinasCajasFormWidger> {
               padding: const EdgeInsets.all(8.0),
               child: evaluationDetail(),
             ),
-            Expanded(
-              child: MaterialButton(
-                color: Theme.of(context).colorScheme.secondary,
-                child: Text(
-                  "Agregar Evaluacion",
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: addDetail,
+            MaterialButton(
+              color: Theme.of(context).colorScheme.secondary,
+              child: Text(
+                "Agregar Evaluacion",
+                style: TextStyle(color: Colors.white),
               ),
+              onPressed: addDetail,
             ),
             // _sectionB(),
             // CategorySection(
@@ -80,22 +78,25 @@ class _TinasCajasFormWidgerState extends State<TinasCajasFormWidger> {
       itemCount: evaluacion.evaluacionDetalle?.length ?? 0,
       itemBuilder: (context, index) {
         return ListTile(
-          title: Text("Titulo"),
+          title: InkWell(
+            child: Text("Titulo"),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EvaluacionDetalle(
+                    evaluacion: evaluacion.evaluacionDetalle[index],
+                  ),
+                ),
+              );
+            },
+          ),
           trailing: IconButton(
             icon: Icon(Icons.close),
+            onPressed: () {
+              removeDetail(index);
+            },
           ),
-          onLongPress: () {
-            removeDetail(index);
-          },
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => EvaluacionDetalle(
-                        evaluacion: evaluacion.evaluacionDetalle[index],
-                      )),
-            );
-          },
         );
       },
     );

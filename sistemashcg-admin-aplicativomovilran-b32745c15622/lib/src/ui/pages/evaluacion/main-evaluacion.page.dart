@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ranking_app/src/ui/pages/evaluacion/reporte-auditoria/reporte-auditoria-agenciahc.page.dart';
+import 'package:ranking_app/src/ui/pages/evaluacion/tinas-cajas/evalucion-tinas-cajas-seleccion.page.dart';
 import 'package:ranking_app/src/ui/pages/evaluacion/tinas-cajas/evalucion-tinas-cajas.page.dart';
 
 class MainEvalutionPage extends StatefulWidget {
@@ -22,10 +23,12 @@ class _MainEvalutionPageState extends State<MainEvalutionPage> {
             child: RaisedButton(
               onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            EvaluacionTinasCajasPage(this._switchVal, 10)));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        EvaluacionTinasCajasSeleccionPage(this._switchVal, 10),
+                  ),
+                );
               },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
@@ -57,9 +60,9 @@ class _MainEvalutionPageState extends State<MainEvalutionPage> {
               onPressed: () {
                 Navigator.push(
                     context,
-                     MaterialPageRoute(
+                    MaterialPageRoute(
                         builder: (context) =>
-                            ProcesoReporteAuditoriaAgenciahcPage( )));
+                            ProcesoReporteAuditoriaAgenciahcPage()));
               },
               child: Container(
                 width: 120,
